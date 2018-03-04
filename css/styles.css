@@ -1,3 +1,9 @@
 body{
-    background-color: aqua;
+    background-color: darkgrey;
+}
+
+.container{
+    width: 85%;
+    margin: auto;
+    border: 2px solid darkolivegreen
 }
