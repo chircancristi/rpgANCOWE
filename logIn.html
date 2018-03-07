@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sunday Brawl</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Bungee+Shade" rel="stylesheet">
+	<link rel="stylesheet" href="logInCss.css">
+
+</head>
+<body>
+		<div class="container"> 
+	    	<section class="title">
+				<h1>Sunday Brawl </h1>
+			</section>
+				<section  class="formular">
+				
+					<form action="/action_page.php" id="logIn" class="unhidden" >
+ 								 Username:<br>
+  						<input type="text" name="username" >
+  								<br>
+ 								 Password:<br>
+				    		<input type="text" name="password" >
+ 				    		<br><br>
+				    		<button type="Submit" class="logInButton"> Log in </button>
+				    		<br><br> 
+				    		<span>Don't have an account?<button  type="button" onclick="unhide('logIn','signIn')">Sign up </button></span>
+					</form> 
+
+					<form action="/action_page.php"  id="signIn" class="hidden" >
+ 						Username:<br>
+  						<input type="text" name="mail" >
+  						<br>
+
+ 						Username:<br>
+  						<input type="text" name="username" >
+  						
+  						<br>
+ 					 	Password:<br>
+
+				    	<input type="text" name="password" >
+ 				    	<br>
+
+ 						Comfirm Password:<br>
+
+				    	<input type="text" name="Comfirm Password" >
+				    	<br><br>
+				    
+				    	<button type="button" onclick="unhide('signIn','logIn')"> Sign up </button>
+				    	<br><br>
+				    	<button type="button" onclick="unhide('signIn','logIn')" > Back </button>
+				    
+					</form>
+								
+			</section>
+		</div>
+</body>
+<script type="text/javascript">
+function unhide(divID,divID2) {
+var item = document.getElementById(divID);
+var item2=document.getElementById(divID2);
+item.className = 'hidden';
+item2.className ='unhidden';
+       
+    
+}
+
+</script>
+</html>
