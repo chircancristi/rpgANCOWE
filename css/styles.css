@@ -1,9 +1,97 @@
 body{
-    background-color: darkgrey;
+    margin: 0;
+    overflow: hidden;
+    background-image: url("fundalSite.jpg");
+    background-color: #cccccc;
+    background-repeat:no-repeat;
+    background-size: 100%;
+    height: 90vh;
+    width: 90%;     
 }
 
 .container{
-    width: 85%;
+    width: 70%;
+    height: 500px;
+    margin: 0px auto;
+    /* border: 2px solid darkolivegreen; */
+}
+
+.navbar{
+    text-align: center;
+    width: 100%;
+    list-style: none;
+    background-color: #e55039;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border-bottom: 3px solid #0c2461;
+}
+
+.navbar__item{
+    display: inline-block;
+    padding: 15px 2.5px 15px 0px;
+    margin: 10px 0px;
+}
+
+.navbar__item__link{
+    padding: 15px;
+    border: 2px solid #0c2461;
+    border-radius: 10px;
+    font-size: 25px;
+    color: #0c2461;
+    text-decoration: none;
+    transition: all 0.2s linear;
+}
+
+.navbar__item__link:hover{
+    background-color: #0c2461;
+    color: #f6b93b;
+    border-color: #f6b93b;
+}
+
+/* Sign Up / LogIn */
+
+.title h1 {
+    font-family: 'Bungee Shade', cursive;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 0px;
+    line-height: 42px;
+	float: center;
+}
+.container {
+    width: 90%;
+   	position: relative;
     margin: auto;
-    border: 2px solid darkolivegreen
+    background-color: transparent;
+}
+
+.container .formular{
+		background-color: #EA2027;
+		position: relative;
+		margin-top: 5%;
+    	margin-bottom: 5%;
+    	margin-right: 30%;
+    	margin-left: 35%;
+    	height: 500px;
+    	width: 500px;
+    	
+
+}
+
+.formular .unhidden  {
+	display: block;
+	position: absolute;
+	text-align:  center;
+	font-size: 25px;
+	margin-top:20%;
+	float: center;
+	width:500px;
+	height:500px;
+}
+
+.formular .hidden{
+
+	display: none;
+
 }
