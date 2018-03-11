@@ -8,8 +8,6 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'Indie Flower', cursive;
 }
 
-
-
 .container{
     width: 95%;
     padding: 20px;
@@ -33,10 +31,6 @@ h1, h2, h3, h4, h5, h6{
     padding: 10px;
 }
 
-
-
-
-
 .characters{
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -44,7 +38,6 @@ h1, h2, h3, h4, h5, h6{
     overflow-y:scroll;
     
 }
-
 
 .items{
     grid-column: 1 / 2;
@@ -98,14 +91,14 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .form-container .formular{
-		background-color: #EA2027;
-		position: relative;
-		margin-top: 5%;
-    	margin-bottom: 5%;
-    	margin-right: 30%;
-    	margin-left: 35%;
-    	height: 500px;
-    	width: 500px;
+    background-color: #EA2027;
+    position: relative;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 30%;
+    margin-left: 35%;
+    height: 500px;
+    width: 500px;
 }
 
 .formular .unhidden  {
@@ -172,7 +165,6 @@ h1, h2, h3, h4, h5, h6{
     max-height: 75px;
     max-width: 75px;
 }
-
 
 /* Items */
 
