@@ -1,52 +1,55 @@
 body{
-    margin: 0;
-    overflow: hidden;
-    background-image: url("fundalSite.jpg");
-    background-color: #cccccc;
-    background-repeat:no-repeat;
-    background-size: 100%;
-    height: 90vh;
-    width: 90%;     
+    margin: 0; 
 }
 
 .container{
-    width: 70%;
-    height: 500px;
+    width: 95%;
+    padding: 20px;
     margin: 0px auto;
     /* border: 2px solid darkolivegreen; */
 }
 
-.navbar{
-    text-align: center;
+/* CSS Grid */
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.characters, .items,
+.char-details, .acc-stats{
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.characters{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.items{
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.char-details{
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+}
+
+.acc-stats{
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+}
+
+/* Footer */
+
+.footer{
     width: 100%;
-    list-style: none;
-    background-color: #e55039;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    border-bottom: 3px solid #0c2461;
-}
-
-.navbar__item{
-    display: inline-block;
-    padding: 15px 2.5px 15px 0px;
-    margin: 10px 0px;
-}
-
-.navbar__item__link{
-    padding: 15px;
-    border: 2px solid #0c2461;
-    border-radius: 10px;
-    font-size: 25px;
-    color: #0c2461;
-    text-decoration: none;
-    transition: all 0.2s linear;
-}
-
-.navbar__item__link:hover{
-    background-color: #0c2461;
-    color: #f6b93b;
-    border-color: #f6b93b;
+    background-color: blueviolet;
+    height: 100px;
 }
 
 /* Sign Up / LogIn */
@@ -59,14 +62,25 @@ body{
     line-height: 42px;
 	float: center;
 }
-.container {
-    width: 90%;
+
+/* .form-container{
+    margin: 0;
+    overflow: hidden;
+    background-image: url("../img/fundalSite.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 90vh;
+} */
+
+.form-container { 
    	position: relative;
     margin: auto;
-    background-color: transparent;
+    margin: 0;
+    overflow: hidden;
+    background-image: url("../img/fundalSite.jpg");
 }
 
-.container .formular{
+.form-container .formular{
 		background-color: #EA2027;
 		position: relative;
 		margin-top: 5%;
@@ -75,8 +89,6 @@ body{
     	margin-left: 35%;
     	height: 500px;
     	width: 500px;
-    	
-
 }
 
 .formular .unhidden  {
