@@ -2,6 +2,8 @@ body{
     margin: 0; 
 }
 
+
+
 .container{
     width: 95%;
     padding: 20px;
@@ -14,20 +16,29 @@ body{
 .grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 1fr 1fr;
+    grid-template-rows: minmax(1fr, 100px);
     grid-gap: 5px;
+
 }
 
-.characters, .items,
+.items, .characters,
 .char-details, .acc-stats{
     border: 2px solid black;
     padding: 10px;
 }
 
+
+
+
+
 .characters{
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+
+    overflow-y:scroll;
+    
 }
+
 
 .items{
     grid-column: 1 / 2;
@@ -107,3 +118,57 @@ body{
 	display: none;
 
 }
+
+/* Start characters */
+
+.characters__item{
+    border: 2px solid black;
+    box-sizing: border-box;
+    border-radius: 15px; 
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-auto-rows: 1fr;
+    margin-bottom: 2px;
+
+}
+
+.characters__item__portrait{
+    grid-column: 1 / 2;
+    border-right: 2px solid black;
+}
+
+.characters__item__portrait img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.characters__item__details{
+    grid-column: 2 / 3;  
+}
+
+.characters__item__details__name{
+    text-align: center;
+    border-bottom: 2px solid black ;
+}
+
+.characters__item__details__name h4, 
+.characters__item__details__faction h4{
+    margin: 0;
+}
+
+.characters__item__details__faction{
+    text-align: center;
+    border-top: 2px solid black ;
+}
+
+.characters__item__details__description{
+    padding: 5px;
+}
+
+.characters__item__details__description p{
+    margin: 0;
+}
+
+/* end characters */
