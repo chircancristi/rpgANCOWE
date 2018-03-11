@@ -1,5 +1,11 @@
 body{
-    margin: 0; 
+    margin: 0;
+    font-family: 'Itim', cursive;
+    font-size: 15px;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Indie Flower', cursive;
 }
 
 .container{
@@ -52,7 +58,7 @@ body{
     height: 100px;
 }
 
-/* Sign Up / LogIn */
+/* START Sign Up / LogIn */
 
 .title h1 {
     font-family: 'Bungee Shade', cursive;
@@ -103,7 +109,60 @@ body{
 }
 
 .formular .hidden{
-
 	display: none;
+}
+
+/* END Sign Up / LogIn */
+
+/* START Character details */
+
+.char-details__bio__header{
+    margin-bottom: 10px;
+}
+
+.char-details__bio h2{
+    width: 70%;
+    float: right;
+    text-align: center;
+}
+
+.char-details__bio__portrait{
+    width: 30%;
+    float: left;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.char-details__bio__description{
+    text-align: justify;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Stats */
+
+
+/* Abilities */
+
+.abilities__container{
 
 }
+
+.abilities__item{
+    display: inline-block;
+    padding: 5px 0px 0px 5px;
+    height: 80px;
+    width: 80px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.abilities__item img{
+    max-height: 75px;
+    max-width: 75px;
+}
+
+
+/* Items */
+
+/* END Character details */
