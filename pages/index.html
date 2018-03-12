@@ -8,54 +8,48 @@
 
 </head>
 
-<body onresize="proprieties()" onload="proprieties()"  >
-	<div class="form-container" id="formularContainer" >
-		<section class="formular" id="formularId" >
-			<form action="/action_page.php" id="logIn" class="signIn">
-				<span class="signIn--title">
-					Account Login 
+<body onresize="proprieties()" onload="proprieties()">
+	<div class="form-container" id="formularContainer">
+		<section class="formular" id="formularId">
+			<form action="/action_page.php" id="logIn" class="logIn">
+				<span class="logIn--title">
+					Account Login
 				</span>
-				<div class="wrap--input" id="wrapUsername"  data-validate="Username is required">
-					<input   pattern="[A-Za-z1-9]" placeholder="Username"  class="signIn--input"  type="text" name="username">
-						
+				<div class="wrap--input" id="wrapUsername" data-validate="Username is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn--input" type="text" name="username">
+
 				</div>
 				<div class="wrap--input--password" id="wrapPassword" data-validate="Password is required">
-					<input   pattern="[A-Za-z1-9]" placeholder="Password" class="signIn--input"   type="password" name="username">
-								</div>	
-				<span> 
-					<button   class="signIn--Button" id="signInButton">Log In</button>
-					<button class="signIn--newUser">New user?</button>
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn--input" type="password" name="username">
+				</div>
+				<span>
+					<button class="logIn--Button" id="signInButton">Log In</button>
+					<button type="button" class="signIn--newUser" onclick="switchToLogIn('logIn','signIn')">New user?</button>
 				</span>
-					</form>
-				
-			
-			<form action="/action_page.php" id="signIn" class="logIn">
-				<label for="email">Email</label>
-				<br>
-				<input type="text" name="email">
-				<br> Username:
+			</form>
 
-				<br>
-				<input type="text" name="username">
 
-				<br> Password:
-				<br>
-
-				<input type="text" name="password">
-				<br> Comfirm Password:
-				<br>
-
-				<input type="text" name="Comfirm Password">
-				<br>
-				<br>
-
-				<button type="button" onclick="unhide('signIn','logIn')"> Sign up </button>
-				<br>
-				<br>
-				<button type="button" onclick="unhide('signIn','logIn')"> Back </button>
+			<form action="/action_page.php" id="signIn" class="signIn">
+				<div class="wrap--signIn--mail" id="wrapUsername" data-validate="Mail is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Mail" class="logIn--input" type="text" name="username">
+				</div>
+				<div class="wrap--signIn--username" id="wrapUsername" data-validate="Username is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn--input" type="text" name="username">
+				</div>
+				<div class="wrap--signIn--password" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn--input" type="password" name="username">
+				</div>
+				<div class="wrap--signIn--comfirmPassword" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Comfirm password" class="logIn--input" type="password" name="username">
+				</div>
+				<span>
+					<button type="button" class="signIn--button" onclick="switchToLogIn('signIn','logIn')" id="signInButton">Sign in</button>
+					<button type="button" class="back--button" onclick="switchToLogIn('signIn','logIn')" >Back</button>
+				</span>
 			</form>
 		</section>
 	</div>
 </body>
 <script src="../js/styles.js"></script>
+
 </html>

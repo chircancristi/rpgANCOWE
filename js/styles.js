@@ -1,12 +1,10 @@
-function unhide(divID, divID2) {
-		var item = document.getElementById(divID);
-		var item2 = document.getElementById(divID2);
-		item.className = 'logIn';
-		item2.cla1ssName = 'signIn';
-
-
-    }
  
+function switchToLogIn(divID,divID2){
+	var item = document.getElementById(divID);
+	var item2 = document.getElementById(divID2);
+	item.style.display='none';
+	item2.style.display='block';
+} 
 function proprieties()
 {
 
