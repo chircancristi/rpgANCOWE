@@ -84,37 +84,118 @@ h1, h2, h3, h4, h5, h6{
 } */
 
 .form-container { 
-   	position: relative;
-    margin: auto;
-    margin: 0;
-    overflow: hidden;
-    background-image: url("../img/fundalSite.jpg");
+   	
+    margin: auto;   
+   width:  60%;
+   position: relative;
+    /* overflow: hidden; */
+    border: 2px solid black;
+    
 }
 
-.form-container .formular{
-    background-color: #EA2027;
-    position: relative;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-right: 30%;
-    margin-left: 35%;
-    height: 500px;
-    width: 500px;
+.formular{
+        top:25%;
+        width: 100%;
+        height: 50%;
+		background-color: #EA2027;
+        position: relative;
+        margin: 0 auto;
+
+        display: table;
+    
 }
 
-.formular .unhidden  {
-	display: block;
-	position: absolute;
+.signIn  {
+   
+    
+    display: block;
 	text-align:  center;
-	font-size: 25px;
-	margin-top:20%;
-	float: center;
-	width:500px;
-	height:500px;
+
+	
 }
 
-.formular .hidden{
+.logIn{
+
 	display: none;
+
+}
+.wrap--input , .wrap--input--password{
+   
+    top: 35%;
+    position: absolute;
+    width: 35%;
+    
+    height: 20%;
+    background:linear-gradient(-900deg,grey, black);
+    border:3px solid black;
+ 
+} 
+.wrap--input{
+    
+    left:15%;
+    border-top-left-radius: 25px;
+
+}  
+ .wrap--input--password{
+    border-top-right-radius: 25px;    
+    display: inline;
+    right: 15%;
+    
+}
+.signIn--input {
+    font-family: Arial;
+    border: 2px ;
+    bottom:-5px;
+    left:10%;
+    color:white;
+    font-weight: bold;
+    line-height: 1.3;
+    font-size: 13px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  
+    display: block;
+    background: transparent;
+}
+
+.signIn--Button{
+    position: absolute;
+    display: block;
+    top:55%;
+    font-size:20px;
+    height: 16%;
+    width: 70%;
+    left:15%;    
+    font-weight: bold;
+    border:3px solid black;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.signIn--newUser{
+    position: absolute;
+    display: block;
+    width: 30%;
+    border:2px solid black;
+    top:71%;
+    left:35%;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    font-size:20px;
+}
+.signIn--title{
+    position: absolute;
+    display: block;
+    top:15%;
+    left:30%;
+    color:grey; 
+    font-family: 'Rouge Script', cursive; 
+    font-size: 50px; 
+    font-weight: normal; 
+    line-height:50%; 
+    
+    text-align: center; 
+    text-shadow: 1px 1px 2px black;
 }
 
 /* END Sign Up / LogIn */
