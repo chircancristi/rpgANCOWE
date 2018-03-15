@@ -126,8 +126,8 @@ h1, h2, h3, h4, h5, h6{
     width: 35%;
     
     height: 20%;
-    background:linear-gradient(-900deg,grey, black);
-    border:3px solid black;
+    background:white;
+    border:1px solid grey;
  
 } 
 .wrap--input{
@@ -145,31 +145,31 @@ h1, h2, h3, h4, h5, h6{
 .logIn--input {
     font-family: Arial;
     border: 2px ;
-    bottom:-5px;
- 
-    color:white;
+    top:40%;
+    left: 10px;
+    color:black;
     font-weight: bold;
     line-height: 1.3;
-    font-size: 13px;
+    font-size: 20px;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    text-align: center;
+    text-align: left;
     outline:none;
     display: block;
-    background: transparent;
+   
 }
 
 .logIn--Button{
     position: absolute;
     display: block;
+    color: white;
+    background-color: black;
     top:55%;
     font-size:20px;
     height: 16%;
     width: 70%;
     left:15%;    
     font-weight: bold;
-    border:3px solid black;
+    border:1px solid black;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
@@ -177,39 +177,63 @@ h1, h2, h3, h4, h5, h6{
     position: absolute;
     display: block;
     width: 30%;
-    border:2px solid black;
+    background-color: white;
+    color: grey;
+    border:1px solid black;
     top:71%;
     left:35%;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
     font-size:20px;
 }
-.logIn--title{
-    position: absolute;
-    display: block;
-    top:15%;
-    left:30%;
-    color:grey; 
-    font-family: 'Rouge Script', cursive; 
-    font-size: 50px; 
-    font-weight: normal; 
-    line-height:50%; 
-    text-align: center; 
-    text-shadow: 1px 1px 2px black;
-}
-.wrap--signIn--mail, .wrap--signIn--username, .wrap--signIn--password, .wrap--signIn--comfirmPassword{
+
+.wrap--signIn--mail,  .wrap--signIn--password{
     position: absolute;
     display: block;
     width:70%;
     height: 20%;
-    background:linear-gradient(-900deg,grey, black);
-    border:3px solid black;
+    background:white;
+    color:black;
+    border:1px solid black;
     left:15%;
+}
+.wrap--signIn--username, .wrap--signIn--comfirmPassword{
+    position: absolute;
+    display: block;
+    width:70%;
+    height: 20%;
+    background:black;
+    color:white;
+    
+    border:1px solid black;
+   
+    left:15%;
+}
+.signIn--input--first , .signIn--input--second{
+    font-family: Arial;
+    border: 2px ;
+    width: 100%;
+    height: 100%;  
+    font-weight: bold;
+    line-height: 1.3;
+    font-size: 20px;
+    position: absolute;
+    text-align: center;
+    outline:none;
+    display: block;
+   background: transparent;
+}
+.signIn--input--first{
+    color:black;
+}
+.signIn--input--second{
+    color: white;
 }
 .wrap--signIn--mail{
     top:0%;
    
 }
+
 .wrap--signIn--username{
     top:20%;
     
@@ -224,22 +248,23 @@ h1, h2, h3, h4, h5, h6{
 .signIn--button, .back--button{
     position: absolute;
     display: block;
-    top: 81%;
-    
+    top: 80%;
+    font-weight: bold;
     width: 32%;
     height: 18%;
-    background:grey;
-    border:3px solid black;
+    background:white;
+    border:1px solid grey;
     color:black;
    
 }
 .back--button{
-    left:18%;
-    
+    left:19%;
+    font-size: 20px;
     border-bottom-left-radius: 25px;
 }
 .signIn--button{
     left:50%;
+    font-size: 20px;
     border-bottom-right-radius: 25px;
 }
 /* END Sign Up / LogIn */
@@ -398,4 +423,40 @@ h1, h2, h3, h4, h5, h6{
 .items__item__details__description p{
     margin: 0;
 }
+
 /*End ITEMS*/
+
+/* Account stats column */
+.start--row{
+    position: relative;
+    height: 10%;
+    width: 100%;
+    font-weight: 50%;
+    }
+.start--row--play{
+    position: absolute;
+    height: 50%;
+    width: 50%;
+    left:25%;
+    top:20%;
+}
+h3{
+    text-align: center;
+}
+.account--utility--row{
+  
+    position: relative;
+
+}
+.account--utility--settings, .account--utility--logOut{
+    width: 45%;
+    position: absolute;
+    
+}
+.account--utility--logOut{
+    display: inline;
+    left:50%;
+}
+
+
+/*END STATS*/

@@ -11,10 +11,8 @@
 <body onresize="proprieties()" onload="proprieties()">
 	<div class="form-container" id="formularContainer">
 		<section class="formular" id="formularId">
-			<form action="/action_page.php" id="logIn" class="logIn">
-				<span class="logIn--title">
-					Account Login
-				</span>
+			<form action="../pages/dashboard.html" id="logIn" class="logIn">
+				
 				<div class="wrap--input" id="wrapUsername" data-validate="Username is required">
 					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn--input" type="text" name="username">
 
@@ -23,7 +21,7 @@
 					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn--input" type="password" name="username">
 				</div>
 				<span>
-					<button class="logIn--Button" id="signInButton">Log In</button>
+					<button type="submit" class="logIn--Button" id="signInButton" target="..pages/dashboard.html" >Log In</button>
 					<button type="button" class="signIn--newUser" onclick="switchToLogIn('logIn','signIn')">New user?</button>
 				</span>
 			</form>
@@ -31,16 +29,16 @@
 
 			<form action="/action_page.php" id="signIn" class="signIn">
 				<div class="wrap--signIn--mail" id="wrapUsername" data-validate="Mail is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Mail" class="logIn--input" type="text" name="username">
+					<input pattern="[A-Za-z1-9]" placeholder="Mail" class="signIn--input--first" type="text" name="username">
 				</div>
 				<div class="wrap--signIn--username" id="wrapUsername" data-validate="Username is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn--input" type="text" name="username">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="signIn--input--second" type="text" name="username">
 				</div>
 				<div class="wrap--signIn--password" id="wrapPassword" data-validate="Password is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn--input" type="password" name="username">
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="signIn--input--first" type="password" name="username">
 				</div>
 				<div class="wrap--signIn--comfirmPassword" id="wrapPassword" data-validate="Password is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Comfirm password" class="logIn--input" type="password" name="username">
+					<input pattern="[A-Za-z1-9]" placeholder="Comfirm password" class="signIn--input--second" type="password" name="username">
 				</div>
 				<span>
 					<button type="button" class="signIn--button" onclick="switchToLogIn('signIn','logIn')" id="signInButton">Sign in</button>
