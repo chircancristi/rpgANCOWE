@@ -139,27 +139,37 @@
                     </div>
                 </div>
             </div>
-            <div class="acc-stats">
-                <Div class="start--row">
-                    <button class="start--row--play"> PLAY</button>
-                </Div>
-                <div class="account--stats-row">
-                        <h3> Account stats</h3>
+            <div class="acc__stats">
+                <div class="start__row">
+                    <button class="start__row__play"> PLAY</button>
+                </div>
+                <div class="account__stats__row">
+                        <h2> Account stats</h2>
                         <p> Win percentage:</p>
                         <p> Favorite Character: </p>
                         <p> Number of lost games(you will get better): </p>
-                        <p>  </p>
+                       
                 </div>
-                <div class="account--utility--row">
-                        
-                        <button class="account--utility--settings">Account settings</button>
-                        <form id="Sign out"  action="../pages/index.html" >
-                        <button type="submit"   class="account--utility--logOut"> Log out  </button> 
-                    </form>
-                    </div>
+                
+                 <div class="settings__popout">
+                    <h2> Settings </h2>
+                    <p> Change username:<input pattern="[A-Za-z1-9]" placeholder="Add new username "  type="text" name="newUsername"> </p>
+                    <p> Change email:<input pattern="[A-Za-z1-9]" placeholder="Add new mail "  type="text" name="newMail">   </p>
+                    <p> Change password:<input pattern="[A-Za-z1-9]" placeholder="Add new password "  type="password" name="newPassword">   </p>
+                    <p> Comfirm change password:<input pattern="[A-Za-z1-9]" placeholder="Add new password "  type="password" name="newPasswordComfirm">   </p>
+                    <button class="submit__button"> Submit Changes </button>
+                    <button class="erase__button"> Erase Account </button>
+                 
+               </div>
+               <div class="account__utility__row">
+                <form  action="../pages/index.html" class="account__utility__logOut" >
+                    <button type="submit"   class="account__utility__logOutbutton" > Log out  </button>        
+                     
+                </div>
+              
             </div>
-        </div>
-    </div>
+           </div>
+              </div>
     <footer class="footer">
         <p>Footer</p>
     </footer>
