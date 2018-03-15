@@ -274,9 +274,15 @@ h1, h2, h3, h4, h5, h6{
 
 /* START Character details */
 
-.char-details__bio{
-    height: 50%;
-    
+.char-details__bio__description,
+.char-details__stats,
+.char-details__abilities,
+.char-details__equipped-items{
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    background-color: white;
 }
 
 .char-details__bio__header{
@@ -285,12 +291,10 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .char-details__bio h2{
-   
     width: auto;
     height: auto;
     text-align: center;
     margin:0px;
-    bottom: 0px;
     border: 2px solid black;
     border-radius: 20px;
     background-color: white;
@@ -309,30 +313,38 @@ h1, h2, h3, h4, h5, h6{
     text-align: justify;
     font-size: 15px;
     margin: 0;
-    border: 2px solid #1B1464;
-    padding: 5px;
-    border-radius: 20px;
-    background-color: white;
     margin-bottom: 5px;
 }
 
 /* Stats */
 .char-details__stats{
-    border: 2px solid black;
-    border-radius: 20px;
-    background-color: white;
+    
 }
 .char-details__stats h2{
     text-align: center;
 }
 
-/* Abilities */
-
-.abilities__container{
-
+.char-details__stats__info{
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 20px auto;
+    width: 95%;
+    text-align: center;
 }
 
-.abilities__item{
+.char-details__stats__info li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Abilities */
+
+.char-details__abilities__container{
+    margin: auto;
+    width: 92%;
+}
+
+.char-details__abilities__item{
     display: inline-block;
     padding: 5px 0px 0px 5px;
     height: 80px;
@@ -341,7 +353,7 @@ h1, h2, h3, h4, h5, h6{
     cursor: pointer;
 }
 
-.abilities__item img{
+.char-details__abilities__item img{
     max-height: 75px;
     max-width: 75px;
 }
