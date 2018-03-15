@@ -1,7 +1,8 @@
-body{
+.dashboard-body{
     margin: 0;
     font-family: 'Itim', cursive;
     font-size: 15px;
+    background-color:#1B1464; 
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -9,9 +10,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .container{
-    width: 95%;
+    width: auto;
     padding: 20px;
-    margin: 0px auto;
+    margin: 0px 0px 0px 0px;
     /* border: 2px solid darkolivegreen; */
 }
 
@@ -22,13 +23,15 @@ h1, h2, h3, h4, h5, h6{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: minmax(1fr, 100px);
     grid-gap: 5px;
-
+    background-color: transparent;
 }
 
 .items, .characters,
 .char-details, .acc-stats{
-    border: 2px solid black;
     padding: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #C4E538;
 }
 
 .characters{
@@ -271,31 +274,57 @@ h1, h2, h3, h4, h5, h6{
 
 /* START Character details */
 
+.char-details__bio{
+    height: 50%;
+    
+}
+
 .char-details__bio__header{
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .char-details__bio h2{
-    width: 70%;
-    float: right;
+   
+    width: auto;
+    height: auto;
     text-align: center;
+    margin:0px;
+    bottom: 0px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: white;
 }
 
 .char-details__bio__portrait{
-    width: 30%;
-    float: left;
-    max-width: 100px;
-    max-height: 100px;
+    position: relative;
+    max-width: 70%;
+    max-height: 30%;
+    left: 15%;
+    border-radius: 50%;
+    border: 2px solid black;
 }
 
 .char-details__bio__description{
     text-align: justify;
     font-size: 15px;
     margin: 0;
+    border: 2px solid #1B1464;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: white;
+    margin-bottom: 5px;
 }
 
 /* Stats */
-
+.char-details__stats{
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: white;
+}
+.char-details__stats h2{
+    text-align: center;
+}
 
 /* Abilities */
 
@@ -332,6 +361,7 @@ h1, h2, h3, h4, h5, h6{
     grid-template-columns: 1fr 2fr;
     grid-auto-rows: 1fr;
     margin-bottom: 2px;
+    background-color: white;
 
 }
 
