@@ -68,7 +68,7 @@ h6 {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: minmax(1fr, 100px);
+    grid-auto-rows: 0.5fr;
     grid-gap: 5px;
     background-color: transparent;
 }
@@ -575,6 +575,10 @@ h6 {
     grid-auto-rows: 1fr;
     margin-bottom: 2px;
     background-color: white;
+}
+
+.characters__item__details:hover {
+    background-color: gold;
 }
 
 .characters__item__portrait {
