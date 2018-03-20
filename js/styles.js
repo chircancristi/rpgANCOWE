@@ -67,3 +67,26 @@ function hideDescription(divId) {
 	document.getElementById(divId).style.display = "none";
 
 }
+
+
+function HighlightChar(nr){
+	var items = document.getElementsByClassName('characters__item');
+	
+	for(i=0; i<items.length; i++) {
+		items[i].style.backgroundColor = 'white';
+		items[i].style.fontWeight = 'normal';
+	  }
+	  items[nr].style.backgroundColor = 'gold';
+	  items[nr].style.fontWeight = 'bold';
+	
+	var chars = document.getElementsByClassName('char-details');
+	for(i=0; i<chars.length; i++) {
+		chars[i].style.display = 'none';
+	  }
+
+	  if(nr==2 || nr==3){
+		chars[1].style.display = 'block';
+	  }
+
+	  chars[nr].style.display = 'block';
+}

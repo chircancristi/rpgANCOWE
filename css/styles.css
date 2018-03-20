@@ -40,12 +40,12 @@ h6 {
     box-shadow: 2px 2px 5px grey;
 }
 
-.btn--primary{
+.btn--play{
     font-size: 28px;
     background-color: #e55039;
 }
 
-.btn--primary:hover{
+.btn--play:hover{
     background-color: white;
     color: #e55039;
     border: 1px solid #e55039;
@@ -68,7 +68,7 @@ h6 {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: minmax(1fr, 100px);
+    grid-auto-rows: 0.5fr;
     grid-gap: 5px;
     background-color: transparent;
 }
@@ -537,6 +537,10 @@ h6 {
     grid-auto-rows: 1fr;
     margin-bottom: 2px;
     background-color: white;
+}
+
+.characters__item__details:hover {
+    background-color: gold;
 }
 
 .characters__item__portrait {
