@@ -72,3 +72,16 @@ function hideDescription(divId) {
 	document.getElementById(divId).style.display = "none";
 
 }
+function bringImg(pos){
+	var pics = document.getElementsByClassName("container__Poza");
+	var buttons = document.getElementsByClassName("about-button");
+	pics[pos].style.animation = "shake 0.5s";
+	pics[pos].style.animationIterationCount="infinite";
+	buttons[pos].style.background = "linear-gradient( rgb(99, 87, 236), darkblue, rgb(99, 87, 236))";
+}
+function throwImg(pos){
+	var pics = document.getElementsByClassName("container__Poza");
+	var buttons = document.getElementsByClassName("about-button");
+	pics[pos].style.animationIterationCount="0";
+	buttons[pos].style.background = "rgb(99, 87, 236)";
+}
