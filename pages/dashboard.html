@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head> 
-        <title>Sunday Brawl</title>
-        <link rel="stylesheet" href="../css/styles.css">
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet"> 
-    </head>
+
+<head>
+    <title>Sunday Brawl</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
+</head>
 
 <body class="dashboard-body">
     <div class="container">
@@ -89,37 +90,108 @@
                         <img src="../img/char_portrait.jpg" alt="character portrait" class="char-details__bio__portrait">
                         <h2>The Hulk</h2>
                     </div>
-                    <p class="char-details__bio__description">The Hulk is a fictional superhero appearing in American comic books published 
-                        by Marvel Comics. Created by writer Stan Lee and artist Jack Kirby, 
-                        the character first appeared in the debut issue of The Incredible Hulk. 
-                        In his comic book appearances, the character is both the Hulk, a green-skinned, 
-                        hulking and muscular humanoid possessing a vast degree of physical strength, 
-                        and his alter ego Bruce Banner, a physically weak, socially withdrawn, and emotionally reserved physicist, 
-                        the two existing as personalities independent and resenting of the other.
-                    </p>                       
+                    <p class="char-details__bio__description">The Hulk is a fictional superhero appearing in American comic books published by Marvel Comics. Created
+                        by writer Stan Lee and artist Jack Kirby, the character first appeared in the debut issue of The
+                        Incredible Hulk. In his comic book appearances, the character is both the Hulk, a green-skinned,
+                        hulking and muscular humanoid possessing a vast degree of physical strength, and his alter ego Bruce
+                        Banner, a physically weak, socially withdrawn, and emotionally reserved physicist, the two existing
+                        as personalities independent and resenting of the other.
+                    </p>
                 </div>
                 <div class="char-details__stats">
                     <h2>Stats</h2>
                     <ul class="char-details__stats__info">
-                        <li>Level: <span>10</span></li>
-                        <li>Attack: <span>40</span></li>
-                        <li>Defense: <span>22</span></li>
+                        <li>Level:
+                            <span>10</span>
+                        </li>
+                        <li>Attack:
+                            <span>40</span>
+                        </li>
+                        <li>Defense:
+                            <span>22</span>
+                        </li>
                     </ul>
                 </div>
                 <div class="char-details__abilities">
                     <h2>Abilities</h2>
                     <div class="char-details__abilities__container">
-                        <div class="char-details__abilities__item"><img src="../img/ability1.png" alt="ability 1"></div>
-                        <div class="char-details__abilities__item"><img src="../img/ability2.png" alt="ability 2"></div>
-                        <div class="char-details__abilities__item"><img src="../img/ability3.png" alt="ability 3"></div>
-                        <div class="char-details__abilities__item"><img src="../img/ability4.png" alt="ability 4"></div>
+                        <div class="firstSkill__container">
+                            <div class="char-details__abilities__item" onmouseover="showDescription('selection1__firstSkill__desc')" onmouseout="hideDescription('selection1__firstSkill__desc')"
+                                id=firstSkillSelected onclick="showSkill('firstSkill')">
+                                <img src="../img/ability1.png" alt="ability 1">
+                                <p id="selection1__firstSkill__desc" class="char-details__skill_description">First skill description</p>
+                            </div>
+                            <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection1__secondSkill__desc')" onmouseout="hideDescription('selection1__secondSkill__desc')"
+                                id=firstSkill onclick="changeSkill('firstSkillSelected','firstSkill')">
+                                <img src="../img/ability4.png">
+                                <p id="selection1__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
+                            </div>
+                        </div>
+                        <div class="secondSkill__container">
+                            <div class="char-details__abilities__item" id=secondSkillSelected onmouseover="showDescription('selection2__firstSkill__desc')"
+                                onmouseout="hideDescription('selection2__firstSkill__desc')" onclick="showSkill('secondSkill')">
+                                <img src="../img/ability2.png" alt="ability 2">
+                                <p id="selection2__firstSkill__desc" class="char-details__skill_description">First skill description</p>
+                            </div>
+                            <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection2__secondSkill__desc')" onmouseout="hideDescription('selection2__secondSkill__desc')"
+                                id=secondSkill onclick="changeSkill('secondSkillSelected','secondSkill')">
+                                <img src="../img/ability4.png">
+                                <p id="selection2__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
+                            </div>
+                        </div>
+                        <div class="thirdSkill__container">
+                            <div class="char-details__abilities__item" onmouseover="showDescription('selection3__firstSkill__desc')" onmouseout="hideDescription('selection3__firstSkill__desc')"
+                                id=thirdSkillSelected onclick="showSkill('thirdSkill')">
+                                <img src="../img/ability3.png" alt="ability 3">
+                                <p id="selection3__firstSkill__desc" class="char-details__skill_description">First skill description</p>
+                            </div>
+                            <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection3__secondSkill__desc')" onmouseout="hideDescription('selection3__secondSkill__desc')"
+                                id=thirdSkill onclick="changeSkill('thirdSkillSelected','thirdSkill')">
+                                <img src="../img/ability4.png">
+                                <p id="selection3__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
+                            </div>
+                        </div>
+                        <div class="thirdSkill__container">
+                            <div class="char-details__abilities__item" onmouseover="showDescription('selection4__firstSkill__desc')" onmouseout="hideDescription('selection4__firstSkill__desc')"
+                                id=fourthSkillSelected onclick="showSkill('fourthSkill')">
+                                <img src="../img/ability4.png" alt="ability 4">
+                                <p id="selection4__firstSkill__desc" class="char-details__skill_description">First skill description</p>
+                            </div>
+                            <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection4__secondSkill__desc')" onmouseout="hideDescription('selection4__secondSkill__desc')"
+                                id=fourthSkill onclick="changeSkill('fourthSkillSelected','fourthSkill')">
+                                <img src="../img/ability2.png">
+                                <p id="selection4__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="char-details__equipped-items">
                     <h2>Equipped Items</h2>
-                    <div class="equipped-items__container">
-                        <div></div>
-                        <div></div>
+                    <div class="char-details__abilities__container">
+                        <div class="weapon__container">
+                            <div class="char-details__items__item" onmouseover="showDescription('selection1__firstWeapon__desc')" onmouseout="hideDescription('selection1__firstWeapon__desc')"
+                                id=firstWeaponSelected onclick="showSkill('firstWeapon')">
+                                <img src="../img/weapon1.jpg" alt="ability 1">
+                                <p id="selection1__firstWeapon__desc" class="char-details__item_description">Cutitasu lu spiderman</p>
+                            </div>
+                            <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection1__secondWeapon__desc')" onmouseout="hideDescription('selection1__secondWeapon__desc')"
+                                id=firstWeapon onclick="changeSkillWeapons('firstWeaponSelected','firstWeapon')">
+                                <img src="../img/weapon2.jpg">
+                                <p id="selection1__secondWeapon__desc" class="char-details__item_description">Ciocanu secret al lui Batman</p>
+                            </div>
+                        </div>
+                        <div class="armor__container">
+                            <div class="char-details__items__item" id=armorSelected onmouseover="showDescription('selection2__firstArmor__desc')" onmouseout="hideDescription('selection2__firstArmor__desc')"
+                                onclick="showSkill('armor')">
+                                <img src="../img/armor.jpg" alt="ability 2">
+                                <p id="selection2__firstArmor__desc" class="char-details__item_description">Ia lui Ion</p>
+                            </div>
+                            <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection2__secondArmor__desc')" onmouseout="hideDescription('selection2__secondArmor__desc')"
+                                id=armor onclick="changeSkillWeapons('armorSelected','armor')">
+                                <img src="../img/armor2.jpg">
+                                <p id="selection2__secondArmor__desc" class="char-details__item_description">Cum a trecut asta de testing?</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +200,7 @@
                     <div class="items__item">
                         <div class="items__item__icon">
                             <img src="..\img\item_icon.png">
-                        </div>                    
+                        </div>
                         <div class="items__item__details">
                             <div class="items__item__details__name">
                                 <h4> NAME </h4>
@@ -137,228 +209,64 @@
                                 <p>AT:</p>
                                 <p>DEF:</p>
                             </div>
-                        </div>                    
+                        </div>
                     </div>
                     <div class="items__item__buy">
-                            <img src="..\img\coin.png">
-                            <div class="items__item__buy__cost">
-                                835
-                            </div>
-                            <div class="items__item__buy__button">
-                                BUY
-                            </div>
+                        <p class="items__item__buy__cost">
+                            835
+                            <span>
+                                <img src="..\img\money-bag.png">
+                            </span>
+                        </p>
+                        <p class="items__item__buy__button">
+                            BUY
+                        </p>
                     </div>
                 </div>
-                <div class="items__item__container">
-                        <div class="items__item">
-                            <div class="items__item__icon">
-                                <img src="..\img\item_icon.png">
-                            </div>                    
-                            <div class="items__item__details">
-                                <div class="items__item__details__name">
-                                    <h4> NAME </h4>
-                                </div>
-                                <div class="items__item__details__description">
-                                    <p>AT:</p>
-                                    <p>DEF:</p>
-                                </div>
-                            </div>                    
-                        </div>
-                        <div class="items__item__buy">
-                                <img src="..\img\coin.png">
-                                <div class="items__item__buy__cost">
-                                    835
-                                </div>
-                                <div class="items__item__buy__button">
-                                    BUY
-                                </div>
-                        </div>
-                    </div>
-                    <div class="items__item__container">
-                            <div class="items__item">
-                                <div class="items__item__icon">
-                                    <img src="..\img\item_icon.png">
-                                </div>                    
-                                <div class="items__item__details">
-                                    <div class="items__item__details__name">
-                                        <h4> NAME </h4>
-                                    </div>
-                                    <div class="items__item__details__description">
-                                        <p>AT:</p>
-                                        <p>DEF:</p>
-                                    </div>
-                                </div>                    
-                            </div>
-                            <div class="items__item__buy">
-                                    <img src="..\img\coin.png">
-                                    <div class="items__item__buy__cost">
-                                        835
-                                    </div>
-                                    <div class="items__item__buy__button">
-                                        BUY
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="items__item__container">
-                                <div class="items__item">
-                                    <div class="items__item__icon">
-                                        <img src="..\img\item_icon.png">
-                                    </div>                    
-                                    <div class="items__item__details">
-                                        <div class="items__item__details__name">
-                                            <h4> NAME </h4>
-                                        </div>
-                                        <div class="items__item__details__description">
-                                            <p>AT:</p>
-                                            <p>DEF:</p>
-                                        </div>
-                                    </div>                    
-                                </div>
-                                <div class="items__item__buy">
-                                        <img src="..\img\coin.png">
-                                        <div class="items__item__buy__cost">
-                                            835
-                                        </div>
-                                        <div class="items__item__buy__button">
-                                            BUY
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="items__item__container">
-                                    <div class="items__item">
-                                        <div class="items__item__icon">
-                                            <img src="..\img\item_icon.png">
-                                        </div>                    
-                                        <div class="items__item__details">
-                                            <div class="items__item__details__name">
-                                                <h4> NAME </h4>
-                                            </div>
-                                            <div class="items__item__details__description">
-                                                <p>AT:</p>
-                                                <p>DEF:</p>
-                                            </div>
-                                        </div>                    
-                                    </div>
-                                    <div class="items__item__buy">
-                                            <img src="..\img\coin.png">
-                                            <div class="items__item__buy__cost">
-                                                835
-                                            </div>
-                                            <div class="items__item__buy__button">
-                                                BUY
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="items__item__container">
-                                        <div class="items__item">
-                                            <div class="items__item__icon">
-                                                <img src="..\img\item_icon.png">
-                                            </div>                    
-                                            <div class="items__item__details">
-                                                <div class="items__item__details__name">
-                                                    <h4> NAME </h4>
-                                                </div>
-                                                <div class="items__item__details__description">
-                                                    <p>AT:</p>
-                                                    <p>DEF:</p>
-                                                </div>
-                                            </div>                    
-                                        </div>
-                                        <div class="items__item__buy">
-                                                <img src="..\img\coin.png">
-                                                <div class="items__item__buy__cost">
-                                                    835
-                                                </div>
-                                                <div class="items__item__buy__button">
-                                                    BUY
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div class="items__item__container">
-                                            <div class="items__item">
-                                                <div class="items__item__icon">
-                                                    <img src="..\img\item_icon.png">
-                                                </div>                    
-                                                <div class="items__item__details">
-                                                    <div class="items__item__details__name">
-                                                        <h4> NAME </h4>
-                                                    </div>
-                                                    <div class="items__item__details__description">
-                                                        <p>AT:</p>
-                                                        <p>DEF:</p>
-                                                    </div>
-                                                </div>                    
-                                            </div>
-                                            <div class="items__item__buy">
-                                                    <img src="..\img\coin.png">
-                                                    <div class="items__item__buy__cost">
-                                                        835
-                                                    </div>
-                                                    <div class="items__item__buy__button">
-                                                        BUY
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="items__item__container">
-                                                <div class="items__item">
-                                                    <div class="items__item__icon">
-                                                        <img src="..\img\item_icon.png">
-                                                    </div>                    
-                                                    <div class="items__item__details">
-                                                        <div class="items__item__details__name">
-                                                            <h4> NAME </h4>
-                                                        </div>
-                                                        <div class="items__item__details__description">
-                                                            <p>AT:</p>
-                                                            <p>DEF:</p>
-                                                        </div>
-                                                    </div>                    
-                                                </div>
-                                                <div class="items__item__buy">
-                                                        <img src="..\img\coin.png">
-                                                        <div class="items__item__buy__cost">
-                                                            835
-                                                        </div>
-                                                        <div class="items__item__buy__button">
-                                                            BUY
-                                                        </div>
-                                                </div>
-                                            </div>
-
             </div>
             <div class="acc__stats">
                 <div class="start__row">
-                    <button class="start__row__play"> PLAY</button>
+                    <button class="btn btn--primary"> PLAY</button>
                 </div>
                 <div class="account__stats__row">
-                        <h2> Account stats</h2>
-                        <p> Win percentage:</p>
-                        <p> Favorite Character: </p>
-                        <p> Number of lost games(you will get better): </p>
-                       
+                    <h2> Account stats</h2>
+                    <p> Win percentage:</p>
+                    <p> Favorite Character: </p>
+                    <p> Number of lost games(you will get better): </p>
+
                 </div>
-                
-                 <div class="settings__popout">
+
+                <div class="settings__popout">
                     <h2> Settings </h2>
-                    <p> Change username:<input pattern="[A-Za-z1-9]" placeholder="Add new username "  type="text" name="newUsername"> </p>
-                    <p> Change email:<input pattern="[A-Za-z1-9]" placeholder="Add new mail "  type="text" name="newMail">   </p>
-                    <p> Change password:<input pattern="[A-Za-z1-9]" placeholder="Add new password "  type="password" name="newPassword">   </p>
-                    <p> Comfirm change password:<input pattern="[A-Za-z1-9]" placeholder="Add new password "  type="password" name="newPasswordComfirm">   </p>
-                    <button class="submit__button"> Submit Changes </button>
-                    <button class="erase__button"> Erase Account </button>
-                 
-               </div>
-               <div class="account__utility__row">
-                <form  action="../pages/index.html" class="account__utility__logOut" >
-                    <button type="submit"   class="account__utility__logOutbutton" > Log out  </button>        
-                     
+                    <form action="">
+                        
+                    </form>
+                    <p> Change username:
+                        <input pattern="[A-Za-z1-9]" placeholder="Add new username " type="text" name="newUsername"> </p>
+                    <p> Change email:
+                        <input pattern="[A-Za-z1-9]" placeholder="Add new mail " type="text" name="newMail"> </p>
+                    <p> Change password:
+                        <input pattern="[A-Za-z1-9]" placeholder="Add new password " type="password" name="newPassword"> </p>
+                    <p> Comfirm change password:
+                        <input pattern="[A-Za-z1-9]" placeholder="Add new password " type="password" name="newPasswordComfirm"> </p>
+                    <div class="acc-actions">
+                        <button class="btn"> Submit Changes </button>
+                        <button class="btn btn--danger"> Erase Account </button>
+                    </div>
                 </div>
-              
+                <div class="account__utility__row">
+                    <form action="../pages/index.html" class="account__utility__logOut">
+                        <button type="submit" class="account__utility__logOutbutton"> Log out </button>
+                    </form>
+                </div>
+
             </div>
-           </div>
-              </div>
+        </div>
+    </div>
     <footer class="footer">
         <p>Footer</p>
     </footer>
-    </body>
+</body>
+<script src="../js/styles.js"></script>
+
 </html>

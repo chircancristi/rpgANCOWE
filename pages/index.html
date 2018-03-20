@@ -8,17 +8,18 @@
 
 </head>
 
-<body onresize="proprieties()" onload="proprieties()" class="logInBody">
+<body id=body onresize="proprieties()" onload="proprieties()" class="logInBody">  
+	
 	<div class="form-container" id="formularContainer">
 		<section class="formular" id="formularId">
 			<form action="../pages/dashboard.html" id="logIn" class="logIn">
 				
-				<div class="wrap--input" id="wrapUsername" data-validate="Username is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn--input" type="text" name="username">
+				<div class="wrap__input" id="wrapUsername" data-validate="Username is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn__input" type="text" name="username">
 
 				</div>
-				<div class="wrap--input--password" id="wrapPassword" data-validate="Password is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn--input" type="password" name="username">
+				<div class="wrap__input__password" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn__input" type="password" name="username">
 				</div>
 				<span>
 					<button type="submit" class="logIn--Button" id="signInButton" target="..pages/dashboard.html" >Log In</button>
@@ -28,21 +29,21 @@
 
 
 			<form action="/action_page.php" id="signIn" class="signIn">
-				<div class="wrap--signIn--mail" id="wrapUsername" data-validate="Mail is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Mail" class="signIn--input--first" type="text" name="username">
+				<div class="wrap__signIn__mail" id="wrapUsername" data-validate="Mail is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Mail" class="signIn__input__first" type="text" name="username">
 				</div>
-				<div class="wrap--signIn--username" id="wrapUsername" data-validate="Username is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Username" class="signIn--input--second" type="text" name="username">
+				<div class="wrap__signIn__username" id="wrapUsername" data-validate="Username is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="signIn__input__second" type="text" name="username">
 				</div>
-				<div class="wrap--signIn--password" id="wrapPassword" data-validate="Password is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Password" class="signIn--input--first" type="password" name="username">
+				<div class="wrap__signIn__password" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="signIn__input__first" type="password" name="username">
 				</div>
-				<div class="wrap--signIn--comfirmPassword" id="wrapPassword" data-validate="Password is required">
-					<input pattern="[A-Za-z1-9]" placeholder="Comfirm password" class="signIn--input--second" type="password" name="username">
+				<div class="wrap__signIn__comfirmPassword" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Comfirm password" class="signIn__input__second" type="password" name="username">
 				</div>
 				<span>
-					<button type="button" class="signIn--button" onclick="switchToLogIn('signIn','logIn')" id="signInButton">Sign in</button>
-					<button type="button" class="back--button" onclick="switchToLogIn('signIn','logIn')" >Back</button>
+					<button type="button" class="signIn__button" onclick="switchToLogIn('signIn','logIn')" id="signInButton">Sign in</button>
+					<button type="button" class="back__button" onclick="switchToLogIn('signIn','logIn')" >Back</button>
 				</span>
 			</form>
 		</section>

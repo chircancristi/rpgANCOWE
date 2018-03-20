@@ -1,69 +1,113 @@
-.dashboard-body{
+.dashboard-body {
     margin: 0;
     font-family: 'Itim', cursive;
     font-size: 15px;
-    background-color:#1B1464; 
+    background-color: #1B1464;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Indie Flower', cursive;
 }
 
-.container{
+.container {
     width: auto;
     padding: 20px;
     margin: 0px 0px 0px 0px;
     /* border: 2px solid darkolivegreen; */
 }
 
+.btn{
+    outline: none;
+    padding: 10px 10px;
+    background-color: #78e08f;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin: 15px 0 15px 15px;
+    transition: all 0.15s linear;
+}
+
+/* START Button styles */
+.btn:hover{
+    background-color: white;
+    color: #78e08f;
+    border: 1px solid #78e08f;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.btn--primary{
+    font-size: 28px;
+    background-color: #e55039;
+}
+
+.btn--primary:hover{
+    background-color: white;
+    color: #e55039;
+    border: 1px solid #e55039;
+}
+
+.btn--danger{
+    background-color: #eb2f06;
+}
+
+.btn--danger:hover{
+    background-color: white;
+    color: #eb2f06;
+    border: 1px solid #eb2f06;
+}
+
+/* END Button Styles */
+
 /* CSS Grid */
 
-.grid-container{
+.grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 0.5fr;
+    grid-template-rows: minmax(1fr, 100px);
     grid-gap: 5px;
     background-color: transparent;
 }
 
-.items, .characters,
-.char-details, .acc__stats{
+.items,
+.characters,
+.char-details,
+.acc__stats {
     padding: 10px;
     border-radius: 20px;
     overflow: hidden;
     background-color: #C4E538;
-    
 }
 
-.characters{
+.characters {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    overflow-y:scroll;
-      
+    overflow-y: scroll;
 }
 
-.items{
+.items {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     overflow-y: scroll;
-    
 }
 
-.char-details{
+.char-details {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
 }
 
-.acc__stats{
-    
+.acc__stats {
     grid-column: 3 / 4;
     grid-row: 1 / 3;
-    
 }
 
 /* Footer */
 
-.footer{
+.footer {
     width: 100%;
     background-color: blueviolet;
     height: 100px;
@@ -77,7 +121,7 @@ h1, h2, h3, h4, h5, h6{
     font-size: 35px;
     margin-top: 0px;
     line-height: 42px;
-	float: center;
+    float: center;
 }
 
 /* .form-container{
@@ -88,196 +132,197 @@ h1, h2, h3, h4, h5, h6{
     background-size: 100%;
     height: 90vh;
 } */
-.logInBody{
+
+.logInBody {
+    height: 100%;
+    width: 100%;
     background-image: url("../img/backgroundLogin.jpg");
     overflow: hidden;
+    max-width: 100%;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
-.form-container { 
-   	
-     margin: auto;   
-   width:  60%;
-   position: relative;
+
+.form-container {
+    margin: auto;
+    height: 100%;
+    width: 60%;
+    position: relative;
     /* overflow: hidden; */
-   
-    
 }
 
-.formular{
-        top:45%;
-        width: 100%;
-        height: 50%;
-		
-        position: relative;
-        margin: 0 auto;
-
-        display: table;
-    
+.formular {
+    top: 45%;
+    width: 100%;
+    height: 50%;
+    position: relative;
+    display: table;
 }
 
-.logIn  {
-   
-    
+.logIn {
     display: block;
-	text-align:  center;
-
-	
+    text-align: center;
 }
 
-.signIn{
-
-	display: none;
-
+.signIn {
+    display: none;
 }
-.wrap--input , .wrap--input--password{
-   
+
+.wrap__input,
+.wrap__input__password {
     top: 35%;
     position: absolute;
     width: 35%;
-    
     height: 20%;
-    background:white;
-    border:1px solid grey;
- 
-} 
-.wrap--input{
-    
-    left:15%;
-    border-top-left-radius: 25px;
+    background: white;
+    border: 1px solid grey;
+}
 
-}  
- .wrap--input--password{
-    border-top-right-radius: 25px;    
+.wrap__input {
+    left: 15%;
+    border-top-left-radius: 25px;
+}
+
+.wrap__input__password {
+    border-top-right-radius: 25px;
     display: inline;
     right: 15%;
-    
-}
-.logIn--input {
-    font-family: Arial;
-    border: 2px ;
-    top:40%;
-    left: 10px;
-    color:black;
-    font-weight: bold;
-    line-height: 1.3;
-    font-size: 20px;
-    position: absolute;
-    text-align: left;
-    outline:none;
-    display: block;
-   
 }
 
-.logIn--Button{
+.logIn__input {
+    font-family: Arial;
+    border: 2px;
+    height: 100%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    line-height: 1.3;
+    font-size: 120%;
+    position: absolute;
+    text-align: left;
+    outline: none;
+    display: block;
+}
+
+.logIn--Button {
     position: absolute;
     display: block;
     color: white;
     background-color: black;
-    top:55%;
-    font-size:20px;
+    top: 55%;
+    font-size: 120%;
     height: 16%;
     width: 70%;
-    left:15%;    
+    left: 15%;
     font-weight: bold;
-    border:1px solid black;
+    border: 1px solid black;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
-.signIn--newUser{
+
+.signIn--newUser {
     position: absolute;
     display: block;
     width: 30%;
     background-color: white;
     color: grey;
-    border:1px solid black;
-    top:71%;
-    left:35%;
+    border: 1px solid black;
+    top: 71%;
+    left: 35%;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    font-size:20px;
+    font-size: 120%;
 }
 
-.wrap--signIn--mail,  .wrap--signIn--password{
+.wrap__signIn__mail,
+.wrap__signIn__password {
     position: absolute;
     display: block;
-    width:70%;
+    width: 70%;
     height: 20%;
-    background:white;
-    color:black;
-    border:1px solid black;
-    left:15%;
+    background: white;
+    color: black;
+    border: 1px solid black;
+    left: 15%;
 }
-.wrap--signIn--username, .wrap--signIn--comfirmPassword{
+
+.wrap__signIn__username,
+.wrap__signIn__comfirmPassword {
     position: absolute;
     display: block;
-    width:70%;
+    width: 70%;
     height: 20%;
-    background:black;
-    color:white;
-    
-    border:1px solid black;
-   
-    left:15%;
+    background: black;
+    color: white;
+    border: 1px solid black;
+    left: 15%;
 }
-.signIn--input--first , .signIn--input--second{
+
+.signIn__input__first,
+.signIn__input__second {
     font-family: Arial;
-    border: 2px ;
+    border: 2px;
     width: 100%;
-    height: 100%;  
+    height: 100%;
     font-weight: bold;
     line-height: 1.3;
-    font-size: 20px;
+    font-size: 120%;
     position: absolute;
     text-align: center;
-    outline:none;
+    outline: none;
     display: block;
-   background: transparent;
-}
-.signIn--input--first{
-    color:black;
-}
-.signIn--input--second{
-    color: white;
-}
-.wrap--signIn--mail{
-    top:0%;
-   
+    background: transparent;
 }
 
-.wrap--signIn--username{
-    top:20%;
-    
+.signIn__input__first {
+    color: black;
 }
-.wrap--signIn--password{
-    top:40%;
+
+.signIn__input__second {
+    color: white;
 }
-.wrap--signIn--comfirmPassword{
-    top:60%;
-  
+
+.wrap__signIn__mail {
+    top: 0%;
 }
-.signIn--button, .back--button{
+
+.wrap__signIn__username {
+    top: 20%;
+}
+
+.wrap__signIn__password {
+    top: 40%;
+}
+
+.wrap__signIn__comfirmPassword {
+    top: 60%;
+}
+
+.signIn__button,
+.back__button {
     position: absolute;
     display: block;
     top: 80%;
     font-weight: bold;
     width: 32%;
     height: 18%;
-    background:white;
-    border:1px solid grey;
-    color:black;
-   
+    background: white;
+    border: 1px solid grey;
+    color: black;
 }
-.back--button{
-    left:19%;
+
+.back__button {
+    left: 19%;
     font-size: 20px;
     border-bottom-left-radius: 25px;
 }
-.signIn--button{
-    left:50%;
+
+.signIn__button {
+    left: 50%;
     font-size: 20px;
     border-bottom-right-radius: 25px;
 }
+
 /* END Sign Up / LogIn */
 
 /* START Character details */
@@ -285,7 +330,7 @@ h1, h2, h3, h4, h5, h6{
 .char-details__bio__description,
 .char-details__stats,
 .char-details__abilities,
-.char-details__equipped-items{
+.char-details__equipped-items {
     padding: 5px;
     border: 2px solid black;
     border-radius: 20px;
@@ -293,22 +338,22 @@ h1, h2, h3, h4, h5, h6{
     background-color: white;
 }
 
-.char-details__bio__header{
+.char-details__bio__header {
     margin-bottom: 10px;
     font-size: 20px;
 }
 
-.char-details__bio h2{
+.char-details__bio h2 {
     width: auto;
     height: auto;
     text-align: center;
-    margin:0px;
+    margin: 0px;
     border: 2px solid black;
     border-radius: 20px;
     background-color: white;
 }
 
-.char-details__bio__portrait{
+.char-details__bio__portrait {
     position: relative;
     max-width: 70%;
     max-height: 30%;
@@ -317,7 +362,7 @@ h1, h2, h3, h4, h5, h6{
     border: 2px solid black;
 }
 
-.char-details__bio__description{
+.char-details__bio__description {
     text-align: justify;
     font-size: 15px;
     margin: 0;
@@ -325,14 +370,14 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /* Stats */
-.char-details__stats{
-    
-}
-.char-details__stats h2{
+
+.char-details__stats {}
+
+.char-details__stats h2 {
     text-align: center;
 }
 
-.char-details__stats__info{
+.char-details__stats__info {
     list-style: none;
     padding: 0;
     margin: 0 auto 20px auto;
@@ -340,87 +385,196 @@ h1, h2, h3, h4, h5, h6{
     text-align: center;
 }
 
-.char-details__stats__info li{
+.char-details__stats__info li {
     display: inline-block;
     margin-right: 20px;
 }
 
 /* Abilities */
 
-.char-details__abilities__container{
+.firstSkill__container,
+.secondSkill__container,
+.thirdSkill__container,
+.fourthSkill__container {
+    height: 100%;
+    width: 20%;
+    display: inline-block;
+    position: relative;
+}
+
+.secondSkill__container {
+    margin-left: 5%;
+}
+
+.thirdSkill__container {
+    margin-left: 5%;
+}
+
+.fourthSkill__container {
+    margin-left: 5%;
+}
+
+.char-details__abilities__container {
     margin: auto;
     width: 92%;
 }
 
-.char-details__abilities__item{
+.char-details__abilities__item {
+    position: relative;
     display: inline-block;
     padding: 5px 0px 0px 5px;
-    height: 80px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
     border: 2px solid black;
     cursor: pointer;
 }
 
-.char-details__abilities__item img{
-    max-height: 75px;
-    max-width: 75px;
+.char-details__abilities_item_dropDown {
+    display: none;
+    top: 100%;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5px 0px 0px 5px;
+    border: 2px solid black;
+    background-color: white;
+    z-index: 1;
+    cursor: pointer;
 }
+
+.char-details__abilities_item_dropDown img {
+    max-height: 90%;
+    max-width: 90%;
+}
+
+.char-details__abilities__item img {
+    max-height: 90%;
+    max-width: 90%;
+}
+
+.char-details__skill_description {
+    display: none;
+    position: absolute;
+    top: -70%;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+/* End abilities */
 
 /* Items */
 
-/* END Character details */
+.weapon__container,
+.armor__container {
+    height: 40%;
+    width: 40%;
+    display: inline-block;
+    position: relative;
+}
+
+.weapon__container {
+    margin-left: 5%;
+}
+
+.armor__container {
+    margin-left: 5%;
+}
+
+.char-details__items__item {
+    position: relative;
+    display: inline-block;
+    padding: 5px 0px 0px 5px;
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.char-details__items_item_dropDown {
+    display: none;
+    top: -100%;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5px 0px 0px 5px;
+    border: 2px solid black;
+    background-color: white;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.char-details__items_item_dropDown img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.char-details__items__item img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.char-details__item_description {
+    display: none;
+    position: absolute;
+    top: -40%;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+/* END ITEMS details */
 
 /* Start characters */
 
-.characters__item{
+.characters__item {
     border: 2px solid black;
     box-sizing: border-box;
-    border-radius: 15px; 
+    border-radius: 15px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-auto-rows: 1fr;
     margin-bottom: 2px;
     background-color: white;
-
 }
 
-.characters__item__portrait{
+.characters__item__portrait {
     grid-column: 1 / 2;
     border-right: 2px solid black;
     min-height: 100%;
 }
 
-.characters__item__portrait img{
+.characters__item__portrait img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.characters__item__details{
-    grid-column: 2 / 3;  
+.characters__item__details {
+    grid-column: 2 / 3;
 }
 
-.characters__item__details__name{
+.characters__item__details__name {
     text-align: center;
-    border-bottom: 2px solid black ;
+    border-bottom: 2px solid black;
 }
 
-.characters__item__details__name h4, 
-.characters__item__details__faction h4{
+.characters__item__details__name h4,
+.characters__item__details__faction h4 {
     margin: 0;
 }
 
-.characters__item__details__faction{
+.characters__item__details__faction {
     text-align: center;
-    border-top: 2px solid black ;
+    border-top: 2px solid black;
 }
 
-.characters__item__details__description{
+.characters__item__details__description {
     padding: 5px;
 }
 
-.characters__item__details__description p{
+.characters__item__details__description p {
     margin: 0;
 }
 
@@ -441,14 +595,14 @@ h1, h2, h3, h4, h5, h6{
     border-radius: 20px; 
     overflow: hidden;
     display: grid;
-    grid-auto-columns: 5fr 20fr ;
+    grid-template-columns: 1fr 5fr;
     grid-auto-rows: 1fr;
     width: 100%;
     background-color: white;
 
 }
 .items__item__icon{
-    grid-column: 1 / 5;
+    grid-column: 1 / 2;
     border-right: 2px solid black;
     background-color: red;
     min-height: 100%;
@@ -457,12 +611,11 @@ h1, h2, h3, h4, h5, h6{
 .items__item__icon img{
     width: 100%;
     min-height: 100%;
-    object-fit: cover;
-    
+    object-fit: cover;    
 }
 
 .items__item__details{
-    grid-column: 5 / 20;  
+    grid-column: 2 / 3;  
 }
 
 .items__item__buy{    
@@ -471,30 +624,28 @@ h1, h2, h3, h4, h5, h6{
     display: inline-block;
     border-right: 2px solid black;    
     border-top: 2px solid black;  
-    border-radius: 20px;
-    display: grid;
-    grid-template-areas:
-    "x y"
-    "z z";
+    border-radius: 20px;    
 }
 
 .items__item__buy img{
-    grid-area: x;    
-    object-fit: cover;
     width: 25px;
     height: 25px;
 }
+
 .items__item__buy__cost{
-    grid-area: y;
+    margin: 0;
     font-size: 20px;
-    display: inline-block;
-    
+    text-align: center;   
 }
+
+.items__item__buy__cost p{
+    margin: 0; 
+}
+
 .items__item__buy__button{
-    grid-area: z;
+    margin: 0;
     background-color: white;
     text-align: center;
-    display: inline;
     border: 2px solid black;
     border-radius: 20px;
 }
@@ -504,7 +655,7 @@ h1, h2, h3, h4, h5, h6{
     color: white;
 }
 
-
+/* /\ buy section */
 
 .items__item__details__name{
     text-align: center;
@@ -526,83 +677,86 @@ h1, h2, h3, h4, h5, h6{
 /*End ITEMS*/
 
 /* Account stats column */
-.start__row{
-    
+
+.start__row {
     position: relative;
-    height: 15%;
-    width: 100%;
     font-weight: 50%;
     text-align: center;
-    margin-bottom: 50px;    
+    margin-bottom: 15px;
 }
-.start__row__play{
-    position: absolute;
-    height: 100%;
-    width: 50%;
-    left:25%;
-    font-size: 40px;      
-}
-.account__stats__row{
-    
-    
+
+.account__stats__row {
     border: 2px solid black;
     border-radius: 20px;
     background-color: white;
-    margin-bottom:50px;
+    margin-bottom: 5%;
+}
 
-}
-.settings__popout input{
+.settings__popout input {
     float: right;
-    margin-right: 120px;
-    
+    margin-right: 12%;
+    width: 40%;
 }
- h2{
- 
+
+h2 {
     text-align: center;
 }
-.account__utility__row{
 
+.acc-actions{
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+.account__utility__row {
     list-style: none;
-    
     padding: 0;
     margin: 0 auto 20px auto;
-        
-    
-
 }
-.account__utility__logOut{
+
+.account__utility__logOut {
     width: 50%;
     height: 40%;
-    
-    margin-left: 25%;
-
+    margin-left: 30%;
 }
-.account__utility__logOutbutton{
+
+.account__utility__logOutbutton {
     width: 100%;
-    font-size:140%; 
-    
+    font-size: 140%;
 }
 
-/*Settings  */
-.settings__popout{
+.settings__popout {
     background-color: white;
     border: 2px solid black;
     border-radius: 20px;
     margin-bottom: 100px;
-   
-}
-.submit__button{
-    margin-left:10%;
-    font-size: 130%;
-}
-.erase__button{
-    margin-top:15px;
-    margin-left: 5%;
-    margin-bottom:20px;
-    font-size: 130%;
-    
-
 }
 
+.submit__button {
+    margin-top: 5%;
+    margin-left: 10%;
+    font-size: 130%;
+}
+
+.erase__button {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    font-size: 130%;
+}
 
 /*END STATS*/
+
+/* START Play */
+
+.canvas-container{
+    width: 90%;
+    margin: auto;
+    height: 95vh;
+    border: 2px solid black;
+}
+
+#play{
+    width: 100%;
+    height: 100%;
+}
