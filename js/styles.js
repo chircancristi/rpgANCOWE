@@ -72,6 +72,7 @@ function hideDescription(divId) {
 	document.getElementById(divId).style.display = "none";
 
 }
+<<<<<<< HEAD
 function bringImg(pos){
 	var pics = document.getElementsByClassName("container__Poza");
 	var buttons = document.getElementsByClassName("about-button");
@@ -84,4 +85,28 @@ function throwImg(pos){
 	var buttons = document.getElementsByClassName("about-button");
 	pics[pos].style.animationIterationCount="0";
 	buttons[pos].style.background = "rgb(99, 87, 236)";
+=======
+
+
+function HighlightChar(nr){
+	var items = document.getElementsByClassName('characters__item');
+	
+	for(i=0; i<items.length; i++) {
+		items[i].style.backgroundColor = 'white';
+		items[i].style.fontWeight = 'normal';
+	  }
+	  items[nr].style.backgroundColor = 'gold';
+	  items[nr].style.fontWeight = 'bold';
+	
+	var chars = document.getElementsByClassName('char-details');
+	for(i=0; i<chars.length; i++) {
+		chars[i].style.display = 'none';
+	  }
+
+	  if(nr==2 || nr==3){
+		chars[1].style.display = 'block';
+	  }
+
+	  chars[nr].style.display = 'block';
+>>>>>>> Teo_Branch
 }
