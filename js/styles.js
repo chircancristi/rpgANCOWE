@@ -72,7 +72,6 @@ function hideDescription(divId) {
 	document.getElementById(divId).style.display = "none";
 
 }
-<<<<<<< HEAD
 function bringImg(pos){
 	var pics = document.getElementsByClassName("container__Poza");
 	var buttons = document.getElementsByClassName("about-button");
@@ -85,7 +84,7 @@ function throwImg(pos){
 	var buttons = document.getElementsByClassName("about-button");
 	pics[pos].style.animationIterationCount="0";
 	buttons[pos].style.background = "rgb(99, 87, 236)";
-=======
+}
 
 
 function HighlightChar(nr){
@@ -108,5 +107,4 @@ function HighlightChar(nr){
 	  }
 
 	  chars[nr].style.display = 'block';
->>>>>>> Teo_Branch
 }
