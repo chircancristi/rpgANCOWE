@@ -1,9 +1,14 @@
-function switchToLogIn(divID, divID2) {
+ 
+function switchToLogIn(divID,divID2){
 	var item = document.getElementById(divID);
 	var item2 = document.getElementById(divID2);
-	item.style.display = 'none';
-	item2.style.display = 'block';
-}
+	item.classList.toggle('center-bottom');
+	item.classList.toggle('go-bottom');
+	item2.classList.toggle('go-bottom')
+	item2.classList.toggle('center-bottom');
+	
+	
+} 
 
 function proprieties() {
 
