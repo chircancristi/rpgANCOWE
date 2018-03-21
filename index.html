@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Sunday Brawl</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Bungee+Shade" rel="stylesheet">
+	<link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
+<body id=body onresize="proprieties()" onload="proprieties()" class="logInBody">  
+	
+	<div class="form-container" id="formularContainer">
+		<section class="formular" id="formularId">
+			<form action="../pages/dashboard.html" id="logIn" class="logIn center-bottom">
+				<div class="wrap__input" id="wrapUsername" data-validate="Username is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="logIn__input" type="text" name="username">
+
+				</div>
+				<div class="wrap__input__password" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="logIn__input" type="password" name="username">
+				</div>
+				<span>
+					<button type="submit" class="logIn--Button" id="signInButton" target="..pages/dashboard.html" >Log In</button>
+					<button type="button" class="signIn--newUser" onclick="switchToLogIn('logIn','signIn')">New user?</button>
+				</span>
+			</form>
+
+			<form action="/action_page.php" id="signIn" class="signIn go-bottom">
+				<div class="wrap__signIn__mail" id="wrapUsername" data-validate="Mail is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Mail" class="signIn__input__first" type="text" name="username">
+				</div>
+				<div class="wrap__signIn__username" id="wrapUsername" data-validate="Username is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Username" class="signIn__input__second" type="text" name="username">
+				</div>
+				<div class="wrap__signIn__password" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Password" class="signIn__input__first" type="password" name="username">
+				</div>
+				<div class="wrap__signIn__comfirmPassword" id="wrapPassword" data-validate="Password is required">
+					<input pattern="[A-Za-z1-9]" placeholder="Comfirm password" class="signIn__input__second" type="password" name="username">
+				</div>
+				<span>
+					<button type="button" class="signIn__button" onclick="switchToLogIn('signIn','logIn')" id="signInButton">Sign in</button>
+					<button type="button" class="back__button" onclick="switchToLogIn('signIn','logIn')" >Back</button>
+				</span>
+			</form>
+		</section>
+	</div>
+</body>
+<script src="../js/styles.js"></script>
+
+</html>

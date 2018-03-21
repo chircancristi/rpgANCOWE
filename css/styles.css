@@ -860,3 +860,28 @@ h2 {
     background-color:rgb(99, 87, 236);
 }
 /* END About */
+
+/* START Media queries */
+
+@media only screen and (min-width: 900px){
+    .acc-actions__info--mobile{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .acc-actions__info{
+        display: none;
+    }
+
+    .acc-actions__info--mobile{
+        display: block;
+    }
+
+    .acc-actions{
+        width: 50%;
+    }
+}
+
+
+/* END Media queries */
