@@ -34,6 +34,7 @@ function showSkill(divId) {
 	}
 }
 
+
 function changeSkill (divID, divID2) {
 	var aux = document.getElementById(divID);
 	var aux2 = document.getElementById(divID2);
