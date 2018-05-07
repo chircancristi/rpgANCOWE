@@ -1,5 +1,4 @@
- 
-function switchToLogIn(divID,divID2){
+ function switchToLogIn(divID,divID2){
 	var item = document.getElementById(divID);
 	var item2 = document.getElementById(divID2);
 	item.classList.toggle('center-bottom');
