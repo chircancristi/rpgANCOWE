@@ -3,13 +3,13 @@
 
 <head>
     <title>Sunday Brawl</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../webroot/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
 </head>
 
 <body class="dashboard-body">
     <header class="header">
-        <img src="..\img\logo.png" class="dashbord__header-logo">
+        <img src="../../webroot/img\logo.png" class="dashbord__header-logo">
         <ul class="dashboard__header-list">
             <li>
                 <a href="..\pages\about.html" class="dashboard__header-list-Elements">about</a>
@@ -33,7 +33,7 @@
             <div class="characters">
                 <div class="characters__item" onclick="HighlightChar(0)" style="cursor: pointer;">
                     <div class="characters__item__portrait">
-                        <img src="..\img\char_portrait.jpg">
+                        <img src="../../webroot/img\char_portrait.jpg">
                     </div>
                     <div class="characters__item__details">
                         <div class="characters__item__details__name">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="characters__item" onclick="HighlightChar(1)" style="cursor: pointer;">
                     <div class="characters__item__portrait">
-                        <img src="..\img\char_portrait_2.jpg">
+                        <img src="../../webroot/img\char_portrait_2.jpg">
                     </div>
                     <div class="characters__item__details">
                         <div class="characters__item__details__name">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="characters__item" onclick="HighlightChar(2)" style="cursor: pointer;">
                     <div class="characters__item__portrait">
-                        <img src="..\img\download.jpg">
+                        <img src="../../webroot/img\download.jpg">
                     </div>
                     <div class="characters__item__details">
                         <div class="characters__item__details__name">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="characters__item" onclick="HighlightChar(3)" style="cursor: pointer;">
                     <div class="characters__item__portrait">
-                        <img src="..\img\download.jpg">
+                        <img src="../../webroot/img\download.jpg">
                     </div>
                     <div class="characters__item__details">
                         <div class="characters__item__details__name">
@@ -107,7 +107,7 @@
             <div class="char-details">
                 <div class="char-details__bio">
                     <div class="char-details__bio__header">
-                        <img src="../img/char_portrait.jpg" alt="character portrait" class="char-details__bio__portrait">
+                        <img src="../../webroot/img/char_portrait.jpg" alt="character portrait" class="char-details__bio__portrait">
                         <h2>The Hulk</h2>
                     </div>
                     <p class="char-details__bio__description">The Hulk is a fictional superhero appearing in American comic books published by Marvel Comics. Created
@@ -138,48 +138,48 @@
                         <div class="firstSkill__container">
                             <div class="char-details__abilities__item" onmouseover="showDescription('selection1__firstSkill__desc')" onmouseout="hideDescription('selection1__firstSkill__desc')"
                                 id=firstSkillSelected onclick="showSkill('firstSkill')">
-                                <img src="../img/ability1.png" alt="ability 1">
+                                <img src="../../webroot/img/ability1.png" alt="ability 1">
                                 <p id="selection1__firstSkill__desc" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection1__secondSkill__desc')" onmouseout="hideDescription('selection1__secondSkill__desc')"
                                 id=firstSkill onclick="changeSkill('firstSkillSelected','firstSkill')">
-                                <img src="../img/ability4.png">
+                                <img src="../../webroot/img/ability4.png">
                                 <p id="selection1__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
                         <div class="secondSkill__container">
                             <div class="char-details__abilities__item" id=secondSkillSelected onmouseover="showDescription('selection2__firstSkill__desc')"
                                 onmouseout="hideDescription('selection2__firstSkill__desc')" onclick="showSkill('secondSkill')">
-                                <img src="../img/ability2.png" alt="ability 2">
+                                <img src="../../webroot/img/ability2.png" alt="ability 2">
                                 <p id="selection2__firstSkill__desc" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection2__secondSkill__desc')" onmouseout="hideDescription('selection2__secondSkill__desc')"
                                 id=secondSkill onclick="changeSkill('secondSkillSelected','secondSkill')">
-                                <img src="../img/ability4.png">
+                                <img src="../../webroot/img/ability4.png">
                                 <p id="selection2__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
                         <div class="thirdSkill__container">
                             <div class="char-details__abilities__item" onmouseover="showDescription('selection3__firstSkill__desc')" onmouseout="hideDescription('selection3__firstSkill__desc')"
                                 id=thirdSkillSelected onclick="showSkill('thirdSkill')">
-                                <img src="../img/ability3.png" alt="ability 3">
+                                <img src="../../webroot/img/ability3.png" alt="ability 3">
                                 <p id="selection3__firstSkill__desc" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection3__secondSkill__desc')" onmouseout="hideDescription('selection3__secondSkill__desc')"
                                 id=thirdSkill onclick="changeSkill('thirdSkillSelected','thirdSkill')">
-                                <img src="../img/ability4.png">
+                                <img src="../../webroot/img/ability4.png">
                                 <p id="selection3__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
                         <div class="thirdSkill__container">
                             <div class="char-details__abilities__item" onmouseover="showDescription('selection4__firstSkill__desc')" onmouseout="hideDescription('selection4__firstSkill__desc')"
                                 id=fourthSkillSelected onclick="showSkill('fourthSkill')">
-                                <img src="../img/ability4.png" alt="ability 4">
+                                <img src="../../webroot/img/ability4.png" alt="ability 4">
                                 <p id="selection4__firstSkill__desc" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection4__secondSkill__desc')" onmouseout="hideDescription('selection4__secondSkill__desc')"
                                 id=fourthSkill onclick="changeSkill('fourthSkillSelected','fourthSkill')">
-                                <img src="../img/ability2.png">
+                                <img src="../../webroot/img/ability2.png">
                                 <p id="selection4__secondSkill__desc" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
@@ -191,24 +191,24 @@
                             <div class="weapon__container">
                                 <div class="char-details__items__item" onmouseover="showDescription('selection1__firstWeapon__desc2')" onmouseout="hideDescription('selection1__firstWeapon__desc2')"
                                     id=firstWeaponSelected2 onclick="showSkill('firstWeapon2')">
-                                    <img src="../img/weapon1.jpg" alt="ability 1">
+                                    <img src="../../webroot/img/weapon1.jpg" alt="ability 1">
                                     <p id="selection1__firstWeapon__desc2" class="char-details__item_description">Knife item</p>
                                 </div>
                                 <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection1__secondWeapon__desc2')" onmouseout="hideDescription('selection1__secondWeapon__desc2')"
                                     id=firstWeapon2 onclick="changeSkillWeapons('firstWeaponSelected2','firstWeapon2')">
-                                    <img src="../img/weapon2.jpg">
+                                    <img src="../../webroot/img/weapon2.jpg">
                                     <p id="selection1__secondWeapon__desc2" class="char-details__item_description">Hammer item</p>
                                 </div>
                             </div>
                             <div class="armor__container">
                                  <div class="char-details__items__item" id=armorSelected2 onmouseover="showDescription('selection2__firstArmor__desc2')" onmouseout="hideDescription('selection2__firstArmor__desc2')"
                                     onclick="showSkill('armor2')">
-                                    <img src="../img/armor.jpg" alt="ability 2">
+                                    <img src="../../webroot/img/armor.jpg" alt="ability 2">
                                     <p id="selection2__firstArmor__desc2" class="char-details__item_description">Armor 1</p>
                                 </div>
                                 <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection2__secondArmor__desc2')" onmouseout="hideDescription('selection2__secondArmor__desc2')"
                                     id=armor2 onclick="changeSkillWeapons('armorSelected2','armor2')">
-                                    <img src="../img/armor2.jpg">
+                                    <img src="../../webroot/img/armor2.jpg">
                                     <p id="selection2__secondArmor__desc2" class="char-details__item_description">Armor 2</p>
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
             <div class="char-details" style="display: none;">
                 <div class="char-details__bio" >
                     <div class="char-details__bio__header">
-                        <img src="../img/char_portrait_2.jpg" alt="character portrait" class="char-details__bio__portrait">
+                        <img src="../../webroot/img/char_portrait_2.jpg" alt="character portrait" class="char-details__bio__portrait">
                         <h2>NARUTO</h2>
                     </div>
                     <p class="char-details__bio__description">Naruto is a teen ninja from the fictional village of Konohagakure. The villagers ridicule Naruto on account
@@ -249,49 +249,49 @@
                         <div class="firstSkill__container">
                             <div class="char-details__abilities__item" onmouseover="showDescription('selection1__firstSkill__desc2')" onmouseout="hideDescription('selection1__firstSkill__desc2')"
                                 id="firstSkillSelected2" onclick="showSkill('firstSkill2')">
-                                <img src="../img/ability1.png" alt="ability 1">
+                                <img src="../../webroot/img/ability1.png" alt="ability 1">
                                 <p id="selection1__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection1__secondSkill__desc2')" onmouseout="hideDescription('selection1__secondSkill__desc2')"
                                 id="firstSkill2" onclick="changeSkill('firstSkillSelected2','firstSkill2')">
-                                <img src="../img/ability4.png">
+                                <img src="../../webroot/img/ability4.png">
                                 <p id="selection1__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
                         <div class="secondSkill__container">
                             <div class="char-details__abilities__item" id=secondSkillSelected2 onmouseover="showDescription('selection2__firstSkill__desc2')"
                                 onmouseout="hideDescription('selection2__firstSkill__desc2')" onclick="showSkill('secondSkill2')">
-                                <img src="../img/ability2.png" alt="ability 2">
+                                <img src="../../webroot/img/ability2.png" alt="ability 2">
                                 <p id="selection2__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection2__secondSkill__desc2')" onmouseout="hideDescription('selection2__secondSkill__desc2')"
                                 id="secondSkill2" onclick="changeSkill('secondSkillSelected2','secondSkill2')">
-                                <img src="../img/ability4.png">
+                                <img src="../../webroot/img/ability4.png">
                                 <p id="selection2__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
                         <div class="thirdSkill__container">
                             <div class="char-details__abilities__item" onmouseover="showDescription('selection3__firstSkill__desc2')" onmouseout="hideDescription('selection3__firstSkill__desc2')"
                                 id="thirdSkillSelected2" onclick="showSkill('thirdSkill2')">
-                                <img src="../img/ability3.png" alt="ability 3">
+                                <img src="../../webroot/img/ability3.png" alt="ability 3">
                                 <p id="selection3__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                             </div>
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection3__secondSkill__desc2')" onmouseout="hideDescription('selection3__secondSkill__desc2')"
                                 id="thirdSkill2" onclick="changeSkill('thirdSkillSelected2','thirdSkill2')">
-                                <img src="../img/ability4.png">
+                                <img src="../../webroot/img/ability4.png">
                                 <p id="selection3__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
                         <div class="thirdSkill__container">
                             <div class="char-details__abilities__item" onmouseover="showDescription('selection4__firstSkill__desc2')" onmouseout="hideDescription('selection4__firstSkill__desc2')"
                                 id="fourthSkillSelected2" onclick="showSkill('fourthSkill2')">
-                                <img src="../img/ability4.png" alt="ability 4">
+                                <img src="../../webroot/img/ability4.png" alt="ability 4">
                                 <p id="selection4__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                             </div>
 
                             <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection4__secondSkill__desc2')" onmouseout="hideDescription('selection4__secondSkill__desc2')"
                                 id="fourthSkill2" onclick="changeSkill('fourthSkillSelected2','fourthSkill2')">
-                                <img src="../img/ability2.png">
+                                <img src="../../webroot/img/ability2.png">
                                 <p id="selection4__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                             </div>
                         </div>
@@ -303,24 +303,24 @@
                         <div class="weapon__container">
                             <div class="char-details__items__item" onmouseover="showDescription('selection1__firstWeapon__desc')" onmouseout="hideDescription('selection1__firstWeapon__desc')"
                                 id=firstWeaponSelected onclick="showSkill('firstWeapon')">
-                                <img src="../img/weapon1.jpg" alt="ability 1">
+                                <img src="../../webroot/img/weapon1.jpg" alt="ability 1">
                                 <p id="selection1__firstWeapon__desc" class="char-details__item_description">Knife item</p>
                             </div>
                             <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection1__secondWeapon__desc')" onmouseout="hideDescription('selection1__secondWeapon__desc')"
                                 id=firstWeapon onclick="changeSkillWeapons('firstWeaponSelected','firstWeapon')">
-                                <img src="../img/weapon2.jpg">
+                                <img src="../../webroot/img/weapon2.jpg">
                                 <p id="selection1__secondWeapon__desc" class="char-details__item_description">Hammer item</p>
                             </div>
                         </div>
                         <div class="armor__container">
                             <div class="char-details__items__item" id=armorSelected onmouseover="showDescription('selection2__firstArmor__desc')" onmouseout="hideDescription('selection2__firstArmor__desc')"
                                 onclick="showSkill('armor')">
-                                <img src="../img/armor.jpg" alt="ability 2">
+                                <img src="../../webroot/img/armor.jpg" alt="ability 2">
                                 <p id="selection2__firstArmor__desc" class="char-details__item_description">Armor 1</p>
                             </div>
                             <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection2__secondArmor__desc')" onmouseout="hideDescription('selection2__secondArmor__desc')"
                                 id=armor onclick="changeSkillWeapons('armorSelected','armor')">
-                                <img src="../img/armor2.jpg">
+                                <img src="../../webroot/img/armor2.jpg">
                                 <p id="selection2__secondArmor__desc" class="char-details__item_description">Armor 2</p>
                             </div>
                         </div>
@@ -331,7 +331,7 @@
                 <div class="items__item__container">
                     <div class="items__item">
                         <div class="items__item__icon">
-                            <img src="..\img\item_icon.png">
+                            <img src="../../webroot/img\item_icon.png">
                         </div>
                         <div class="items__item__details">
                             <div class="items__item__details__name">
@@ -347,7 +347,7 @@
                         <p class="items__item__buy__cost">
                             835
                             <span>
-                                <img src="..\img\money-bag.png">
+                                <img src="../../webroot/img\money-bag.png">
                             </span>
                         </p>
                         <button class="btn btn--buy">BUY</button>
@@ -356,7 +356,7 @@
                 <div class="items__item__container">
                     <div class="items__item">
                         <div class="items__item__icon">
-                            <img src="..\img\item_icon.png">
+                            <img src="../../webroot/img\item_icon.png">
                         </div>
                         <div class="items__item__details">
                             <div class="items__item__details__name">
@@ -372,7 +372,7 @@
                         <p class="items__item__buy__cost">
                             835
                             <span>
-                                <img src="..\img\money-bag.png">
+                                <img src="../../webroot/img\money-bag.png">
                             </span>
                         </p>
                         <button class="btn btn--buy">BUY</button>
@@ -427,6 +427,6 @@
         </div>
     </div>
 </body>
-<script src="../js/styles.js"></script>
+<script src="../../webroot/js/styles.js"></script>
 
 </html>

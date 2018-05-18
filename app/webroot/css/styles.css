@@ -167,7 +167,7 @@ h3{
 .logInBody {
     height: 100%;
     width: 100%;
-    background-image: url("../img/backgroundLogin.jpg");
+    background-image: url("../../webroot/img/backgroundLogin.jpg");
     overflow: hidden;
     max-width: 100%;
     background-repeat: no-repeat;
