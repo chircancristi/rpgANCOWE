@@ -124,42 +124,32 @@ h3{
 /* END CSS GRID */
 
 /* START Header */
-
+/*
 .header{
-    position: relative;
+    
     width: 100%;
-    height: auto;
-    background-color: blueviolet;
+    height: 10%;
+    background-color:#BA8200;
 }
 
-.dashbord__header-logo{ 
-    display: inline-block;
-    padding: 20px;
-    width: auto;
-    height: auto;
-    max-width: 75px;
-    max-height: 75px;
-}
 
-.dashboard__header-list li{
-    display: inline-block;
-    text-align: center;
-}
+.dashboard_header-title{
+   position: relative;
+   width: auto;
+   height: auto;
+   
+    
+    left:50%;
+    top:-100%;
 
-.dashboard__header-list{
-    position: absolute;
-    bottom: 40%;
-    margin: auto;
-    display: inline-block;
-    list-style-type:none;
-    font-size: 200%;
 }
 
 .dashboard__header-list-Elements{
-    padding: 15px;
+    padding: 10px;
     color: black;
+    text-decoration: solid;
 }
-
+*/
 /* END Header */
 
 /* START Sign Up / LogIn */
@@ -740,6 +730,17 @@ h3{
 
 /* Account stats column */
 
+.dashbord__header-logo{ 
+    position: relative;
+  
+    padding: 20px;
+    width: auto;
+    height: 80%;
+    max-width: 200px;
+    max-height: 200px;
+    left:32%;
+    top:50%
+}
 .start__row {
     position: relative;
     font-weight: 50%;
