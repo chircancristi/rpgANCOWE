@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 08 Mai 2018 la 13:49
+-- Generation Time: 21 Mai 2018 la 13:32
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `sundaybrawl`
 --
-CREATE DATABASE IF NOT EXISTS `sundaybrawl` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `sundaybrawl`;
 
 -- --------------------------------------------------------
 
@@ -37,6 +35,15 @@ CREATE TABLE `abilities` (
   `name` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `abilities`
+--
+
+INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`) VALUES
+(1, 3, 'Rupe fasu!', 'Rasengan', 1),
+(2, 1, 'Arunca o panza matas', 'Simtul paianjenului', 2),
+(3, 3, 'O tamaduire foarte s', 'Jarvis!AJUTOR!!!', 2);
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,16 @@ CREATE TABLE `char` (
   `def` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Salvarea datelor din tabel `char`
+--
+
+INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
+(1, 'SpiderMan', 'biologie', 'https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.15752-9/33093475_1695539893816676_4138980599274668032_n.png?_nc_cat=0&oh=35b5f537d311579ad6c1f3e14125002a&oe=5B81A209', 15, 10),
+(2, 'IronMan', 'O masina de spalat ce a fost lovita de un fulger radioactiv!', 'https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.15752-9/33093475_1695539893816676_4138980599274668032_n.png?_nc_cat=0&oh=35b5f537d311579ad6c1f3e14125002a&oe=5B81A209', 30, 30),
+(3, 'Naruto', 'Saaaaasuuuuukeeeeeeeeeeeee!', 'https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.15752-9/33093475_1695539893816676_4138980599274668032_n.png?_nc_cat=0&oh=35b5f537d311579ad6c1f3e14125002a&oe=5B81A209', 25, 20),
+(4, 'Ichigo', 'Ala din bleach', 'https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.15752-9/33093475_1695539893816676_4138980599274668032_n.png?_nc_cat=0&oh=35b5f537d311579ad6c1f3e14125002a&oe=5B81A209', 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +110,15 @@ CREATE TABLE `items` (
   `def` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Salvarea datelor din tabel `items`
+--
+
+INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALUES
+(1, 'Batista lui SuperMan', 1, 'https://scontent.fsb', 230, 20, 5),
+(2, 'Toporul lui Odin', 1, 'https://scontent.fsb', 500, 50, 15),
+(3, 'Fesul lui Dublu D', 0, 'https://scontent.fsb', 150, 0, 30);
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +134,16 @@ CREATE TABLE `user` (
   `gamesPlayed` int(11) NOT NULL DEFAULT '0',
   `gamesPlayedWithAChar` int(11) NOT NULL COMMENT 'De implementat'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `email`, `wins`, `losses`, `gamesPlayed`, `gamesPlayedWithAChar`) VALUES
+('anggabard', 'ceapa123', 'jlik@hotman.com', 9999, 0, 13, 2),
+('rzv420zbegu', 'nam', 'IamZbegu@html.css', 123, 321, 2, 0),
+('TO', 'il las', 'teo_jmen@bo.ss', 69, 96, 3, 44),
+('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', -1, 100, 20, 23);
 
 -- --------------------------------------------------------
 
