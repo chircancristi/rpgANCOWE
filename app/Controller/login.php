@@ -1,19 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+
 <?php
-    $username="alex";
-    $password="123";
-    echo $_POST["Username"]  ;
-    if ($_POST["username"]==$username  &&  $_POST["password"]==$password){
-    header("Location: ./dashboard.html");
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "your_password";
+    $dbname = "sundaybrawl";
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
     }
+    $sql = "SELECT password FROM user where username=".$_POST["username"] ;
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+          
+            if ( $_POST["password"]==$row["password"]){
+                header("Location: ../View/Pages/dashboard.html");
+                }
+            
+        }
+    } else {
+        echo "Razvan avem nevoie de login fail trg ";
+    }
+  
+
 ?>    
 </body>
 </html>
