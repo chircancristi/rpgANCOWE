@@ -321,7 +321,7 @@ session_start();
                                 <div class="armor__container">
                                     <div class="char-details__items__item" id=armorSelected onmouseover="showDescription('selection2__firstArmor__desc')" onmouseout="hideDescription('selection2__firstArmor__desc')"
                                         onclick="showSkill('armor')">
-                                        <img src="../../webroot/img/armor.jpg" alt="ability 2">
+                                        <img src="../../webroot/img/armor1.jpg" alt="ability 2">
                                         <p id="selection2__firstArmor__desc" class="char-details__item_description">Armor 1</p>
                                     </div>
                                     <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection2__secondArmor__desc')" onmouseout="hideDescription('selection2__secondArmor__desc')"
@@ -334,59 +334,51 @@ session_start();
                         </div>
 
                     </div>
-
                     <div class="items">
-                        <div class="items__item__container">
-                            <div class="items__item">
-                                <div class="items__item__icon">
-                                    <img src="../../webroot/img\item_icon.png">
+                    <?php
+                      $con = mysqli_connect('localhost','root','','sundaybrawl');
+                      if (!$con) {
+                                   die('Could not connect: ' . mysqli_error($con));
+                                  }
+                     
+                      $sql="SELECT * FROM `items` ";
+                      $result = mysqli_query($con,$sql);
+                      while($row = mysqli_fetch_array($result)) {
+                    
+                        $sqlUser="SELECT * FROM asocitems where username='".$_SESSION["username"]."' and id='".$row["id"]."'";
+                        $resultUser = mysqli_query($con,$sqlUser);
+                       if ($resultUser->num_rows==0) {
+                        echo"
+                            <div class=\"items__item__container\">
+                            <div class=\"items__item\">
+                                <div class=\"items__item__icon\">
+                                    <img src=\"".$row["imgUrl"]."\">
                                 </div>
-                                <div class="items__item__details">
-                                    <div class="items__item__details__name">
-                                        <h4> NAME </h4>
+                                <div class=\"items__item__details\">
+                                    <div class=\"items__item__details__name\">
+                                        <h4>".$row["name"]."</h4>
                                     </div>
-                                    <div class="items__item__details__description">
-                                        <p>AT:</p>
-                                        <p>DEF:</p>
+                                    <div class=\"items__item__details__description\">
+                                        <p>AT:".$row["att"]."</p>
+                                        <p>DEF:".$row["def"]."</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="items__item__buy">
-                                <p class="items__item__buy__cost">
-                                    835
+                            <div class=\"items__item__buy\">
+                                <p class=\"items__item__buy__cost\">
+                                    ".$row["price"]."
                                     <span>
-                                        <img src="../../webroot/img\money-bag.png">
+                                        <img src=\"../../webroot/img\money-bag.png\">
                                     </span>
                                 </p>
-                                <button class="btn btn--buy">BUY</button>
+                                <button class=\"btn btn--buy\">BUY</button>
                             </div>
-                        </div>
-                        <div class="items__item__container">
-                            <div class="items__item">
-                                <div class="items__item__icon">
-                                    <img src="../../webroot/img\item_icon.png">
-                                </div>
-                                <div class="items__item__details">
-                                    <div class="items__item__details__name">
-                                        <h4> NAME </h4>
-                                    </div>
-                                    <div class="items__item__details__description">
-                                        <p>AT:</p>
-                                        <p>DEF:</p>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="items__item__buy">
-                                <p class="items__item__buy__cost">
-                                    835
-                                    <span>
-                                        <img src="../../webroot/img\money-bag.png">
-                                    </span>
-                                </p>
-                                <button class="btn btn--buy">BUY</button>
-                            </div>
-                        </div>
-                    </div>
+                      ";
+                       }
+                      }
+                       ?>
+                         </div>
                     <div class="acc__stats">
                         <div class="start__row">
                             <a href="../page/play.html" class="btn btn--play">PLAY</a>
