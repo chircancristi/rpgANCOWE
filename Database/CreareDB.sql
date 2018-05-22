@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22 Mai 2018 la 21:18
+-- Generation Time: 22 Mai 2018 la 22:13
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -25,42 +25,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `user`
+-- Structura de tabel pentru tabelul `items`
 --
 
-CREATE TABLE `user` (
-  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
-  `password` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
-  `email` varchar(50) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
-  `money` int(11) NOT NULL,
-  `wins` int(11) NOT NULL DEFAULT '0',
-  `losses` int(11) NOT NULL DEFAULT '0',
-  `gamesPlayed` int(11) NOT NULL DEFAULT '0',
-  `gamesPlayedWithAChar` int(11) NOT NULL COMMENT 'De implementat'
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `type` int(11) NOT NULL,
+  `imgUrl` varchar(40) NOT NULL,
+  `price` int(11) NOT NULL,
+  `att` int(11) NOT NULL,
+  `def` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `user`
+-- Salvarea datelor din tabel `items`
 --
 
-INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`, `gamesPlayedWithAChar`) VALUES
-('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0, 0),
-('anggabard', 'ceapa123', 'dasd@yahoo.com', 0, 0, 0, 0, 0),
-('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0, 0),
-('Nostradamus', '123', 'ceapa@cea.ro', 0, 0, 0, 0, 0),
-('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2, 0),
-('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3, 44),
-('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20, 23);
+INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALUES
+(1, 'Batista lui SuperMan', 1, '../../webroot/img/weapon1.png', 230, 20, 5),
+(2, 'Toporul lui Odin', 1, '../../webroot/img/weapon2.png', 500, 50, 15),
+(3, 'Fesul lui Dublu D', 0, '../../webroot/img/armor1.png', 150, 0, 30),
+(4, 'Aparatoarea lui Sasu', 0, '../../webroot/img/armor2.png', 150, 0, 20),
+(5, 'Sabia lui DEADPOOL', 1, '../../webroot/img/weapon2.png', 450, 40, 20),
+(6, 'Tunica de doua tone ', 0, '../../webroot/img/armor3.png', 650, 0, 100);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `user`
+-- Indexes for table `items`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`username`);
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

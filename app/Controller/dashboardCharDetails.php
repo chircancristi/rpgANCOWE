@@ -127,8 +127,9 @@ session_start();
                         <div class="weapon__container">
                             <div class="char-details__items__item" onmouseover="showDescription('selection1__firstWeapon__desc')" onmouseout="hideDescription('selection1__firstWeapon__desc')"
                                 id=firstWeaponSelected onclick="showSkill('firstWeapon')">
-                                <img src="../../webroot/img/weapon1.jpg" alt="ability 1">
-                                <p id="selection1__firstWeapon__desc" class="char-details__item_description">Knife item</p>
+                                
+                                <img src="../../webroot/img/weapon0.png" alt="ability 1">
+                                <p id="selection1__firstWeapon__desc" class="char-details__item_description">No weapon Equipped</p>
                             </div>
                             <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection1__secondWeapon__desc')" onmouseout="hideDescription('selection1__secondWeapon__desc')"
                                 id=firstWeapon onclick="changeSkillWeapons('firstWeaponSelected','firstWeapon')">
@@ -139,8 +140,8 @@ session_start();
                         <div class="armor__container">
                             <div class="char-details__items__item" id=armorSelected onmouseover="showDescription('selection2__firstArmor__desc')" onmouseout="hideDescription('selection2__firstArmor__desc')"
                                 onclick="showSkill('armor')">
-                                <img src="../../webroot/img/armor.jpg" alt="ability 2">
-                                <p id="selection2__firstArmor__desc" class="char-details__item_description">Armor 1</p>
+                                <img src="../../webroot/img/weapon0.png" alt="ability 2">
+                                <p id="selection2__firstArmor__desc" class="char-details__item_description">No armor Equipped</p>
                             </div>
                             <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection2__secondArmor__desc')" onmouseout="hideDescription('selection2__secondArmor__desc')"
                                 id=armor onclick="changeSkillWeapons('armorSelected','armor')">
@@ -153,3 +154,7 @@ session_start();
             </div>
 </body>
 </html>
+<?php
+$q = intval($_GET['q']);
+$_SESSION["character"]=$q;
+?>
