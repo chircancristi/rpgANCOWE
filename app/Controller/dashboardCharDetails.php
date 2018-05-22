@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,16 +36,35 @@
                 <div class="char-details__stats">
                     <h2>Stats</h2>
                     <ul class="char-details__stats__info">
+                         
+                    <?php
+                        $q = intval($_GET['q']);
+                        $con = mysqli_connect('localhost','root','','sundaybrawl');
+                        if (!$con) {
+                                     die('Could not connect: ' . mysqli_error($con));
+                                    }
+                       
+                        $sql="SELECT lvl FROM `userchr` WHERE charId = '".$q."' and username='".$_SESSION["username"]."'";
                         
-                        <li>Level:
-                            <span>20</span>
-                        </li>
-                        <li>Attack:
-                            <span>90</span>
-                        </li>
-                        <li>Defense:
-                            <span>30</span>
-                        </li>
+                        $result = mysqli_query($con,$sql);
+                        while($row = mysqli_fetch_array($result)) {
+                            echo"<li>Level:
+                            <span>" .$row['lvl']. "</span> </li>";
+                        }
+                          
+                        $sql="SELECT att,def FROM `char` WHERE charId = '".$q."'"  ;
+                        $result = mysqli_query($con,$sql);
+                        while($row = mysqli_fetch_array($result)) {
+                        echo "<li>Attack:
+                        <span>".$row["att"]."</span>
+                        </li>";
+                         echo"<li>Defense:
+                        <span>".$row["def"]."</span>
+                         </li>";
+                        }
+                        mysqli_close($con);
+                        ?>
+                     
                     </ul>
                 </div>
                 <div class="char-details__abilities">

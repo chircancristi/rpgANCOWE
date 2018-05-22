@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +24,7 @@
                             <h4> THE HULK </h4>
                         </div>
                         <div class="characters__item__details__description">
-                            
+                            <php
                             <p>AT: 20</p>
                             <p>DEF: 23</p>
                         </div>
@@ -214,7 +218,7 @@
                     </div>
                 </div>
                 <div class="account__utility__row">
-                    <form action="../pages/index.html" class="account__utility__logOut">
+                    <form action="../../Controller/logOut.php" class="account__utility__logOut">
                         <button type="submit" class="account__utility__logOutbutton"> Log out </button>
                     </form>
                 </div>

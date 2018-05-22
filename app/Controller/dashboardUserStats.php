@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +19,7 @@
                                      die('Could not connect: ' . mysqli_error($con));
                                     }
                        
-                        $sql="SELECT * FROM `user` WHERE username= '".$_COOKIE['username']."'";
+                        $sql="SELECT * FROM `user` WHERE username= '".$_SESSION["username"]."'";
                        
                         $result = mysqli_query($con,$sql);
                         while($row = mysqli_fetch_array($result)) {

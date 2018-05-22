@@ -1,5 +1,9 @@
 
 <?php
+// Start the session
+session_start();
+?>
+<?php
 
     $servername = "localhost";
     $username = "root";
@@ -26,9 +30,18 @@
         while($row = mysqli_fetch_assoc($result)) {
           
             if ( $_POST["password"]==$row["password"]){
-                setcookie("username",$_POST["username"], time()+3600*24);
-                setcookie("password",$_POST["password"], time()+3600*24);
-                header("Location: ../View/Pages/dashboard.html");
+                $_SESSION["username"] = $_POST["username"];
+                $_SESSION["password"] = $_POST["password"];
+                $_SESSION["character"] = 1; 
+                $_SESSION["weapon"] = 0; 
+                $_SESSION["armor"] = 0; 
+                 if (mysqli_query($conn, $sql)) {
+                    echo "New record created successfully";
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
+                header("Location: ../View/Pages/dashboard.php");
+              
                 }
                 else {
                     echo "Razvan avem nevoie de login fail trg ";
@@ -38,7 +51,7 @@
     } else {
         echo "Razvan avem nevoie de login fail trg ";
     }
-  
+    $conn->close();
 
 ?>    
 </body>
