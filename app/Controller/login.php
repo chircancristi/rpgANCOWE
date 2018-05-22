@@ -26,6 +26,8 @@
         while($row = mysqli_fetch_assoc($result)) {
           
             if ( $_POST["password"]==$row["password"]){
+                setcookie("username",$_POST["username"], time()+3600*24);
+                setcookie("password",$_POST["password"], time()+3600*24);
                 header("Location: ../View/Pages/dashboard.html");
                 }
                 else {

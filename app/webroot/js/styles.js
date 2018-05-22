@@ -94,17 +94,47 @@ function HighlightChar(nr){
 		items[i].style.backgroundColor = 'white';
 		items[i].style.fontWeight = 'normal';
 	  }
-	  items[nr].style.backgroundColor = 'gold';
-	  items[nr].style.fontWeight = 'bold';
+	  items[nr-1].style.backgroundColor = 'gold';
+	  items[nr-1].style.fontWeight = 'bold';
 	
-	var chars = document.getElementsByClassName('char-details');
-	for(i=0; i<chars.length; i++) {
-		chars[i].style.display = 'none';
-	  }
+	  if (nr == "") {
+        document.getElementById("char-details").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+      
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            
+            xmlhttp = new ActiveXObject("char-details");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("char-details").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","../../Controller/dashboardCharDetails.php?q="+nr,true);
+        xmlhttp.send();
+    }
+	
+}
+function getStats(){
 
-	  if(nr==2 || nr==3){
-		chars[1].style.display = 'block';
-	  }
+	
+	  
+        if (window.XMLHttpRequest) {
+      
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            
+            xmlhttp = new ActiveXObject("acc-stats__info");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("acc-stats__info").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","../../Controller/dashboardUserStats.php",true);
+        xmlhttp.send();
 
-	  chars[nr].style.display = 'block';
 }
