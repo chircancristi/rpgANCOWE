@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22 Mai 2018 la 15:43
+-- Generation Time: 22 Mai 2018 la 17:43
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -78,6 +78,18 @@ CREATE TABLE `asocchars` (
   `id` int(11) NOT NULL,
   `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `asocchars`
+--
+
+INSERT INTO `asocchars` (`charId`, `id`, `username`) VALUES
+(1, 2, 'Nostradamus'),
+(2, 3, 'Nostradamus'),
+(3, 4, 'Nostradamus'),
+(4, 5, 'Nostradamus'),
+(5, 6, 'Nostradamus'),
+(6, 7, 'Nostradamus');
 
 -- --------------------------------------------------------
 
@@ -168,6 +180,7 @@ INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, 
 ('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0, 0),
 ('anggabard', 'ceapa123', 'jlik@hotman.com', 0, 9999, 0, 13, 2),
 ('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0, 0),
+('Nostradamus', '123', 'ceapa@cea.ro', 0, 0, 0, 0, 0),
 ('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2, 0),
 ('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3, 44),
 ('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20, 23);
@@ -187,6 +200,18 @@ CREATE TABLE `userchr` (
   `gamesLost` int(11) NOT NULL,
   `selectedSkills` int(11) NOT NULL COMMENT 'De implementat'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `userchr`
+--
+
+INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `gamesLost`, `selectedSkills`) VALUES
+('Nostradamus', 1, 0, 0, 0, 0, 0),
+('Nostradamus', 2, 0, 0, 0, 0, 0),
+('Nostradamus', 3, 0, 0, 0, 0, 0),
+('Nostradamus', 4, 0, 0, 0, 0, 0),
+('Nostradamus', 5, 0, 0, 0, 0, 0),
+('Nostradamus', 6, 0, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -237,7 +262,8 @@ ALTER TABLE `user`
 -- Indexes for table `userchr`
 --
 ALTER TABLE `userchr`
-  ADD PRIMARY KEY (`username`,`charId`);
+  ADD PRIMARY KEY (`username`,`charId`),
+  ADD KEY `charId` (`charId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -248,6 +274,12 @@ ALTER TABLE `userchr`
 --
 ALTER TABLE `abilities`
   MODIFY `abilityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `asocchars`
+--
+ALTER TABLE `asocchars`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restrictii pentru tabele sterse
@@ -264,8 +296,7 @@ ALTER TABLE `abilities`
 --
 ALTER TABLE `asocchars`
   ADD CONSTRAINT `asocchars_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `asocchars_ibfk_2` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`),
-  ADD CONSTRAINT `asocchars_ibfk_3` FOREIGN KEY (`username`,`charId`) REFERENCES `userchr` (`username`, `charId`);
+  ADD CONSTRAINT `asocchars_ibfk_2` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
 
 --
 -- Restrictii pentru tabele `asocitems`
@@ -273,6 +304,13 @@ ALTER TABLE `asocchars`
 ALTER TABLE `asocitems`
   ADD CONSTRAINT `asocitems_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `asocitems_ibfk_2` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
+
+--
+-- Restrictii pentru tabele `userchr`
+--
+ALTER TABLE `userchr`
+  ADD CONSTRAINT `userchr_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `userchr_ibfk_2` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
