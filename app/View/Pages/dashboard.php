@@ -16,7 +16,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
     
 
     <body class="dashboard-body" id="dashboard">
-    <script src="../../webroot/js/styles.js"></script>
+    
         <div class="container">
             <div class="grid-container">
                 <div class="characters">
@@ -449,7 +449,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
 
                         </div>
                         <div class="account__utility__row">
-                            <form action="../../Controller/logOut.php" class="account__utility__logOut">
+                            <form action="../../Controller/login.php" class="account__utility__logOut">
                                 <button type="submit" class="account__utility__logOutbutton"> Log out </button>
                             </form>
                         </div>
@@ -460,6 +460,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                     </div>
                 </div>
             </div>
+            <script src="../../webroot/js/styles.js"></script>
     </body>
 
 

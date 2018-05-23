@@ -26,6 +26,7 @@ session_start();
                            echo "<p> Number of won games: ". $row['wins'] ."</p>";
                            echo  "<p> Number of lost games: ". $row['losses'] ."</p>";
                            echo  "<p>  Number of played games: ". $row['gamesPlayed'] ."</p>";
+                           echo  "<p>  Money: ". $row['money'] ."</p>";
                         }
                         mysqli_close($con);
                         ?>         

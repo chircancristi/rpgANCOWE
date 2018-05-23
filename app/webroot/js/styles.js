@@ -138,5 +138,19 @@ function buyItems (nr){
 }
 	hr.send(vars); 
 	document.getElementById("items").innerHTML = "processing...";
+	if (window.XMLHttpRequest) {
+      
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		
+		xmlhttp = new ActiveXObject("acc-stats__info");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("acc-stats__info").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET","../../Controller/dashboardUserStats.php",true);
+	xmlhttp.send();
 	
 }
