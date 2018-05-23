@@ -418,28 +418,35 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                         <div class="acc__stats__settings">
                             <h2> Settings </h2>
 
-                            <div class="acc-actions__info">
+                            <form action="../../Controller/changeAccountInfo.php"  method="post" class="acc-actions__info">
                                 <p> Change username:
-                                    <input pattern="[A-Za-z1-9]" placeholder="Add new username " type="text" name="newUsername">
+                                    <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
                                 </p>
                                 <p> Change email:
-                                    <input pattern="[A-Za-z1-9]" placeholder="Add new mail " type="text" name="newMail"> </p>
+                                    <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail"> </p>
                                 <p> Change password:
-                                    <input pattern="[A-Za-z1-9]" placeholder="Add new password " type="password" name="newPassword"> </p>
+                                    <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword"> </p>
                                 <p> Comfirm password:
-                                    <input pattern="[A-Za-z1-9]" placeholder="Add new password " type="password" name="newPasswordComfirm"> </p>
-                            </div>
+                                    <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm"> </p>
+                            
+                                <span class="acc-actions">
+                                    <button type="submit" class="btn"> Submit Changes </button>
+                                
+                                    <button type="button"  class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
+                            </form>
 
-                            <div class="acc-actions__info--mobile">
-                                <input pattern="[A-Za-z1-9]" placeholder="Add new username " type="text" name="newUsername">
-                                <input pattern="[A-Za-z1-9]" placeholder="Add new mail " type="text" name="newMail">
-                                <input pattern="[A-Za-z1-9]" placeholder="Add new password " type="password" name="newPassword">
-                                <input pattern="[A-Za-z1-9]" placeholder="Add new password " type="password" name="newPasswordComfirm">
-                            </div>
-                            <div class="acc-actions">
-                                <button class="btn"> Submit Changes </button>
-                                <button class="btn btn--danger"> Erase Account </button>
-                            </div>
+                            <form action="../../Controller/changeAccountInfo.php"  method="post" class="acc-actions__info--mobile">
+                                <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
+                                <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail">
+                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword">
+                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm">
+                                
+                                <span class="acc-actions">
+                                    <button type="submit" class="btn"> Submit Changes </button>
+                                    <button type="button" class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
+                                </span>
+                            </form>
+
                         </div>
                         <div class="account__utility__row">
                             <form action="../../Controller/logOut.php" class="account__utility__logOut">
