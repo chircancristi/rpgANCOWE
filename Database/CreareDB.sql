@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22 Mai 2018 la 23:31
+-- Generation Time: 23 Mai 2018 la 15:35
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -90,12 +90,12 @@ INSERT INTO `asocchars` (`charId`, `id`, `username`) VALUES
 (4, 11, 'anggabard'),
 (5, 12, 'anggabard'),
 (6, 13, 'anggabard'),
-(1, 2, 'Nostradamus'),
-(2, 3, 'Nostradamus'),
-(3, 4, 'Nostradamus'),
-(4, 5, 'Nostradamus'),
-(5, 6, 'Nostradamus'),
-(6, 7, 'Nostradamus');
+(1, 38, 'ioio'),
+(2, 39, 'ioio'),
+(3, 40, 'ioio'),
+(4, 41, 'ioio'),
+(5, 42, 'ioio'),
+(6, 43, 'ioio');
 
 -- --------------------------------------------------------
 
@@ -178,22 +178,21 @@ CREATE TABLE `user` (
   `money` int(11) NOT NULL,
   `wins` int(11) NOT NULL DEFAULT '0',
   `losses` int(11) NOT NULL DEFAULT '0',
-  `gamesPlayed` int(11) NOT NULL DEFAULT '0',
-  `gamesPlayedWithAChar` int(11) NOT NULL COMMENT 'De implementat'
+  `gamesPlayed` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Salvarea datelor din tabel `user`
 --
 
-INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`, `gamesPlayedWithAChar`) VALUES
-('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0, 0),
-('anggabard', 'ceapa123', 'dasd@yahoo.com', 0, 0, 0, 0, 0),
-('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0, 0),
-('Nostradamus', '123', 'ceapa@cea.ro', 0, 0, 0, 0, 0),
-('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2, 0),
-('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3, 44),
-('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20, 23);
+INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
+('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
+('anggabard', 'ceapa123', 'dasd@yahoo.com', 9999, 9999, -1, 2),
+('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0),
+('ioio', 'yoyo', '123', 123, 321, 2, 4),
+('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2),
+('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3),
+('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20);
 
 -- --------------------------------------------------------
 
@@ -207,27 +206,26 @@ CREATE TABLE `userchr` (
   `lvl` int(11) NOT NULL,
   `gamesPlayed` int(11) NOT NULL,
   `gamesWon` int(11) NOT NULL,
-  `gamesLost` int(11) NOT NULL,
-  `selectedSkills` int(11) NOT NULL COMMENT 'De implementat'
+  `gamesLost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Salvarea datelor din tabel `userchr`
 --
 
-INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `gamesLost`, `selectedSkills`) VALUES
-('anggabard', 1, 0, 0, 0, 0, 0),
-('anggabard', 2, 0, 0, 0, 0, 0),
-('anggabard', 3, 0, 0, 0, 0, 0),
-('anggabard', 4, 1, 0, 0, 0, 0),
-('anggabard', 5, 4, 0, 0, 0, 0),
-('anggabard', 6, 6, 0, 0, 0, 0),
-('Nostradamus', 1, 0, 0, 0, 0, 0),
-('Nostradamus', 2, 0, 0, 0, 0, 0),
-('Nostradamus', 3, 0, 0, 0, 0, 0),
-('Nostradamus', 4, 0, 0, 0, 0, 0),
-('Nostradamus', 5, 0, 0, 0, 0, 0),
-('Nostradamus', 6, 0, 0, 0, 0, 0);
+INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `gamesLost`) VALUES
+('anggabard', 1, 0, 0, 0, 0),
+('anggabard', 2, 0, 0, 0, 0),
+('anggabard', 3, 0, 0, 0, 0),
+('anggabard', 4, 1, 0, 0, 0),
+('anggabard', 5, 4, 0, 0, 0),
+('anggabard', 6, 6, 0, 0, 0),
+('ioio', 1, 0, 0, 0, 0),
+('ioio', 2, 0, 0, 0, 0),
+('ioio', 3, 0, 0, 0, 0),
+('ioio', 4, 0, 0, 0, 0),
+('ioio', 5, 0, 0, 0, 0),
+('ioio', 6, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -295,7 +293,13 @@ ALTER TABLE `abilities`
 -- AUTO_INCREMENT for table `asocchars`
 --
 ALTER TABLE `asocchars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `asocitems`
+--
+ALTER TABLE `asocitems`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrictii pentru tabele sterse
