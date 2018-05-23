@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23 Mai 2018 la 15:35
+-- Generation Time: 23 Mai 2018 la 16:54
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -90,6 +90,12 @@ INSERT INTO `asocchars` (`charId`, `id`, `username`) VALUES
 (4, 11, 'anggabard'),
 (5, 12, 'anggabard'),
 (6, 13, 'anggabard'),
+(1, 44, 'dsjkfoeuhgoiesgioreg'),
+(2, 45, 'dsjkfoeuhgoiesgioreg'),
+(3, 46, 'dsjkfoeuhgoiesgioreg'),
+(4, 47, 'dsjkfoeuhgoiesgioreg'),
+(5, 48, 'dsjkfoeuhgoiesgioreg'),
+(6, 49, 'dsjkfoeuhgoiesgioreg'),
 (1, 38, 'ioio'),
 (2, 39, 'ioio'),
 (3, 40, 'ioio'),
@@ -189,6 +195,7 @@ INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, 
 ('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
 ('anggabard', 'ceapa123', 'dasd@yahoo.com', 9999, 9999, -1, 2),
 ('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', '', '', 0, 0, 0, 0),
 ('ioio', 'yoyo', '123', 123, 321, 2, 4),
 ('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2),
 ('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3),
@@ -220,6 +227,12 @@ INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `
 ('anggabard', 4, 1, 0, 0, 0),
 ('anggabard', 5, 4, 0, 0, 0),
 ('anggabard', 6, 6, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', 1, 0, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', 2, 0, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', 3, 0, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', 4, 0, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', 5, 0, 0, 0, 0),
+('dsjkfoeuhgoiesgioreg', 6, 0, 0, 0, 0),
 ('ioio', 1, 0, 0, 0, 0),
 ('ioio', 2, 0, 0, 0, 0),
 ('ioio', 3, 0, 0, 0, 0),
@@ -293,7 +306,7 @@ ALTER TABLE `abilities`
 -- AUTO_INCREMENT for table `asocchars`
 --
 ALTER TABLE `asocchars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `asocitems`

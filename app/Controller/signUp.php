@@ -21,17 +21,16 @@
 
     function addNewUser($nume, $parola, $mail, $conn){
         
-        $sql = "Insert into user values('".$nume."','".$parola."','".$mail."',0,0,0,0,0)";
+        $sql = "Insert into user values('".$nume."','".$parola."','".$mail."',0,0,0,0)";
         mysqli_query($conn, $sql);
         echo $sql;
 
         for($i = 1; $i <= 6; $i++){
-            $sqlUserchr = "Insert into userchr values('".$nume."',".$i.",0,0,0,0,0)";
+            $sqlUserchr = "Insert into userchr values('".$nume."',".$i.",0,0,0,0)";
             mysqli_query($conn, $sqlUserchr);
-            echo $sqlUserchr;
+            
             $sqlAsocchars = "INSERT INTO `asocchars`(`charId`, `username`) values(".$i.",'".$nume."')";
             mysqli_query($conn, $sqlAsocchars);
-            echo $sqlAsocchars;
         }
     }
 
@@ -68,7 +67,7 @@
 
     
     header("Location: ../View/Pages/index.html");
-
+    $conn->close();
 ?>    
 </body>
 </html>
