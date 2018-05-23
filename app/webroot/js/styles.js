@@ -118,3 +118,22 @@ function HighlightChar(nr){
     }
 	
 }
+function buyItems (nr){
+	
+	 var hr = new XMLHttpRequest();
+	var url = "../../Controller/dashboardBuyItem.php";
+	var fn = document.getElementById("buyItem"+nr).value;
+	
+	var vars = "itemId="+fn;
+	hr.open("POST", url, true);
+	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	hr.onreadystatechange = function() {
+    if(hr.readyState == 4 && hr.status == 200) {
+        var return_data = hr.responseText;
+        document.getElementById("items").innerHTML = return_data;
+    }
+}
+	hr.send(vars); 
+	document.getElementById("items").innerHTML = "processing...";
+	
+}

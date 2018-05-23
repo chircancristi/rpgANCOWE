@@ -1,6 +1,9 @@
 <?php
 // Start the session
 session_start();
+if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
+    header("Location: ../Pages/index.html");
+ }
 ?>
     <!DOCTYPE html>
     <html>
@@ -10,9 +13,10 @@ session_start();
         <link rel="stylesheet" href="../../webroot/css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
     </head>
-    <script src="../../webroot/js/styles.js"></script>
+    
 
-    <body class="dashboard-body">
+    <body class="dashboard-body" id="dashboard">
+    <script src="../../webroot/js/styles.js"></script>
         <div class="container">
             <div class="grid-container">
                 <div class="characters">
@@ -334,7 +338,7 @@ session_start();
                         </div>
 
                     </div>
-                    <div class="items">
+                    <div class="items" id="items">
                     <?php
                       $con = mysqli_connect('localhost','root','','sundaybrawl');
                       if (!$con) {
@@ -345,9 +349,12 @@ session_start();
                       $result = mysqli_query($con,$sql);
                       while($row = mysqli_fetch_array($result)) {
                     
-                        $sqlUser="SELECT * FROM asocitems where username='".$_SESSION["username"]."' and id='".$row["id"]."'";
+                        $sqlUser="SELECT * FROM asocitems where username='".$_SESSION["username"]."' and itemId=".$row["id"];
+                        
                         $resultUser = mysqli_query($con,$sqlUser);
+                        $nr=1;
                        if ($resultUser->num_rows==0) {
+
                         echo"
                             <div class=\"items__item__container\">
                             <div class=\"items__item\">
@@ -371,10 +378,11 @@ session_start();
                                         <img src=\"../../webroot/img\money-bag.png\">
                                     </span>
                                 </p>
-                                <button class=\"btn btn--buy\">BUY</button>
+                                <button id=buyItem".$row["id"]." value=".$row["id"]." type=\"button\" onclick=\"buyItems(".$row["id"].")\" class=\"btn btn--buy\">BUY</button>
                             </div>
                             </div>
                       ";
+                      $nr=$nr+1;
                        }
                       }
                        ?>
@@ -399,6 +407,7 @@ session_start();
                        echo "<p> Number of won games: ". $row['wins'] ."</p>";
                        echo  "<p> Number of lost games: ". $row['losses'] ."</p>";
                        echo  "<p>  Number of played games: ". $row['gamesPlayed'] ."</p>";
+                       echo  "<p>  Money: ". $row['money'] ."</p>";
                     }
                     mysqli_close($con);
                     ?>
