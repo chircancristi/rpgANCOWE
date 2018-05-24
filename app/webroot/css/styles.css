@@ -484,6 +484,23 @@ h3{
     cursor: pointer;
 }
 
+.char-details__items_item_dropDownArmor img {
+    max-height: 90%;
+    max-width: 90%;
+}
+.char-details__items_item_dropDownArmor {
+    display: none;
+    top: 100%;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5px 0px 0px 5px;
+    border: 2px solid black;
+    background-color: white;
+    z-index: 1;
+    cursor: pointer;
+}
+
 .char-details__abilities_item_dropDown img {
     max-height: 90%;
     max-width: 90%;

@@ -21,7 +21,7 @@ function proprieties() {
 
 }
 
-function showSkill() {
+function showWeapon() {
 	var items = document.getElementsByClassName('char-details__items_item_dropDown');
 	
 	for(i=0; i<items.length; i++) {
@@ -36,8 +36,24 @@ function showSkill() {
 
 		 }
 		}
-	
 
+}
+
+function showArmor() {
+	var items = document.getElementsByClassName('char-details__items_item_dropDownArmor');
+	
+	for(i=0; i<items.length; i++) {
+		if ( items[i].style.display!="none"){
+
+		 items[i].style.display = "none";
+		 items[i].style.top = "0%";
+		}
+		 else  {
+			  items[i].style.display="inline-block";
+			  items[i].style.top = "-" +(100+i*100) + "%";
+
+		 }
+		}
 
 }
 
@@ -57,7 +73,7 @@ function changeSkill (divID, divID2) {
 	aux2.id = divID;
 }
 
-function changeSkillWeapons(nr) {
+function changeWeapon(nr,type) {
 	if (nr == "") {
         document.getElementById("char-details__abilities__container").innerHTML = "";
         return;
@@ -74,9 +90,10 @@ function changeSkillWeapons(nr) {
                 document.getElementById("char-details__abilities__container").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","../../Controller/dashboardChangeWeapon.php?q="+nr,true);
+        xmlhttp.open("GET","../../Controller/dashboardChangeWeapon.php?q="+nr+"&t="+type,true);
         xmlhttp.send();
-    }
+	}
+	CharStats();
 	
 	
 }
@@ -104,6 +121,23 @@ function throwImg(pos){
 }
 
 
+function CharStats(){
+	if (window.XMLHttpRequest) {
+      
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		
+		xmlhttp = new ActiveXObject("char-details__stats__info");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("char-details__stats__info").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET","../../Controller/dashboardCharStats.php",true);
+	xmlhttp.send();
+
+}
 function HighlightChar(nr){
 	var items = document.getElementsByClassName('characters__item');
 	
@@ -115,7 +149,7 @@ function HighlightChar(nr){
 	  items[nr-1].style.fontWeight = 'bold';
 	
 	  if (nr == "") {
-        document.getElementById("char-details").innerHTML = "";
+        document.getElementById("char-details__bio__header").innerHTML = "";
         return;
     } else { 
         if (window.XMLHttpRequest) {
@@ -123,19 +157,22 @@ function HighlightChar(nr){
             xmlhttp = new XMLHttpRequest();
         } else {
             
-            xmlhttp = new ActiveXObject("char-details");
+            xmlhttp = new ActiveXObject("char-details__bio__header");
         }
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("char-details").innerHTML = this.responseText;
+                document.getElementById("char-details__bio__header").innerHTML = this.responseText;
             }
         };
         xmlhttp.open("GET","../../Controller/dashboardCharDetails.php?q="+nr,true);
         xmlhttp.send();
-    }
+	}
+
+	CharStats();
+	
 	
 }
-function buyItems (nr){
+function buyItems (nr,type){
 	
 	 var hr = new XMLHttpRequest();
 	var url = "../../Controller/dashboardBuyItem.php";
@@ -166,5 +203,6 @@ function buyItems (nr){
 	};
 	xmlhttp.open("GET","../../Controller/dashboardUserStats.php",true);
 	xmlhttp.send();
+	changeWeapon(nr,type);
 	
 }

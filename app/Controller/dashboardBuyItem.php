@@ -77,7 +77,7 @@ if ($row["price"]<=$row2["money"]){
                                         <img src=\"../../webroot/img\money-bag.png\">
                                     </span>
                                 </p>
-                                <button id=buyItem".$row["id"]." value=".$row["id"]." type=\"button\" onclick=\"buyItems(".$row["id"].")\" class=\"btn btn--buy\">BUY</button>
+                                <button id=buyItem".$row["id"]." value=".$row["id"]." type=\"button\" onclick=\"buyItems(".$row["id"].",".$row["type"].")\" class=\"btn btn--buy\">BUY</button>
                             </div>
                             </div>
                       ";
