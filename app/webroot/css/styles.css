@@ -562,7 +562,8 @@ h3{
     position: absolute;
     text-align: justify;
     padding: 20px;
-    bottom: 100%;
+    bottom: 40%;
+    
     text-align:center;
     border-radius: 15px;
     background-color: white;

@@ -258,49 +258,49 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                             <div class="char-details__abilities__container">
                                 <div class="firstSkill__container">
                                     <div class="char-details__abilities__item" onmouseover="showDescription('selection1__firstSkill__desc2')" onmouseout="hideDescription('selection1__firstSkill__desc2')"
-                                        id="firstSkillSelected2" onclick="showSkill('firstSkill2')">
+                                        id="firstSkillSelected" onclick="showSkill('firstSkill')">
                                         <img src="../../webroot/img/ability1.png" alt="ability 1">
                                         <p id="selection1__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                                     </div>
                                     <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection1__secondSkill__desc2')" onmouseout="hideDescription('selection1__secondSkill__desc2')"
-                                        id="firstSkill2" onclick="changeSkill('firstSkillSelected2','firstSkill2')">
+                                        id="firstSkill" onclick="changeSkill('firstSkillSelected','firstSkill')">
                                         <img src="../../webroot/img/ability4.png">
                                         <p id="selection1__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                                     </div>
                                 </div>
                                 <div class="secondSkill__container">
-                                    <div class="char-details__abilities__item" id=secondSkillSelected2 onmouseover="showDescription('selection2__firstSkill__desc2')"
-                                        onmouseout="hideDescription('selection2__firstSkill__desc2')" onclick="showSkill('secondSkill2')">
+                                    <div class="char-details__abilities__item" id=secondSkillSelected2 onmouseover="showDescription('selection2__firstSkill__desc')"
+                                        onmouseout="hideDescription('selection2__firstSkill__desc2')" onclick="showSkill('secondSkill')">
                                         <img src="../../webroot/img/ability2.png" alt="ability 2">
                                         <p id="selection2__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                                     </div>
                                     <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection2__secondSkill__desc2')" onmouseout="hideDescription('selection2__secondSkill__desc2')"
-                                        id="secondSkill2" onclick="changeSkill('secondSkillSelected2','secondSkill2')">
+                                        id="secondSkill" onclick="changeSkill('secondSkillSelected','secondSkill')">
                                         <img src="../../webroot/img/ability4.png">
                                         <p id="selection2__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                                     </div>
                                 </div>
                                 <div class="thirdSkill__container">
                                     <div class="char-details__abilities__item" onmouseover="showDescription('selection3__firstSkill__desc2')" onmouseout="hideDescription('selection3__firstSkill__desc2')"
-                                        id="thirdSkillSelected2" onclick="showSkill('thirdSkill2')">
+                                        id="thirdSkillSelected" onclick="showSkill('thirdSkill')">
                                         <img src="../../webroot/img/ability3.png" alt="ability 3">
                                         <p id="selection3__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                                     </div>
                                     <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection3__secondSkill__desc2')" onmouseout="hideDescription('selection3__secondSkill__desc2')"
-                                        id="thirdSkill2" onclick="changeSkill('thirdSkillSelected2','thirdSkill2')">
+                                        id="thirdSkill" onclick="changeSkill('thirdSkillSelected','thirdSkill')">
                                         <img src="../../webroot/img/ability4.png">
                                         <p id="selection3__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                                     </div>
                                 </div>
                                 <div class="thirdSkill__container">
                                     <div class="char-details__abilities__item" onmouseover="showDescription('selection4__firstSkill__desc2')" onmouseout="hideDescription('selection4__firstSkill__desc2')"
-                                        id="fourthSkillSelected2" onclick="showSkill('fourthSkill2')">
+                                        id="fourthSkillSelected" onclick="showSkill('fourthSkill')">
                                         <img src="../../webroot/img/ability4.png" alt="ability 4">
                                         <p id="selection4__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
                                     </div>
 
                                     <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection4__secondSkill__desc2')" onmouseout="hideDescription('selection4__secondSkill__desc2')"
-                                        id="fourthSkill2" onclick="changeSkill('fourthSkillSelected2','fourthSkill2')">
+                                        id="fourthSkill" onclick="changeSkill('fourthSkillSelected','fourthSkill')">
                                         <img src="../../webroot/img/ability2.png">
                                         <p id="selection4__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
                                     </div>
@@ -309,20 +309,54 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                         </div>
                         <div class="char-details__equipped-items">
                             <h2>Equipped Items</h2>
-                            <div class="char-details__abilities__container">
-                                <div class="weapon__container">
-                                    <div class="char-details__items__item" onmouseover="showDescription('selection1__firstWeapon__desc')" onmouseout="hideDescription('selection1__firstWeapon__desc')"
-                                        id=firstWeaponSelected onclick="showSkill('firstWeapon')">
-                                        <img src="../../webroot/img/weapon1.jpg" alt="ability 1">
-                                        <p id="selection1__firstWeapon__desc" class="char-details__item_description">Knife item</p>
-                                    </div>
-                                    <div class="char-details__items_item_dropDown" onmouseover="showDescription('selection1__secondWeapon__desc')" onmouseout="hideDescription('selection1__secondWeapon__desc')"
-                                        id=firstWeapon onclick="changeSkillWeapons('firstWeaponSelected','firstWeapon')">
-                                        <img src="../../webroot/img/weapon2.jpg">
-                                        <p id="selection1__secondWeapon__desc" class="char-details__item_description">Hammer item</p>
-                                    </div>
-                                </div>
-                                <div class="armor__container">
+                            <div class="char-details__abilities__container" id="char-details__abilities__container">
+                                <?php
+                                  
+                                $servername = "localhost";
+                                $username = "root";
+                                $password = "";
+                                $dbname = "sundaybrawl";
+                                // Create connection
+                                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                               
+                                $sql = "SELECT * FROM `asocitems`  where username = '".$_SESSION["username"]."'";
+                                
+                                $result = mysqli_query($conn, $sql);
+                              
+                                if (mysqli_num_rows($result) == 0 ){
+                                   echo " <div class=\"weapon__container\" id=\"weapon__container\">  <div class=\"char-details__items__item\" > <img src=\"../../webroot/img/weapon0.png\" alt=\"ability 1\"> </div> </div>";
+                                    }
+                                   else {
+                                   
+                                   
+                                    if ( $_SESSION["weapon"]==0) { $row = mysqli_fetch_assoc($result);$sql2 = "SELECT * fROM  `items` where id=".$row["itemId"];$_SESSION["weapon"]=$row["itemId"];}
+                                    else $sql2 = "SELECT * fROM  `items` where id=".$_SESSION["weapon"];
+                                    $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
+                                     echo "<div class=\"weapon__container\" id=\"weapon__container\">
+                                    <div class=\"char-details__items__item\" onmouseover=\"showDescription('desc".$row2["id"]."')\" onmouseout=\"hideDescription('desc".$row2["id"]."')\"
+                                         onclick=\"showSkill()\">
+                                        <img src=\"".$row2["imgUrl"]."\" >
+                                        <p id=\"desc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
+                                    </div>";
+                                    
+                                    while($row = mysqli_fetch_assoc($result)) {
+                                    
+                                    $sql2 = "SELECT * fROM  `items` where id=".$row["itemId"];
+                                    
+                                    $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
+                                    if ($row2["type"]==1 && $row["itemId"]!=$_SESSION["weapon"]){
+                                        
+                                        echo "<div class=\"char-details__items_item_dropDown\" onmouseover=\"showDescription('desc".$row["itemId"]."')\" onmouseout=\"hideDescription('desc".$row["itemId"]."')\"
+                                        id=firstWeapon onclick=\"changeSkillWeapons(".$row2["id"].")\">
+                                        <img src=\"".$row2["imgUrl"]."\">
+                                        <p id=\"desc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
+                                    </div>";
+                                    }
+                                    }
+                                    echo "</div>";
+                                   }
+                                ?>
+                                 <div class="armor__container">
                                     <div class="char-details__items__item" id=armorSelected onmouseover="showDescription('selection2__firstArmor__desc')" onmouseout="hideDescription('selection2__firstArmor__desc')"
                                         onclick="showSkill('armor')">
                                         <img src="../../webroot/img/armor1.jpg" alt="ability 2">
@@ -334,6 +368,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                                         <p id="selection2__secondArmor__desc" class="char-details__item_description">Armor 2</p>
                                     </div>
                                 </div>
+                               
                             </div>
                         </div>
 

@@ -21,19 +21,24 @@ function proprieties() {
 
 }
 
-function showSkill(divId) {
-	var aux = document.getElementById(divId);
-	if (aux.id != 'firstSkill') document.getElementById("firstSkill").style.display = "none";
-	if (aux.id != "secondSkill") document.getElementById("secondSkill").style.display = "none";
-	if (aux.id != "thirdSkill") document.getElementById("thirdSkill").style.display = "none";
-	if (aux.id != "fourthSkill") document.getElementById("fourthSkill").style.display = "none";
-	if (aux.id != "firstWeapon") document.getElementById("firstWeapon").style.display = "none";
-	if (aux.id != "armor") document.getElementById("armor").style.display = "none";
-	if (aux.style.display != "inline-block") {
-		aux.style.display = 'inline-block';
-	} else if (aux.style.display != "none") {
-		aux.style.display = 'none';
-	}
+function showSkill() {
+	var items = document.getElementsByClassName('char-details__items_item_dropDown');
+	
+	for(i=0; i<items.length; i++) {
+		if ( items[i].style.display!="none"){
+
+		 items[i].style.display = "none";
+		 items[i].style.top = "0%";
+		}
+		 else  {
+			  items[i].style.display="inline-block";
+			  items[i].style.top = "-" +(100+i*100) + "%";
+
+		 }
+		}
+	
+
+
 }
 
 
@@ -52,19 +57,28 @@ function changeSkill (divID, divID2) {
 	aux2.id = divID;
 }
 
-function changeSkillWeapons(divID, divID2) {
-	var aux = document.getElementById(divID);
-	var aux2 = document.getElementById(divID2);
-	aux2.onclick = function () {
-		showSkill(divID2);
-	};
-	aux.onclick = function () {
-		changeSkillWeapons(divID, divID2);
-	};
-	document.getElementById(divID).className = 'char-details__items_item_dropDown';
-	document.getElementById(divID2).className = 'char-details__items__item';
-	aux.id = divID2;
-	aux2.id = divID;
+function changeSkillWeapons(nr) {
+	if (nr == "") {
+        document.getElementById("char-details__abilities__container").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+      
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            
+            xmlhttp = new ActiveXObject("char-details__abilities__container");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("char-details__abilities__container").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","../../Controller/dashboardChangeWeapon.php?q="+nr,true);
+        xmlhttp.send();
+    }
+	
+	
 }
 
 function showDescription(divId) {
