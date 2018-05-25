@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25 Mai 2018 la 17:09
+-- Generation Time: 25 Mai 2018 la 17:53
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -69,7 +69,15 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 (21, 6, '', 'Ki Blast', 1, '../../webroot/img/ability21.jpg', 0, 0, 0, 0),
 (22, 6, '', 'Twin Dragon Shot', 2, '../../webroot/img/ability22.jpg', 0, 0, 0, 0),
 (23, 6, '', 'Finger Beam', 3, '../../webroot/img/ability23.png', 0, 0, 0, 0),
-(24, 6, '', '10x God Kamehameha', 4, '../../webroot/img/ability24.png', 0, 0, 0, 0);
+(24, 6, '', '10x God Kamehameha', 4, '../../webroot/img/ability24.png', 0, 0, 0, 0),
+(25, 1, '', 'Charge', 1, '../../webroot/img/ability25.png', 0, 0, 0, 0),
+(26, 1, '', 'Drop Kick', 2, '../../webroot/img/ability26.png', 0, 0, 0, 0),
+(27, 1, '', 'Flex Muscles', 3, '../../webroot/img/ability27.png', 0, 0, 0, 0),
+(28, 1, '', 'Gamma Quake', 4, '../../webroot/img/ability28.png', 0, 0, 0, 0),
+(29, 2, '', 'Summoning Technique ', 1, '../../webroot/img/ability29.png', 0, 0, 0, 0),
+(30, 2, '', 'Six Paths', 2, '../../webroot/img/ability30.png', 0, 0, 0, 0),
+(31, 2, '', 'Sage of Six Paths', 3, '../../webroot/img/ability31.png', 0, 0, 0, 0),
+(32, 2, '', 'Truth Seeking Balls', 4, '../../webroot/img/ability32.png', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -339,7 +347,7 @@ ALTER TABLE `userchr`
 -- AUTO_INCREMENT for table `abilities`
 --
 ALTER TABLE `abilities`
-  MODIFY `abilityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `abilityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `asocchars`
