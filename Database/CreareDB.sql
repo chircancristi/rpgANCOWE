@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25 Mai 2018 la 01:14
+-- Generation Time: 25 Mai 2018 la 17:09
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -71,6 +71,214 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 (23, 6, '', 'Finger Beam', 3, '../../webroot/img/ability23.png', 0, 0, 0, 0),
 (24, 6, '', '10x God Kamehameha', 4, '../../webroot/img/ability24.png', 0, 0, 0, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `asocchars`
+--
+
+CREATE TABLE `asocchars` (
+  `charId` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `asocchars`
+--
+
+INSERT INTO `asocchars` (`charId`, `id`, `username`) VALUES
+(1, 8, 'anggabard'),
+(2, 9, 'anggabard'),
+(3, 10, 'anggabard'),
+(4, 11, 'anggabard'),
+(5, 12, 'anggabard'),
+(6, 13, 'anggabard'),
+(1, 44, 'gelu'),
+(2, 45, 'gelu'),
+(3, 46, 'gelu'),
+(4, 47, 'gelu'),
+(5, 48, 'gelu'),
+(6, 49, 'gelu'),
+(1, 38, 'ioio'),
+(2, 39, 'ioio'),
+(3, 40, 'ioio'),
+(4, 41, 'ioio'),
+(5, 42, 'ioio'),
+(6, 43, 'ioio'),
+(1, 50, 'Lemnesh2'),
+(2, 51, 'Lemnesh2'),
+(3, 52, 'Lemnesh2'),
+(4, 53, 'Lemnesh2'),
+(5, 54, 'Lemnesh2'),
+(6, 55, 'Lemnesh2'),
+(1, 56, 'nana'),
+(2, 57, 'nana'),
+(3, 58, 'nana'),
+(4, 59, 'nana'),
+(5, 60, 'nana'),
+(6, 61, 'nana');
+
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `asocitems`
+--
+
+CREATE TABLE `asocitems` (
+  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `asocitems`
+--
+
+INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
+('anggabard', 1, 70),
+('anggabard', 2, 71),
+('anggabard', 3, 72),
+('anggabard', 4, 73);
+
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `char`
+--
+
+CREATE TABLE `char` (
+  `charId` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `bio` varchar(1000) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `imgUrl` text NOT NULL,
+  `att` int(11) NOT NULL,
+  `def` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `char`
+--
+
+INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
+(1, 'Hulk', 'Hulk este un personaj ficțional, un supererou, care apare în cărțile de benzi desenate publicate de Marvel Comics. Creat de Stan Lee și Jack Kirby, personajul a apărut prima oară în The Incredible Hulk #1 (mai 1962). Hulk este un monstru umanoid mutant, gigantic, verde, iradiat, cu o forță incredibilă și care nu își poate controla furia.', '../../webroot/img/char_portrait_1.jpg', 80, 80),
+(2, 'Naruto', 'Naruto este o serie manga japoneză scrisă și ilustrată de Masashi Kishimoto, având și o adaptare anime. Personajul principal, Naruto Uzumaki, este un ninja adolescent, imprevizibil și hiperactiv, care este într-o constantă căutare de cunoaștere, visând să devină Hokage, un ninja recunoscut ca cel mai puternic dintre toți și liderul satului.', '../../webroot/img/char_portrait_2.jpg', 50, 30),
+(3, 'SpiderMan', 'Omul Păianjen este de fapt un tânăr student orfan de ambii părinți pe nume Peter Benjamin Parker, care locuia împreună cu unchiul Ben și mătușa May.in New York', '../../webroot/img/char_portrait_3.jpg', 15, 10),
+(4, 'SuperMan', 'Superman s-a născut pe planeta Krypton, din părinți pământeni, primind numele de Kal-El. Odată întors pe Terra, datorită puterilor sale extraordinare a ajuns să apere orașul Metropolis, din Statele Unite ale Americii. În timpul liber, Superman este reporter la cotidianul Daily Planet, ascuzându-și adevărata identitate sub numele de Clark Kent. Supergirl, o altă supereroină din universul DC Comics, este verișoara lui Superman.', '../../webroot/img/char_portrait_4.jpg', 80, 60),
+(5, 'Eren Jaeger', 'Eren Jeager is a member of the Survey Corps and the main protagonist of Attack on Titan. He lived in the Shiganshina District with his parents and adopted sister Mikasa Ackerman until the fall of Wall Maria. During the incident, Eren impotently witnessed his mother being eaten by a Titan.[26] This event aroused in Eren an intense hatred towards the Titans, and he swore to wipe all of them off the face of the Earth.', '../../webroot/img/char_portrait_5.jpg', 2, 5),
+(6, 'Goku', 'Son Goku, born Kakarot, is a male Saiyan and the main protagonist of the Dragon Ball meta-series created by Akira Toriyama. Cheerful, tenacious, and also a bit naïve, Goku is a Saiyan originally sent to Earth as an infant with the mission to destroy it. However, an accident alters his memory, allowing him to grow up pure-hearted and become Earth\'s greatest defender, as well as the informal leader of the Dragon Team. Throughout his life, he constantly strives and trains to be the greatest warrior possible and to fight stronger opponents, which has kept the Earth and the universe safe from destruction many times.', '../../webroot/img/char_portrait_6.jpg', 80, 50);
+
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `type` int(11) NOT NULL,
+  `imgUrl` varchar(40) NOT NULL,
+  `price` int(11) NOT NULL,
+  `att` int(11) NOT NULL,
+  `def` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `items`
+--
+
+INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALUES
+(1, 'Batista lui SuperMan', 1, '../../webroot/img/weapon1.jpg', 230, 20, 5),
+(2, 'Toporul lui Odin', 1, '../../webroot/img/weapon2.jpg', 500, 50, 15),
+(3, 'Fesul lui Dublu D', 0, '../../webroot/img/armor1.jpg', 150, 0, 30),
+(4, 'Aparatoare de Cap', 0, '../../webroot/img/armor2.jpg', 150, 0, 20),
+(5, 'Sabia lui DEADPOOL', 1, '../../webroot/img/weapon3.jpg', 450, 40, 20),
+(6, 'Sort de Bucatarie', 0, '../../webroot/img/armor3.jpg', 650, 0, 100);
+
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `user`
+--
+
+CREATE TABLE `user` (
+  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `password` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `money` int(11) NOT NULL,
+  `wins` int(11) NOT NULL DEFAULT '0',
+  `losses` int(11) NOT NULL DEFAULT '0',
+  `gamesPlayed` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
+('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
+('anggabard', 'ceapa123', 'dasd@yahoo.com', 9990419, 9999, -1, 2),
+('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0),
+('gelu', 'dada', 'dan.chircan@gmail.com', 0, 0, 0, 0),
+('ioio', 'yoyo', '123', 123, 321, 2, 4),
+('Lemnesh2', 'CEAMAIJMK', 'ploaetdr@yahoo.com', 119, 0, 0, 0),
+('nana', 'nana', 'tanana@yahoo.com', 7520, 0, 0, 0),
+('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2),
+('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3),
+('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `userchr`
+--
+
+CREATE TABLE `userchr` (
+  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `charId` int(11) NOT NULL,
+  `lvl` int(11) NOT NULL,
+  `gamesPlayed` int(11) NOT NULL,
+  `gamesWon` int(11) NOT NULL,
+  `gamesLost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `userchr`
+--
+
+INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `gamesLost`) VALUES
+('anggabard', 1, 0, 0, 0, 0),
+('anggabard', 2, 0, 0, 0, 0),
+('anggabard', 3, 0, 0, 0, 0),
+('anggabard', 4, 1, 0, 0, 0),
+('anggabard', 5, 4, 0, 0, 0),
+('anggabard', 6, 6, 0, 0, 0),
+('gelu', 1, 0, 0, 0, 0),
+('gelu', 2, 0, 0, 0, 0),
+('gelu', 3, 0, 0, 0, 0),
+('gelu', 4, 0, 0, 0, 0),
+('gelu', 5, 0, 0, 0, 0),
+('gelu', 6, 0, 0, 0, 0),
+('ioio', 1, 0, 0, 0, 0),
+('ioio', 2, 0, 0, 0, 0),
+('ioio', 3, 0, 0, 0, 0),
+('ioio', 4, 0, 0, 0, 0),
+('ioio', 5, 0, 0, 0, 0),
+('ioio', 6, 0, 0, 0, 0),
+('Lemnesh2', 1, 0, 0, 0, 0),
+('Lemnesh2', 2, 0, 0, 0, 0),
+('Lemnesh2', 3, 0, 0, 0, 0),
+('Lemnesh2', 4, 0, 0, 0, 0),
+('Lemnesh2', 5, 0, 0, 0, 0),
+('Lemnesh2', 6, 0, 0, 0, 0),
+('nana', 1, 0, 0, 0, 0),
+('nana', 2, 0, 0, 0, 0),
+('nana', 3, 0, 0, 0, 0),
+('nana', 4, 0, 0, 0, 0),
+('nana', 5, 0, 0, 0, 0),
+('nana', 6, 0, 0, 0, 0);
+
 --
 -- Indexes for dumped tables
 --
@@ -80,6 +288,47 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 --
 ALTER TABLE `abilities`
   ADD PRIMARY KEY (`abilityId`),
+  ADD KEY `charId` (`charId`);
+
+--
+-- Indexes for table `asocchars`
+--
+ALTER TABLE `asocchars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `charId` (`charId`),
+  ADD KEY `username` (`username`,`charId`);
+
+--
+-- Indexes for table `asocitems`
+--
+ALTER TABLE `asocitems`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`),
+  ADD KEY `itemId` (`itemId`);
+
+--
+-- Indexes for table `char`
+--
+ALTER TABLE `char`
+  ADD PRIMARY KEY (`charId`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `userchr`
+--
+ALTER TABLE `userchr`
+  ADD PRIMARY KEY (`username`,`charId`),
   ADD KEY `charId` (`charId`);
 
 --
@@ -93,6 +342,18 @@ ALTER TABLE `abilities`
   MODIFY `abilityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `asocchars`
+--
+ALTER TABLE `asocchars`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
+-- AUTO_INCREMENT for table `asocitems`
+--
+ALTER TABLE `asocitems`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
 -- Restrictii pentru tabele sterse
 --
 
@@ -101,6 +362,27 @@ ALTER TABLE `abilities`
 --
 ALTER TABLE `abilities`
   ADD CONSTRAINT `abilities_ibfk_1` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
+
+--
+-- Restrictii pentru tabele `asocchars`
+--
+ALTER TABLE `asocchars`
+  ADD CONSTRAINT `asocchars_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `asocchars_ibfk_2` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
+
+--
+-- Restrictii pentru tabele `asocitems`
+--
+ALTER TABLE `asocitems`
+  ADD CONSTRAINT `asocitems_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `asocitems_ibfk_2` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
+
+--
+-- Restrictii pentru tabele `userchr`
+--
+ALTER TABLE `userchr`
+  ADD CONSTRAINT `userchr_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `userchr_ibfk_2` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
