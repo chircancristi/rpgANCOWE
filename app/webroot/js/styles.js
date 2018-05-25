@@ -56,21 +56,52 @@ function showArmor() {
 		}
 
 }
+function showSkill(divId){
+	var aux=document.getElementById(divId) ;
+	 if (aux.style.display!="inline-block") aux.style.display="inline-block";
+	  else aux.style.display="none";
+}
 
-
-function changeSkill (divID, divID2) {
-	var aux = document.getElementById(divID);
-	var aux2 = document.getElementById(divID2);
-	aux2.onclick = function () {
-		showSkill(divID2);
-	};
-	aux.onclick = function () {
-		changeSkill(divID, divID2);
-	};
-	document.getElementById(divID).className = 'char-details__abilities_item_dropDown';
-	document.getElementById(divID2).className = 'char-details__abilities__item';
-	aux.id = divID2;
-	aux2.id = divID;
+function changeSkill (type , id) {
+	if (id == "") {
+        document.getElementById("char-details__abilities__skills__container").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+      
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            
+            xmlhttp = new ActiveXObject("char-details__abilities__skills__container");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("cchar-details__abilities__skills__container").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","../../Controller/dashboardSkillChange.php?q="+type+"&t="+id,true);
+		xmlhttp.send();
+		updateSkill();
+	}
+}
+function updateSkill (){
+	var type=-1;
+	
+        if (window.XMLHttpRequest) {
+      
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            
+            xmlhttp = new ActiveXObject("char-details__abilities__skills__container");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("char-details__abilities__skills__container").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","../../Controller/dashboardSkillChange.php?q="+type,true);
+        xmlhttp.send();
+	
 }
 
 function changeWeapon(nr,type) {
@@ -169,8 +200,7 @@ function HighlightChar(nr){
 	}
 
 	CharStats();
-	
-	
+	updateSkill();	
 }
 function buyItems (nr,type){
 	

@@ -13,10 +13,10 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
         <link rel="stylesheet" href="../../webroot/css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
     </head>
-    
+
 
     <body class="dashboard-body" id="dashboard">
-    
+
         <div class="container">
             <div class="grid-container">
                 <div class="characters">
@@ -217,13 +217,13 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                         }
                         mysqli_close($con);
                         ?>
-                            </div>
                         </div>
-                        <div class="char-details__stats">
-                            <h2>Stats</h2>
-                            <ul class="char-details__stats__info" id="char-details__stats__info">
+                    </div>
+                    <div class="char-details__stats">
+                        <h2>Stats</h2>
+                        <ul class="char-details__stats__info" id="char-details__stats__info">
 
-                                <?php
+                            <?php
                         
                         $con = mysqli_connect('localhost','root','','sundaybrawl');
                         if (!$con) {
@@ -271,66 +271,116 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                         mysqli_close($con);
                         ?>
 
-                            </ul>
-                        </div>
-                        <div class="char-details__abilities">
-                            <h2>Abilities</h2>
-                            <div class="char-details__abilities__container">
-                                <div class="firstSkill__container">
-                                    <div class="char-details__abilities__item" onmouseover="showDescription('selection1__firstSkill__desc2')" onmouseout="hideDescription('selection1__firstSkill__desc2')"
-                                        id="firstSkillSelected" onclick="showSkill('firstSkill')">
-                                        <img src="../../webroot/img/ability1.png" alt="ability 1">
-                                        <p id="selection1__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
-                                    </div>
-                                    <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection1__secondSkill__desc2')" onmouseout="hideDescription('selection1__secondSkill__desc2')"
-                                        id="firstSkill" onclick="changeSkill('firstSkillSelected','firstSkill')">
-                                        <img src="../../webroot/img/ability4.png">
-                                        <p id="selection1__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
-                                    </div>
-                                </div>
-                                <div class="secondSkill__container">
-                                    <div class="char-details__abilities__item" id=secondSkillSelected2 onmouseover="showDescription('selection2__firstSkill__desc')"
-                                        onmouseout="hideDescription('selection2__firstSkill__desc2')" onclick="showSkill('secondSkill')">
-                                        <img src="../../webroot/img/ability2.png" alt="ability 2">
-                                        <p id="selection2__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
-                                    </div>
-                                    <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection2__secondSkill__desc2')" onmouseout="hideDescription('selection2__secondSkill__desc2')"
-                                        id="secondSkill" onclick="changeSkill('secondSkillSelected','secondSkill')">
-                                        <img src="../../webroot/img/ability4.png">
-                                        <p id="selection2__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
-                                    </div>
-                                </div>
-                                <div class="thirdSkill__container">
-                                    <div class="char-details__abilities__item" onmouseover="showDescription('selection3__firstSkill__desc2')" onmouseout="hideDescription('selection3__firstSkill__desc2')"
-                                        id="thirdSkillSelected" onclick="showSkill('thirdSkill')">
-                                        <img src="../../webroot/img/ability3.png" alt="ability 3">
-                                        <p id="selection3__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
-                                    </div>
-                                    <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection3__secondSkill__desc2')" onmouseout="hideDescription('selection3__secondSkill__desc2')"
-                                        id="thirdSkill" onclick="changeSkill('thirdSkillSelected','thirdSkill')">
-                                        <img src="../../webroot/img/ability4.png">
-                                        <p id="selection3__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
-                                    </div>
-                                </div>
-                                <div class="thirdSkill__container">
-                                    <div class="char-details__abilities__item" onmouseover="showDescription('selection4__firstSkill__desc2')" onmouseout="hideDescription('selection4__firstSkill__desc2')"
-                                        id="fourthSkillSelected" onclick="showSkill('fourthSkill')">
-                                        <img src="../../webroot/img/ability4.png" alt="ability 4">
-                                        <p id="selection4__firstSkill__desc2" class="char-details__skill_description">First skill description</p>
-                                    </div>
+                        </ul>
+                    </div>
+                    <div class="char-details__abilities">
+                        <h2>Abilities</h2>
+                        <div class="char-details__abilitie__skills__container" id="char-details__abilities__skills__container">
 
-                                    <div class="char-details__abilities_item_dropDown" onmouseover="showDescription('selection4__secondSkill__desc2')" onmouseout="hideDescription('selection4__secondSkill__desc2')"
-                                        id="fourthSkill" onclick="changeSkill('fourthSkillSelected','fourthSkill')">
-                                        <img src="../../webroot/img/ability2.png">
-                                        <p id="selection4__secondSkill__desc2" class="char-details__skill_description">Second skill description</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                                $con = mysqli_connect('localhost','root','','sundaybrawl');
+                                if (!$con) {
+                                             die('Could not connect: ' . mysqli_error($con));
+                                            }
+                               
+                                if ($_SESSION["skill1"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=1";
+                                else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill1"]."' and type=1";
+                                $result = mysqli_query($con,$sql);
+                                $row = mysqli_fetch_array($result);
+                                echo
+                                "<div class=\"firstSkill__container\">
+                                    <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"firstSkillSelected\" onclick=\"showSkill('firstSkill')\">
+                                        <img src=\"".$row["ImgUrl"]."\" alt=\"ability 1\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                               
+                                if ($_SESSION["skill1"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=1 and abilityId!=".$_SESSION["skill1"];
+                                if ($_SESSION["skill1"]!=0)  $result = mysqli_query($con,$sql);
+                                $_SESSION["skill1"]=$row["abilityId"];
+                                $row = mysqli_fetch_array($result);
+                                echo    
+                                "<div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"firstSkill\" onclick=\"changeSkill(1,".$row["abilityId"].")\">
+                                        <img src=\"".$row["ImgUrl"]."\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                                echo "</div>";
+                               
+                                
+                                if ($_SESSION["skill2"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=2";
+                                else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill2"]."' and type=2";
+                                $result = mysqli_query($con,$sql);
+                                $row = mysqli_fetch_array($result);
+                                echo 
+                                "<div class=\"secondSkill__container\">
+                                    <div class=\"char-details__abilities__item\" id=secondSkillSelected2 onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\"
+                                        onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\" onclick=\"showSkill('secondSkill')\">
+                                        <img src=\"".$row["ImgUrl"]."\" alt=\"ability 2\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                                    if ($_SESSION["skill2"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=2 and abilityId!=".$_SESSION["skill2"];
+                                    if ($_SESSION["skill2"]!=0)  $result = mysqli_query($con,$sql);
+                                    $_SESSION["skill2"]=$row["abilityId"];
+                                $row = mysqli_fetch_array($result);
+                                echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"secondSkill\" onclick=\"changeSkill(2,".$row["abilityId"].")\">
+                                        <img src=\"".$row["ImgUrl"]."\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                                 echo "</div>";
+                                
+                                 
+                                 if ($_SESSION["skill3"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=3";
+                                 else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill3"]."' and type=3";
+                                 $result = mysqli_query($con,$sql);
+                                $row = mysqli_fetch_array($result);
+                                echo  "<div class=\"thirdSkill__container\">
+                                    <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"thirdSkillSelected\" onclick=\"showSkill('thirdSkill')\">
+                                        <img src=\"".$row["ImgUrl"]."\" alt=\"ability 3\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                                if ($_SESSION["skill3"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=3 and abilityId!=".$_SESSION["skill3"];
+                                if ($_SESSION["skill3"]!=0)  $result = mysqli_query($con,$sql);
+                                $_SESSION["skill3"]=$row["abilityId"];
+                                $row = mysqli_fetch_array($result);
+                                echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"thirdSkill\" onclick=\"changeSkill(3,".$row["abilityId"].")\">
+                                        <img src=\"".$row["ImgUrl"]."\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                                echo "</div>";
+                                
+                    
+                                if ($_SESSION["skill4"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=4";
+                                else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill4"]."' and type=4";
+                                $result = mysqli_query($con,$sql);
+                                $row = mysqli_fetch_array($result);
+                                echo  "<div class=\"thirdSkill__container\">
+                                    <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"fourthSkillSelected\" onclick=\"showSkill('fourthSkill')\">
+                                        <img src=\"".$row["ImgUrl"]."\" alt=\"ability 4\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";    
+                                if ($_SESSION["skill4"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=4 and abilityId!=".$_SESSION["skill4"];
+                                if ($_SESSION["skill4"]!=0)  $result = mysqli_query($con,$sql);
+                                $_SESSION["skill4"]=$row["abilityId"];
+                                $row = mysqli_fetch_array($result);
+                                 echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                                        id=\"fourthSkill\" onclick=\"changeSkill('4,".$row["abilityId"]."')\">
+                                        <img src=\"".$row["ImgUrl"]."\">
+                                        <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                                    </div>";
+                                 echo "</div>";
+                                ?>
+
                         </div>
-                        <div class="char-details__equipped-items">
-                            <h2>Equipped Items</h2>
-                            <div class="char-details__abilities__container" id="char-details__abilities__container">
-                                <?php
+                    </div>
+                    <div class="char-details__equipped-items">
+                        <h2>Equipped Items</h2>
+                        <div class="char-details__abilities__container" id="char-details__abilities__container">
+                            <?php
                                   
                                 $servername = "localhost";
                                 $username = "root";
@@ -405,11 +455,11 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                                     }
                                     echo "</div>";
                                 ?>
-                            </div>
                         </div>
-
                     </div>
-                    <div class="items" id="items">
+
+                </div>
+                <div class="items" id="items">
                     <?php
                       $con = mysqli_connect('localhost','root','','sundaybrawl');
                       if (!$con) {
@@ -457,15 +507,15 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                        }
                       }
                        ?>
-                         </div>
-                    <div class="acc__stats">
-                        <div class="start__row">
-                            <a href="../page/play.html" class="btn btn--play">PLAY</a>
-                        </div>
-                        <div class="account__stats__row">
-                            <h2> Account stats</h2>
-                            <div class="acc-stats__info" id="acc-stats__info">
-                                <?php
+                </div>
+                <div class="acc__stats">
+                    <div class="start__row">
+                        <a href="../page/play.html" class="btn btn--play">PLAY</a>
+                    </div>
+                    <div class="account__stats__row">
+                        <h2> Account stats</h2>
+                        <div class="acc-stats__info" id="acc-stats__info">
+                            <?php
                     $con = mysqli_connect('localhost','root','','sundaybrawl');
                     if (!$con) {
                                  die('Could not connect: ' . mysqli_error($con));
@@ -483,55 +533,55 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                     mysqli_close($con);
                     ?>
 
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="acc__stats__settings">
-                            <h2> Settings </h2>
+                    <div class="acc__stats__settings">
+                        <h2> Settings </h2>
 
-                            <form action="../../Controller/changeAccountInfo.php"  method="post" class="acc-actions__info">
-                                <p> Change username:
-                                    <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
-                                </p>
-                                <p> Change email:
-                                    <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail"> </p>
-                                <p> Change password:
-                                    <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword"> </p>
-                                <p> Comfirm password:
-                                    <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm"> </p>
-                            
-                                <span class="acc-actions">
-                                    <button type="submit" class="btn"> Submit Changes </button>
-                                
-                                    <button type="button"  class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
-                            </form>
-
-                            <form action="../../Controller/changeAccountInfo.php"  method="post" class="acc-actions__info--mobile">
+                        <form action="../../Controller/changeAccountInfo.php" method="post" class="acc-actions__info">
+                            <p> Change username:
                                 <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
-                                <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail">
-                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword">
-                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm">
-                                
-                                <span class="acc-actions">
-                                    <button type="submit" class="btn"> Submit Changes </button>
-                                    <button type="button" class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
-                                </span>
-                            </form>
+                            </p>
+                            <p> Change email:
+                                <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail"> </p>
+                            <p> Change password:
+                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword"> </p>
+                            <p> Comfirm password:
+                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm"> </p>
 
-                        </div>
-                        <div class="account__utility__row">
-                            <form action="../../Controller/login.php" class="account__utility__logOut">
-                                <button type="submit" class="account__utility__logOutbutton"> Log out </button>
-                            </form>
-                        </div>
-                        <a href="..\pages\about.html">
-                            <img src="../../webroot/img\logo.png" class="dashbord__header-logo">
-                        </a>
+                            <span class="acc-actions">
+                                <button type="submit" class="btn"> Submit Changes </button>
+
+                                <button type="button" class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
+                        </form>
+
+                        <form action="../../Controller/changeAccountInfo.php" method="post" class="acc-actions__info--mobile">
+                            <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
+                            <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail">
+                            <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword">
+                            <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm">
+
+                            <span class="acc-actions">
+                                <button type="submit" class="btn"> Submit Changes </button>
+                                <button type="button" class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
+                            </span>
+                        </form>
 
                     </div>
+                    <div class="account__utility__row">
+                        <form action="../../Controller/login.php" class="account__utility__logOut">
+                            <button type="submit" class="account__utility__logOutbutton"> Log out </button>
+                        </form>
+                    </div>
+                    <a href="..\pages\about.html">
+                        <img src="../../webroot/img\logo.png" class="dashbord__header-logo">
+                    </a>
+
                 </div>
             </div>
-            <script src="../../webroot/js/styles.js"></script>
+        </div>
+        <script src="../../webroot/js/styles.js"></script>
     </body>
 
 

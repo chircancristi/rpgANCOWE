@@ -70,7 +70,11 @@ switch ($nr) {
                 $_SESSION["password"] = $_POST["password"];
                 $_SESSION["character"] = 1; 
                 $_SESSION["weapon"] = 0; 
-                $_SESSION["armor"] = 0; 
+                $_SESSION["armor"] = 0;
+                $_SESSION["skill1"] =0; 
+                $_SESSION["skill2"] =0;
+                $_SESSION["skill3"] =0;
+                $_SESSION["skill4"]  =0;
                  if (mysqli_query($conn, $sql)) {
                     echo "New record created successfully";
                 } else {

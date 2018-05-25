@@ -40,4 +40,8 @@ session_start();
     <?php
 $q = intval($_GET['q']);
 $_SESSION["character"]=$q;
+$_SESSION["skill1"] =0; 
+$_SESSION["skill2"] =0;
+$_SESSION["skill3"] =0;
+$_SESSION["skill4"]  =0;
 ?>
