@@ -510,7 +510,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                 </div>
                 <div class="acc__stats">
                     <div class="start__row">
-                        <a href="../page/play.html" class="btn btn--play">PLAY</a>
+                        <a onclick="play()" id="play" class="btn btn--play">PLAY</a>
                     </div>
                     <div class="account__stats__row">
                         <h2> Account stats</h2>

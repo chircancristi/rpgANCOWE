@@ -236,3 +236,39 @@ function buyItems (nr,type){
 	changeWeapon(nr,type);
 	
 }
+function play (){
+	
+	if (window.XMLHttpRequest) {
+      
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		
+		xmlhttp = new ActiveXObject("play");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("play").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET","play.php?q="+1,true);
+	xmlhttp.send();
+	var websocket = new WebSocket("ws://127.0.0.1:2345/app/Socket/socket.php"); 
+
+		websocket.onmessage = function(event) {
+			//var Data = JSON.parse(event.data);
+			document.location.href = "play.php?q="+0;		
+		}	
+		
+	/*
+		$('#frmChat').on("submit",function(event){
+			event.preventDefault();
+			$('#chat-user').attr("type","hidden");		
+			var messageJSON = {
+				chat_user: $('#chat-user').val(),
+				chat_message: $('#chat-message').val()
+			};
+			websocket.send(JSON.stringify(messageJSON));
+		});*/
+	;
+}
+

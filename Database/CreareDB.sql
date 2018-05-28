@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25 Mai 2018 la 17:53
+-- Generation Time: 28 Mai 2018 la 18:36
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -56,7 +56,7 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 (8, 2, '', 'Rasen Shuriken', 4, '../../webroot/img/ability8.jpg', 0, 0, 0, 0),
 (9, 3, '', 'Low Kick', 1, '../../webroot/img/ability9.png', 0, 0, 0, 0),
 (10, 3, '', 'Web Shot', 2, '../../webroot/img/ability10.jpg', 0, 0, 0, 0),
-(11, 2, '', 'Spider Sense', 3, '../../webroot/img/ability11.jpg', 0, 0, 0, 0),
+(11, 3, '', 'Spider Sense', 3, '../../webroot/img/ability11.jpg', 0, 0, 0, 0),
 (12, 3, '', 'Impress MJ', 4, '../../webroot/img/ability12.png', 0, 0, 0, 0),
 (13, 4, '', 'Super Punch', 1, '../../webroot/img/ability13.png', 0, 0, 0, 0),
 (14, 4, '', 'Laser Vision', 2, '../../webroot/img/ability14.jpg', 0, 0, 0, 0),
@@ -71,13 +71,13 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 (23, 6, '', 'Finger Beam', 3, '../../webroot/img/ability23.png', 0, 0, 0, 0),
 (24, 6, '', '10x God Kamehameha', 4, '../../webroot/img/ability24.png', 0, 0, 0, 0),
 (25, 1, '', 'Charge', 1, '../../webroot/img/ability25.png', 0, 0, 0, 0),
-(26, 1, '', 'Drop Kick', 2, '../../webroot/img/ability26.png', 0, 0, 0, 0),
-(27, 1, '', 'Flex Muscles', 3, '../../webroot/img/ability27.png', 0, 0, 0, 0),
-(28, 1, '', 'Gamma Quake', 4, '../../webroot/img/ability28.png', 0, 0, 0, 0),
-(29, 2, '', 'Summoning Technique ', 1, '../../webroot/img/ability29.png', 0, 0, 0, 0),
-(30, 2, '', 'Six Paths', 2, '../../webroot/img/ability30.png', 0, 0, 0, 0),
-(31, 2, '', 'Sage of Six Paths', 3, '../../webroot/img/ability31.png', 0, 0, 0, 0),
-(32, 2, '', 'Truth Seeking Balls', 4, '../../webroot/img/ability32.png', 0, 0, 0, 0);
+(26, 1, '', 'Drop Kick', 2, '../../webroot/img/ability26.jpg', 0, 0, 0, 0),
+(27, 1, '', 'Flex Muscles', 3, '../../webroot/img/ability27.jpg', 0, 0, 0, 0),
+(28, 1, '', 'Gamma Quake', 4, '../../webroot/img/ability28.jpg', 0, 0, 0, 0),
+(29, 2, '', 'Summoning Technique ', 1, '../../webroot/img/ability29.jpg', 0, 0, 0, 0),
+(30, 2, '', 'Sage Mode', 2, '../../webroot/img/ability30.jpg', 0, 0, 0, 0),
+(31, 2, '', ' Six Paths Mode', 3, '../../webroot/img/ability31.jpg', 0, 0, 0, 0),
+(32, 2, '', 'Tailed Beast Bomb', 4, '../../webroot/img/ability32.jpg', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -114,6 +114,12 @@ INSERT INTO `asocchars` (`charId`, `id`, `username`) VALUES
 (4, 41, 'ioio'),
 (5, 42, 'ioio'),
 (6, 43, 'ioio'),
+(1, 62, 'iusti'),
+(2, 63, 'iusti'),
+(3, 64, 'iusti'),
+(4, 65, 'iusti'),
+(5, 66, 'iusti'),
+(6, 67, 'iusti'),
 (1, 50, 'Lemnesh2'),
 (2, 51, 'Lemnesh2'),
 (3, 52, 'Lemnesh2'),
@@ -147,7 +153,8 @@ INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
 ('anggabard', 1, 70),
 ('anggabard', 2, 71),
 ('anggabard', 3, 72),
-('anggabard', 4, 73);
+('anggabard', 4, 73),
+('anggabard', 6, 74);
 
 -- --------------------------------------------------------
 
@@ -226,10 +233,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
 ('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
-('anggabard', 'ceapa123', 'dasd@yahoo.com', 9990419, 9999, -1, 2),
+('anggabard', 'ceapa123', 'dasd@yahoo.com', 9989769, 9999, -1, 2),
 ('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0),
 ('gelu', 'dada', 'dan.chircan@gmail.com', 0, 0, 0, 0),
 ('ioio', 'yoyo', '123', 123, 321, 2, 4),
+('iusti', 'muzica', 'iustinaiosub@yahoo.com', 0, 0, 0, 0),
 ('Lemnesh2', 'CEAMAIJMK', 'ploaetdr@yahoo.com', 119, 0, 0, 0),
 ('nana', 'nana', 'tanana@yahoo.com', 7520, 0, 0, 0),
 ('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2),
@@ -274,6 +282,12 @@ INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `
 ('ioio', 4, 0, 0, 0, 0),
 ('ioio', 5, 0, 0, 0, 0),
 ('ioio', 6, 0, 0, 0, 0),
+('iusti', 1, 0, 0, 0, 0),
+('iusti', 2, 0, 0, 0, 0),
+('iusti', 3, 0, 0, 0, 0),
+('iusti', 4, 0, 0, 0, 0),
+('iusti', 5, 0, 0, 0, 0),
+('iusti', 6, 0, 0, 0, 0),
 ('Lemnesh2', 1, 0, 0, 0, 0),
 ('Lemnesh2', 2, 0, 0, 0, 0),
 ('Lemnesh2', 3, 0, 0, 0, 0),
@@ -353,13 +367,13 @@ ALTER TABLE `abilities`
 -- AUTO_INCREMENT for table `asocchars`
 --
 ALTER TABLE `asocchars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `asocitems`
 --
 ALTER TABLE `asocitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- Restrictii pentru tabele sterse
