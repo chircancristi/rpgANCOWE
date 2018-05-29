@@ -107,7 +107,7 @@ switch ($_GET['q']) {
         $_SESSION["skill4"]=$row["abilityId"];
         $row = mysqli_fetch_array($result);
          echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
-                id=\"fourthSkill\" onclick=\"changeSkill('4,".$row["abilityId"]."')\">
+                id=\"fourthSkill\" onclick=\"changeSkill(4,".$row["abilityId"].")\">
                 <img src=\"".$row["ImgUrl"]."\">
                 <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
             </div>";
