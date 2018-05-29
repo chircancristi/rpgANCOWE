@@ -1,19 +1,21 @@
 <?php
+
 define('HOST_NAME',"localhost"); 
 define('PORT',"2345");
 $null = NULL;
 
-require_once("playHandler.php");
+require_once("../Model/playHandler.php");
 $playHandler = new playHandler();
 
 $socketResource = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 socket_set_option($socketResource, SOL_SOCKET, SO_REUSEADDR, 1);
-echo "binding adress<br>";
+echo "binding adress\n";
 socket_bind($socketResource, "127.0.0.1", PORT);
-echo "waiting for connections<br>"; 
+echo "waiting for connections\n"; 
 socket_listen($socketResource);
 
 $clientSocketArray = array($socketResource);
+
 $playersOnline=0;
 $lastConnection=0;
 $connectionBeforeThat=0;
@@ -34,16 +36,18 @@ while (true) {
 		$lastConnection=$client_ip_address;
 		$newSocketIndex = array_search($socketResource, $newSocketArray);
 		unset($newSocketArray[$newSocketIndex]);
+		
 	
 	}
 
 	if ($playersOnline%2==0 && $playersOnline!=0){
 		foreach($clientSocketArray as $newSocketArrayResource){
-		echo "time for matchup <br>";
-		echo "connecting the players <br>";
+		echo $newSocketArrayResource."\n";
+		echo "time for matchup \n";
+		echo "connecting the players \n";
 		$sendSocket=$newSocketArrayResource;
 		 socket_getsockname ($newSocketArrayResource,$adress);
-		 echo $adress."<br>"; 
+		 echo $adress."<br>\n"; 
 		  
 		 if ($adress == $connectionBeforeThat)
 		 { 

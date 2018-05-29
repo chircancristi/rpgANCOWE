@@ -8,8 +8,8 @@
 	
 	
 } 
-function eraseAcc() {
-	document.location.href = "../../Controller/eraseAccount.php";
+function eraseAcc(username) {
+	document.location.href = "../../Controller/dashboard.php?q="+0+"&username="+username;
 }
 
 function proprieties() {

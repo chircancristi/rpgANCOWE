@@ -368,7 +368,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                                 $_SESSION["skill4"]=$row["abilityId"];
                                 $row = mysqli_fetch_array($result);
                                  echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
-                                        id=\"fourthSkill\" onclick=\"changeSkill('4,".$row["abilityId"]."')\">
+                                        id=\"fourthSkill\" onclick=\"changeSkill(4,".$row["abilityId"].")\">
                                         <img src=\"".$row["ImgUrl"]."\">
                                         <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
                                     </div>";
@@ -539,7 +539,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                     <div class="acc__stats__settings">
                         <h2> Settings </h2>
 
-                        <form action="../../Controller/changeAccountInfo.php" method="post" class="acc-actions__info">
+                        <form action="../../Controller/dashboard.php ?q=1" method="post" class="acc-actions__info">
                             <p> Change username:
                                 <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
                             </p>
@@ -553,10 +553,10 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                             <span class="acc-actions">
                                 <button type="submit" class="btn"> Submit Changes </button>
 
-                                <button type="button" class="btn btn--danger" onclick="eraseAcc()"> Erase Account </button>
+                                <button type="button" class="btn btn--danger" onclick="eraseAcc(<?php echo "'".$_SESSION['username']."'";?>)"> Erase Account </button>
                         </form>
 
-                        <form action="../../Controller/changeAccountInfo.php" method="post" class="acc-actions__info--mobile">
+                        <form action="../../Controller/dashboard.php ?q=1" method="post" class="acc-actions__info--mobile">
                             <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
                             <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail">
                             <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword">
