@@ -33,41 +33,40 @@ while (true) {
 		socket_getpeername($newSocket, $client_ip_address);
 		$connectionACK = $playHandler->newConnectionACK($client_ip_address);		
 		$connectionBeforeThat=$lastConnection;
-		$lastConnection=$client_ip_address;
+		$lastConnection=$playersOnline;
 		$newSocketIndex = array_search($socketResource, $newSocketArray);
 		unset($newSocketArray[$newSocketIndex]);
 		
+		if ($playersOnline%2==0 ){
+			foreach($clientSocketArray as $newSocketArrayResource){
+			echo $newSocketArrayResource."\n";
+			echo "time for matchup \n";
+			echo "connecting the players \n";
+			$sendSocket=$newSocketArrayResource;
+			$newSocketIndex = array_search( $newSocketArrayResource, $clientSocketArray);
+			 echo $newSocketIndex."<br>\n"; 
+			  echo $connectionBeforeThat." ".$lastConnection."\n"; 
+			 if ($newSocketIndex == $connectionBeforeThat)
+			 { 
+				 $sendData=array('index'=>$lastConnection,'status'=>'newConnection');
+				 $sendData=$playHandler->seal(json_encode( $sendData));
+				$messageLength = strlen( $sendData);
+				if (socket_write($sendSocket, $sendData,$messageLength)==false)
+						echo "error<br>\n";
+				else echo "am reusit\n";
+			 }
+			 if ($newSocketIndex == $lastConnection)
+			 {   
+				$sendData=array('index'=>$connectionBeforeThat,'status'=>'newConnection');
+				$sendData=$playHandler->seal(json_encode( $sendData));
+			$messageLength = strlen( $sendData);
+			if (socket_write($sendSocket, $sendData,$messageLength)==false)
+						echo "error<br>";
+			else echo "am reusit\n";
+			 }
+			}
 	
 	}
-
-	if ($playersOnline%2==0 && $playersOnline!=0){
-		foreach($clientSocketArray as $newSocketArrayResource){
-		echo $newSocketArrayResource."\n";
-		echo "time for matchup \n";
-		echo "connecting the players \n";
-		$sendSocket=$newSocketArrayResource;
-		 socket_getsockname ($newSocketArrayResource,$adress);
-		 echo $adress."<br>\n"; 
-		  
-		 if ($adress == $connectionBeforeThat)
-		 { 
-			 $lastConnection=array('adress'=>$lastConnection);
-			$lastConnection=$playHandler->seal(json_encode($lastConnection));
-		$messageLength = strlen($lastConnection);
-		if (socket_write($sendSocket,$lastConnection,$messageLength)==false)
-					echo "error<br>";
-		 }
-		 if ($adress == $lastConnection)
-		 {   
-			$connectionBeforeThat=array('message'=>$connectionBeforeThat);
-			$connectionBeforeThat=$playHandler->seal(json_encode($connectionBeforeThat));
-		$messageLength = strlen($connectionBeforeThat);
-		if (socket_write($sendSocket,$connectionBeforeThat,$messageLength)==false)
-					echo "error<br>";
-		 }
-		}
-		$playersOnline=$playersOnline-2;
-		
 	} 	
 
 	foreach ($newSocketArray as $newSocketArrayResource) {

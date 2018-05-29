@@ -14,9 +14,7 @@ switch (intval($_GET['q'])) {
         $dashboard->updateAccount($_POST["newUsername"],$_POST["newPassword"],$_POST["newPasswordComfirm"],$_POST["newMail"]);
         header("Location: ../View/Pages/dashboard.php");  
         break;
-    case "green":
-        echo "Your favorite color is green!";
-        break;
+    
     default:
         echo "Your favorite color is neither red, blue, nor green!";
 }
