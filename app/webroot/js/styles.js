@@ -257,6 +257,7 @@ function play (){
 		websocket.onmessage = function(event) {
 			var Data = JSON.parse(event.data);
 			 if (Data.status=='newConnection')
+<<<<<<< HEAD
 			 {
 			 $.get('../../Model/getUserData.php', function (userData) {
 				userData.index = Data.index;
@@ -267,8 +268,12 @@ function play (){
 			 // Pachetul json arata asa 'index'=>indexul oponentului ,'status'=>'newConnection' 
 			 //trimite  un pachet json catre socket de forma 
 			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		
-			 if (Data.status=='newMatch') ;
-			 // primeste pachetul json cu  de forma: 
+			 if (Data.status=='newMatch') 
+			 {
+			  document.location.href = "play.php?data="+JSON.stringify(Data);
+			 
+			}
+			  // primeste pachetul json cu  de forma: 
 			 // 'status'=>newMatch  'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff
 			 //populeaza pagina de play cu informatile date 
 			 if (Data.status=='yourTurn') ;

@@ -74,9 +74,12 @@ while (true) {
 			echo $socketData;
 			$socketMessage = $playHandler->unseal($socketData);
 			$messageObj = json_decode($socketMessage);
-			
-			$chat_box_message = $playHandler->createChatBoxMessage($messageObj->chat_user, $messageObj->chat_message);
-		
+		     if ($messageObj->status=="newMatch" || $messageObj->status="newTurn" ) {
+					$sendData=$playHandler->seal(json_encode( $socketData));
+					if (socket_write($clientSocketArray[$messageObj->index], $sendData,$messageLength)==false)
+						echo "error<br>\n";
+					else echo "am reusit\n";
+			 }
 			break 2;
 		}
 		

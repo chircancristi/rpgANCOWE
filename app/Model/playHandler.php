@@ -43,7 +43,6 @@ class playHandler {
 			$header = pack('CCNN', $b1, 127, $length);
 		return $header.$socketData;
 	}
-
 	function doHandshake($received_header,$client_socket_resource, $host_name, $port) {
 		$headers = array();
 		$lines = preg_split("/\r\n/", $received_header);
