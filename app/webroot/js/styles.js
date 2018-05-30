@@ -265,6 +265,9 @@ function play (){
 				websocket.send(JSON.stringify(userData));
 			  });
 			}
+=======
+			 websocket.send(JSON.stringify(Data));
+>>>>>>> 5e5076b44f5125fa094cd4293e0491f4d6d44b43
 			 // Pachetul json arata asa 'index'=>indexul oponentului ,'status'=>'newConnection' 
 			 //trimite  un pachet json catre socket de forma 
 			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		
