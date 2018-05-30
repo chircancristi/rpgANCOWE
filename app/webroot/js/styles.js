@@ -252,11 +252,18 @@ function play (){
 	};
 	xmlhttp.open("GET","play.php?q="+1,true);
 	xmlhttp.send();
-	var websocket = new WebSocket("ws://127.0.0.1:2345/app/Socket/socket.php"); 
+	var websocket = new WebSocket("ws://127.0.0.1:1234/app/Socket/socket.php"); 
 
 		websocket.onmessage = function(event) {
 			var Data = JSON.parse(event.data);
-			 if (Data.status=='newConnection');
+			 if (Data.status=='newConnection')
+			 {
+			 $.get('../../Model/getUserData.php', function (userData) {
+				userData.index = Data.index;
+
+				websocket.send(JSON.stringify(userData));
+			  });
+			}
 			 // Pachetul json arata asa 'index'=>indexul oponentului ,'status'=>'newConnection' 
 			 //trimite  un pachet json catre socket de forma 
 			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		

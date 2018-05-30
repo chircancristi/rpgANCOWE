@@ -1,7 +1,7 @@
 <?php
 
 define('HOST_NAME',"localhost"); 
-define('PORT',"2345");
+define('PORT',"1234");
 $null = NULL;
 
 require_once("../Model/playHandler.php");
@@ -71,6 +71,7 @@ while (true) {
 
 	foreach ($newSocketArray as $newSocketArrayResource) {
 		while(socket_recv($newSocketArrayResource, $socketData, 1024, 0) >= 1){
+			echo $socketData;
 			$socketMessage = $playHandler->unseal($socketData);
 			$messageObj = json_decode($socketMessage);
 			
