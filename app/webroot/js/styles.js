@@ -63,10 +63,7 @@ function showSkill(divId){
 }
 
 function changeSkill (type , id) {
-	if (id == "") {
-        document.getElementById("char-details__abilities__skills__container").innerHTML = "";
-        return;
-    } else { 
+
         if (window.XMLHttpRequest) {
       
             xmlhttp = new XMLHttpRequest();
@@ -74,16 +71,12 @@ function changeSkill (type , id) {
             
             xmlhttp = new ActiveXObject("char-details__abilities__skills__container");
         }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("cchar-details__abilities__skills__container").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","../../Controller/dashboardSkillChange.php?q="+type+"&t="+id,true);
+
+        xmlhttp.open("GET","../../Controller/dashboard.php?q=6"+"&type="+type+"&t="+id,true);
 		xmlhttp.send();
 		updateSkill();
 	}
-}
+
 function updateSkill (){
 	var type=-1;
 	
@@ -99,7 +92,7 @@ function updateSkill (){
                 document.getElementById("char-details__abilities__skills__container").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","../../Controller/dashboardSkillChange.php?q="+type,true);
+        xmlhttp.open("GET","../../Controller/dashboard.php?type="+type+"&q=6",true);
         xmlhttp.send();
 	
 }
@@ -121,7 +114,7 @@ function changeWeapon(nr,type) {
                 document.getElementById("char-details__abilities__container").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","../../Controller/dashboardChangeWeapon.php?q="+nr+"&t="+type,true);
+        xmlhttp.open("GET","../../Controller/dashboard.php?id="+nr+"&t="+type+"&q=3",true);
         xmlhttp.send();
 	}
 	CharStats();
@@ -165,7 +158,7 @@ function CharStats(){
 			document.getElementById("char-details__stats__info").innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("GET","../../Controller/dashboardCharStats.php",true);
+	xmlhttp.open("GET","../../Controller/dashboard.php ?q="+"5",true);
 	xmlhttp.send();
 
 }
@@ -195,29 +188,14 @@ function HighlightChar(nr){
                 document.getElementById("char-details__bio__header").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","../../Controller/dashboardCharDetails.php?q="+nr,true);
+        xmlhttp.open("GET","../../Controller/dashboard.php?id="+nr+"&q=4",true);
         xmlhttp.send();
 	}
 
 	CharStats();
 	updateSkill();	
 }
-function buyItems (nr,type){
-	
-	 var hr = new XMLHttpRequest();
-	var url = "../../Controller/dashboardBuyItem.php";
-	var fn = document.getElementById("buyItem"+nr).value;
-	
-	var vars = "itemId="+fn;
-	hr.open("POST", url, true);
-	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	hr.onreadystatechange = function() {
-    if(hr.readyState == 4 && hr.status == 200) {
-        var return_data = hr.responseText;
-        document.getElementById("items").innerHTML = return_data;
-    }
-}
-	hr.send(vars); 
+function userStats(){
 	document.getElementById("items").innerHTML = "processing...";
 	if (window.XMLHttpRequest) {
       
@@ -231,8 +209,26 @@ function buyItems (nr,type){
 			document.getElementById("acc-stats__info").innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("GET","../../Controller/dashboardUserStats.php",true);
+	xmlhttp.open("GET","../../Controller/dashboard.php?q=7",true);
 	xmlhttp.send();
+}
+function buyItems (nr,type){
+	
+	 var hr = new XMLHttpRequest();
+	var url = "../../Controller/dashboard.php";
+	var fn = document.getElementById("buyItem"+nr).value;
+	
+	var vars = "itemId="+fn+"&type=2";
+	hr.open("POST", url, true);
+	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	hr.onreadystatechange = function() {
+    if(hr.readyState == 4 && hr.status == 200) {
+        var return_data = hr.responseText;
+        document.getElementById("items").innerHTML = return_data;
+    }
+}
+	hr.send(vars); 
+	userStats();
 	changeWeapon(nr,type);
 	
 }
@@ -257,17 +253,7 @@ function play (){
 		websocket.onmessage = function(event) {
 			var Data = JSON.parse(event.data);
 			 if (Data.status=='newConnection')
-<<<<<<< HEAD
-			 {
-			 $.get('../../Model/getUserData.php', function (userData) {
-				userData.index = Data.index;
-
-				websocket.send(JSON.stringify(userData));
-			  });
-			}
-=======
 			 websocket.send(JSON.stringify(Data));
->>>>>>> 5e5076b44f5125fa094cd4293e0491f4d6d44b43
 			 // Pachetul json arata asa 'index'=>indexul oponentului ,'status'=>'newConnection' 
 			 //trimite  un pachet json catre socket de forma 
 			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		
