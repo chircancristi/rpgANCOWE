@@ -86,5 +86,6 @@ class playHandler {
 		$chatMessage = $this->seal(json_encode($messageArray));
 		return $chatMessage;
 	}
+
 }
 ?>

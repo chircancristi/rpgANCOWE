@@ -53,16 +53,18 @@ while (true) {
 				$messageLength = strlen( $sendData);
 				if (socket_write($sendSocket, $sendData,$messageLength)==false)
 						echo "error<br>\n";
-				else echo "am reusit\n";
+				else echo "am reusit la userul".$sendSocket."\n";
 			 }
 			 if ($newSocketIndex == $lastConnection)
 			 {   
 				$sendData=array('index'=>$connectionBeforeThat,'status'=>'newConnection');
+				
 				$sendData=$playHandler->seal(json_encode( $sendData));
 			$messageLength = strlen( $sendData);
+
 			if (socket_write($sendSocket, $sendData,$messageLength)==false)
 						echo "error<br>";
-			else echo "am reusit\n";
+			else echo "am reusit la userul".$sendSocket."\n";
 			 }
 			}
 	
@@ -71,14 +73,20 @@ while (true) {
 
 	foreach ($newSocketArray as $newSocketArrayResource) {
 		while(socket_recv($newSocketArrayResource, $socketData, 1024, 0) >= 1){
-			echo $socketData;
+			
 			$socketMessage = $playHandler->unseal($socketData);
+			
+			
 			$messageObj = json_decode($socketMessage);
-		     if ($messageObj->status=="newMatch" || $messageObj->status="newTurn" ) {
-					$sendData=$playHandler->seal(json_encode( $socketData));
+			echo $messageObj->index."\n";
+				
+			if ($messageObj== NULL) break;
+			if ($messageObj->status=="newMatch" || $messageObj->status="newTurn" ) {
+					$sendData=$playHandler->seal( json_encode($messageObj));
+					$messageLength = strlen( $sendData);
 					if (socket_write($clientSocketArray[$messageObj->index], $sendData,$messageLength)==false)
 						echo "error<br>\n";
-					else echo "am reusit\n";
+					else echo "am reusit la userul ".$clientSocketArray[$messageObj->index]."\n";
 			 }
 			break 2;
 		}

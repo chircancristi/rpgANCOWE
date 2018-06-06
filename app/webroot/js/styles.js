@@ -251,9 +251,28 @@ function play (){
 	var websocket = new WebSocket("ws://127.0.0.1:1234/app/Socket/socket.php"); 
 
 		websocket.onmessage = function(event) {
+			
 			var Data = JSON.parse(event.data);
-			 if (Data.status=='newConnection')
-			 websocket.send(JSON.stringify(Data));
+			console.log("Am primit mesaj");
+			console.log(Data);
+			if (Data.status=='newConnection')
+			{
+			
+				var hr = new XMLHttpRequest();
+				var url = "../../Controller/play.php";
+				var vars = "status=1 & index="+Data.index;
+				hr.open("POST", url, true);
+				hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				hr.onreadystatechange = function() {
+					if(hr.readyState == 4 && hr.status == 200) {
+						var return_data = hr.responseText;			
+						console.log(return_data);
+						websocket.send(return_data);
+					}
+				}
+				hr.send(vars);
+				
+			}
 			 // Pachetul json arata asa 'index'=>indexul oponentului ,'status'=>'newConnection' 
 			 //trimite  un pachet json catre socket de forma 
 			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		
@@ -282,5 +301,12 @@ function play (){
 			websocket.send(JSON.stringify(messageJSON));
 		});*/
 	;
+}
+function sendToUser(response )
+{
+	document.location.href = "play.php?data="+response;
+
+	//websocket.send(JSON.stringify(response) );
+
 }
 
