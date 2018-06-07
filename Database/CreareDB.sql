@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28 Mai 2018 la 18:36
+-- Generation Time: 07 Iun 2018 la 22:06
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -82,60 +82,6 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `asocchars`
---
-
-CREATE TABLE `asocchars` (
-  `charId` int(11) NOT NULL,
-  `id` int(11) NOT NULL,
-  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Salvarea datelor din tabel `asocchars`
---
-
-INSERT INTO `asocchars` (`charId`, `id`, `username`) VALUES
-(1, 8, 'anggabard'),
-(2, 9, 'anggabard'),
-(3, 10, 'anggabard'),
-(4, 11, 'anggabard'),
-(5, 12, 'anggabard'),
-(6, 13, 'anggabard'),
-(1, 44, 'gelu'),
-(2, 45, 'gelu'),
-(3, 46, 'gelu'),
-(4, 47, 'gelu'),
-(5, 48, 'gelu'),
-(6, 49, 'gelu'),
-(1, 38, 'ioio'),
-(2, 39, 'ioio'),
-(3, 40, 'ioio'),
-(4, 41, 'ioio'),
-(5, 42, 'ioio'),
-(6, 43, 'ioio'),
-(1, 62, 'iusti'),
-(2, 63, 'iusti'),
-(3, 64, 'iusti'),
-(4, 65, 'iusti'),
-(5, 66, 'iusti'),
-(6, 67, 'iusti'),
-(1, 50, 'Lemnesh2'),
-(2, 51, 'Lemnesh2'),
-(3, 52, 'Lemnesh2'),
-(4, 53, 'Lemnesh2'),
-(5, 54, 'Lemnesh2'),
-(6, 55, 'Lemnesh2'),
-(1, 56, 'nana'),
-(2, 57, 'nana'),
-(3, 58, 'nana'),
-(4, 59, 'nana'),
-(5, 60, 'nana'),
-(6, 61, 'nana');
-
--- --------------------------------------------------------
-
---
 -- Structura de tabel pentru tabelul `asocitems`
 --
 
@@ -150,11 +96,10 @@ CREATE TABLE `asocitems` (
 --
 
 INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
-('anggabard', 1, 70),
-('anggabard', 2, 71),
-('anggabard', 3, 72),
-('anggabard', 4, 73),
-('anggabard', 6, 74);
+('anggabard', 1, 114),
+('anggabard', 2, 115),
+('anggabard', 3, 116),
+('anggabard', 4, 117);
 
 -- --------------------------------------------------------
 
@@ -233,13 +178,14 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
 ('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
-('anggabard', 'ceapa123', 'dasd@yahoo.com', 9989769, 9999, -1, 2),
-('asdf', 'asdf', 'test@quick.connect', 0, 0, 0, 0),
+('anggabard', 'ceapa123', 'dasda@gelu.com', 116123, 9999, -1, 2),
+('bestiaDinMoldova', 'bunbun', 'popopica.marinaru@yahoo.com', 0, 0, 0, 0),
 ('gelu', 'dada', 'dan.chircan@gmail.com', 0, 0, 0, 0),
+('giigiii', 'acxz', 'dorel@yahoo.com', 0, 0, 0, 0),
 ('ioio', 'yoyo', '123', 123, 321, 2, 4),
 ('iusti', 'muzica', 'iustinaiosub@yahoo.com', 0, 0, 0, 0),
+('kamikaze', 'lala', 'sandu@love.com', 0, 0, 0, 0),
 ('Lemnesh2', 'CEAMAIJMK', 'ploaetdr@yahoo.com', 119, 0, 0, 0),
-('nana', 'nana', 'tanana@yahoo.com', 7520, 0, 0, 0),
 ('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2),
 ('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3),
 ('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20);
@@ -270,12 +216,24 @@ INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `
 ('anggabard', 4, 1, 0, 0, 0),
 ('anggabard', 5, 4, 0, 0, 0),
 ('anggabard', 6, 6, 0, 0, 0),
+('bestiaDinMoldova', 1, 0, 0, 0, 0),
+('bestiaDinMoldova', 2, 0, 0, 0, 0),
+('bestiaDinMoldova', 3, 0, 0, 0, 0),
+('bestiaDinMoldova', 4, 0, 0, 0, 0),
+('bestiaDinMoldova', 5, 0, 0, 0, 0),
+('bestiaDinMoldova', 6, 0, 0, 0, 0),
 ('gelu', 1, 0, 0, 0, 0),
 ('gelu', 2, 0, 0, 0, 0),
 ('gelu', 3, 0, 0, 0, 0),
 ('gelu', 4, 0, 0, 0, 0),
 ('gelu', 5, 0, 0, 0, 0),
 ('gelu', 6, 0, 0, 0, 0),
+('giigiii', 1, 0, 0, 0, 0),
+('giigiii', 2, 0, 0, 0, 0),
+('giigiii', 3, 0, 0, 0, 0),
+('giigiii', 4, 0, 0, 0, 0),
+('giigiii', 5, 0, 0, 0, 0),
+('giigiii', 6, 0, 0, 0, 0),
 ('ioio', 1, 0, 0, 0, 0),
 ('ioio', 2, 0, 0, 0, 0),
 ('ioio', 3, 0, 0, 0, 0),
@@ -288,18 +246,18 @@ INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `
 ('iusti', 4, 0, 0, 0, 0),
 ('iusti', 5, 0, 0, 0, 0),
 ('iusti', 6, 0, 0, 0, 0),
+('kamikaze', 1, 0, 0, 0, 0),
+('kamikaze', 2, 0, 0, 0, 0),
+('kamikaze', 3, 0, 0, 0, 0),
+('kamikaze', 4, 0, 0, 0, 0),
+('kamikaze', 5, 0, 0, 0, 0),
+('kamikaze', 6, 0, 0, 0, 0),
 ('Lemnesh2', 1, 0, 0, 0, 0),
 ('Lemnesh2', 2, 0, 0, 0, 0),
 ('Lemnesh2', 3, 0, 0, 0, 0),
 ('Lemnesh2', 4, 0, 0, 0, 0),
 ('Lemnesh2', 5, 0, 0, 0, 0),
-('Lemnesh2', 6, 0, 0, 0, 0),
-('nana', 1, 0, 0, 0, 0),
-('nana', 2, 0, 0, 0, 0),
-('nana', 3, 0, 0, 0, 0),
-('nana', 4, 0, 0, 0, 0),
-('nana', 5, 0, 0, 0, 0),
-('nana', 6, 0, 0, 0, 0);
+('Lemnesh2', 6, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -311,14 +269,6 @@ INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `
 ALTER TABLE `abilities`
   ADD PRIMARY KEY (`abilityId`),
   ADD KEY `charId` (`charId`);
-
---
--- Indexes for table `asocchars`
---
-ALTER TABLE `asocchars`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `charId` (`charId`),
-  ADD KEY `username` (`username`,`charId`);
 
 --
 -- Indexes for table `asocitems`
@@ -364,16 +314,10 @@ ALTER TABLE `abilities`
   MODIFY `abilityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `asocchars`
---
-ALTER TABLE `asocchars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
-
---
 -- AUTO_INCREMENT for table `asocitems`
 --
 ALTER TABLE `asocitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- Restrictii pentru tabele sterse
@@ -384,13 +328,6 @@ ALTER TABLE `asocitems`
 --
 ALTER TABLE `abilities`
   ADD CONSTRAINT `abilities_ibfk_1` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
-
---
--- Restrictii pentru tabele `asocchars`
---
-ALTER TABLE `asocchars`
-  ADD CONSTRAINT `asocchars_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `asocchars_ibfk_2` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
 
 --
 -- Restrictii pentru tabele `asocitems`

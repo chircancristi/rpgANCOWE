@@ -28,7 +28,7 @@ function changeData ($user, $pass, $mail, $oldAcc, $conn){
     $sql = "INSERT INTO user VALUES ('".$user."','".$pass."','".$mail."',".$oldAcc["money"].",".$oldAcc["wins"].",".$oldAcc["losses"].",".$oldAcc["gamesPlayed"].")";
     mysqli_query($conn, $sql);
     
-    mysqli_query($conn,"Update  asocchars set username='".$user."' WHERE username ='".$_SESSION["username"]."'");
+   
     mysqli_query($conn,"Update  asocitems set username='".$user."' WHERE username ='".$_SESSION["username"]."'");
     mysqli_query($conn,"Update  userchr set username='".$user."' WHERE username ='".$_SESSION["username"]."'");
     mysqli_query($conn,"DELETE FROM user WHERE username ='".$_SESSION["username"]."'");
@@ -338,7 +338,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
                         mysqli_stmt_bind_param($sql, 'i',$q);
                         $sql->execute();
                         $sql->bind_result($name,$imgUrl,$bio);
-                                    echo $imgUrl;
+                                    
                         while($sql->fetch() != null) {
                             echo "<img src=\"".$imgUrl."\" alt=\"character portrait\" class=\"char-details__bio__portrait\">";
                             echo "<h2>".$name."</h2>";
@@ -411,119 +411,183 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
                      die('Could not connect: ' . mysqli_error($con));
                     }
        
-        if ($_SESSION["skill1"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=1";
-        else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill1"]."' and type=1";
-        $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($result);
+        if ($_SESSION["skill1"]==0)
+        {
+        $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=1");
+        mysqli_stmt_bind_param($sql, 's',$_SESSION["character"]);
+        }
+        else
+        { 
+        $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE abilityId = ? and type=1");
+        mysqli_stmt_bind_param($sql, 's',$_SESSION["skill1"]);
+        }
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
         echo
         "<div class=\"firstSkill__container\">
-            <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+            <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
                 id=\"firstSkillSelected\" onclick=\"showSkill('firstSkill')\">
-                <img src=\"".$row["ImgUrl"]."\" alt=\"ability 1\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                <img src=\"".$imgUrl."\" alt=\"ability 1\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
             </div>";
-       
-        if ($_SESSION["skill1"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=1 and abilityId!=".$_SESSION["skill1"];
-        if ($_SESSION["skill1"]!=0)  $result = mysqli_query($con,$sql);
-        $_SESSION["skill1"]=$row["abilityId"];
-        $row = mysqli_fetch_array($result);
+        $_SESSION["skill1"]=$abilityId;
+        $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+        $sql=mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=1 and abilityId!=?");
+        mysqli_stmt_bind_param($sql, 'ss',$_SESSION["character"],$_SESSION["skill1"]);  
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
+    
         echo    
-        "<div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
-                id=\"firstSkill\" onclick=\"changeSkill(1,".$row["abilityId"].")\">
-                <img src=\"".$row["ImgUrl"]."\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+        "<div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
+                id=\"firstSkill\" onclick=\"changeSkill(1,".$abilityId.")\">
+                <img src=\"".$imgUrl."\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
             </div>";
         echo "</div>";
        
+        $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+        if ($_SESSION["skill2"]==0) 
+        {
+            $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=2");
+            mysqli_stmt_bind_param($sql, 's',$_SESSION["character"]);
         
-        if ($_SESSION["skill2"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=2";
-        else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill2"]."' and type=2";
-        $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($result);
+        }
+        else {
+           $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE abilityId = ? and type=2");
+            mysqli_stmt_bind_param($sql, 's',$_SESSION["skill2"]);
+        }
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
         echo 
         "<div class=\"secondSkill__container\">
-            <div class=\"char-details__abilities__item\" id=secondSkillSelected2 onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\"
-                onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\" onclick=\"showSkill('secondSkill')\">
-                <img src=\"".$row["ImgUrl"]."\" alt=\"ability 2\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
-            </div>";
-            if ($_SESSION["skill2"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=2 and abilityId!=".$_SESSION["skill2"];
-            if ($_SESSION["skill2"]!=0)  $result = mysqli_query($con,$sql);
-            $_SESSION["skill2"]=$row["abilityId"];
-        $row = mysqli_fetch_array($result);
-        echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
-                id=\"secondSkill\" onclick=\"changeSkill(2,".$row["abilityId"].")\">
-                <img src=\"".$row["ImgUrl"]."\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+            <div class=\"char-details__abilities__item\" id=secondSkillSelected2 onmouseover=\"showDescription('skillDesc".$abilityId."')\"
+                onmouseout=\"hideDescription('skillDesc".$abilityId."')\" onclick=\"showSkill('secondSkill')\">
+                <img src=\"".$imgUrl."\" alt=\"ability 2\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
+        </div>";
+        $_SESSION["skill2"]=$abilityId;
+        $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+        $sql=mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=2 and abilityId!=?");
+        mysqli_stmt_bind_param($sql, 'ss',$_SESSION["character"],$_SESSION["skill2"]);  
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
+    
+        echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
+                id=\"secondSkill\" onclick=\"changeSkill(2,".$abilityId.")\">
+                <img src=\"".$imgUrl."\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
             </div>";
          echo "</div>";
         
-         
-         if ($_SESSION["skill3"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=3";
-         else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill3"]."' and type=3";
-         $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($result);
+         $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+         if ($_SESSION["skill3"]==0) {
+            $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=3");
+            mysqli_stmt_bind_param($sql, 's',$_SESSION["character"]);
+        
+         } 
+        else {
+            $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE abilityId = ? and type=3");
+            mysqli_stmt_bind_param($sql, 's',$_SESSION["skill3"]);
+        }
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
         echo  "<div class=\"thirdSkill__container\">
-            <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+            <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
                 id=\"thirdSkillSelected\" onclick=\"showSkill('thirdSkill')\">
-                <img src=\"".$row["ImgUrl"]."\" alt=\"ability 3\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
-            </div>";
-        if ($_SESSION["skill3"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=3 and abilityId!=".$_SESSION["skill3"];
-        if ($_SESSION["skill3"]!=0)  $result = mysqli_query($con,$sql);
-        $_SESSION["skill3"]=$row["abilityId"];
-        $row = mysqli_fetch_array($result);
-        echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
-                id=\"thirdSkill\" onclick=\"changeSkill(3,".$row["abilityId"].")\">
-                <img src=\"".$row["ImgUrl"]."\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                <img src=\"".$imgUrl."\" alt=\"ability 3\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
+        </div>";
+        $_SESSION["skill3"]=$abilityId;
+        $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');    
+        $sql=mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=3 and abilityId!=?");
+        mysqli_stmt_bind_param($sql, 'ss',$_SESSION["character"],$_SESSION["skill3"]);  
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
+        echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
+                id=\"thirdSkill\" onclick=\"changeSkill(3,".$abilityId.")\">
+                <img src=\"".$imgUrl."\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
             </div>";
         echo "</div>";
         
-
-        if ($_SESSION["skill4"]==0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=4";
-        else $sql="SELECT * FROM `abilities` WHERE abilityId = '".$_SESSION["skill4"]."' and type=4";
-        $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($result);
+        $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+        if ($_SESSION["skill4"]==0) 
+        {
+            $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=4");
+            mysqli_stmt_bind_param($sql, 's',$_SESSION["character"]);
+        
+        }
+        else {
+            $sql= mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE abilityId = ? and type=4");
+            mysqli_stmt_bind_param($sql, 's',$_SESSION["skill4"]);
+        }
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
         echo  "<div class=\"thirdSkill__container\">
-            <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
+                <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
                 id=\"fourthSkillSelected\" onclick=\"showSkill('fourthSkill')\">
-                <img src=\"".$row["ImgUrl"]."\" alt=\"ability 4\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+                <img src=\"".$imgUrl."\" alt=\"ability 4\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
             </div>";    
-        if ($_SESSION["skill4"]!=0) $sql="SELECT * FROM `abilities` WHERE charId = '".$_SESSION["character"]."' and type=4 and abilityId!=".$_SESSION["skill4"];
-        if ($_SESSION["skill4"]!=0)  $result = mysqli_query($con,$sql);
-        $_SESSION["skill4"]=$row["abilityId"];
-        $row = mysqli_fetch_array($result);
-         echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$row["abilityId"]."')\" onmouseout=\"hideDescription('skillDesc".$row["abilityId"]."')\"
-                id=\"fourthSkill\" onclick=\"changeSkill(4,".$row["abilityId"].")\">
-                <img src=\"".$row["ImgUrl"]."\">
-                <p id=\"skillDesc".$row["abilityId"]."\" class=\"char-details__skill_description\">".$row["name"]."<br>".$row["description"]."</p>
+        $_SESSION["skill4"]=$abilityId;
+        $con->close();
+        $sql->close();
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+        $sql=mysqli_prepare($con,"SELECT imgUrl,abilityId,name,description FROM `abilities` WHERE charId = ? and type=4 and abilityId!=?");
+        mysqli_stmt_bind_param($sql, 'ss',$_SESSION["character"],$_SESSION["skill4"]);  
+        $sql->execute();
+        $sql->bind_result($imgUrl,$abilityId,$name,$description);
+        $sql->fetch() ;
+        echo  " <div class=\"char-details__abilities_item_dropDown\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
+                id=\"fourthSkill\" onclick=\"changeSkill(4,".$abilityId.")\">
+                <img src=\"".$imgUrl."\">
+                <p id=\"skillDesc".$abilityId."\" class=\"char-details__skill_description\">".$name."<br>".$description."</p>
             </div>";
-         echo "</div>";
+        echo "</div>";
+        $con->close();
+        $sql->close();
         
 
 echo "</div>";
     }
     function userStats(){
        echo "<div class=\"acc-stats__info\" id=\"acc-stats__info\">";
-        
-    
         $con = mysqli_connect('localhost','root','','sundaybrawl');
         if (!$con) {
                      die('Could not connect: ' . mysqli_error($con));
                     }
-       
-        $sql="SELECT * FROM `user` WHERE username= '".$_SESSION["username"]."'";
-       
-        $result = mysqli_query($con,$sql);
-        while($row = mysqli_fetch_array($result)) {
-           echo "<p> Number of won games: ". $row['wins'] ."</p>";
-           echo  "<p> Number of lost games: ". $row['losses'] ."</p>";
-           echo  "<p>  Number of played games: ". $row['gamesPlayed'] ."</p>";
-           echo  "<p>  Money: ". $row['money'] ."</p>";
-        }
+        $sql=mysqli_prepare($con,"SELECT wins,losses,gamesPlayed,money FROM `user` WHERE username= ?");
+        mysqli_stmt_bind_param($sql, 's',$_SESSION["username"]);
+        $sql->execute();
+        $sql->bind_result($wins,$losses,$gamesPlayed,$money);
+        $sql->fetch();
+        
+        echo "<p> Number of won games: ". $wins ."</p>";
+        echo  "<p> Number of lost games: ". $losses ."</p>";
+        echo  "<p>  Number of played games: ". $gamesPlayed ."</p>";
+        echo  "<p>  Money: ". $money."</p>";
+    
         mysqli_close($con);
+        $sql->close();
         echo "</div>";
     }
 }
