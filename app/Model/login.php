@@ -12,52 +12,52 @@ class login{
     if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
     }
-    $sql = "SELECT password FROM user where username = '".$username."'";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0) {
-       
-        while($row = mysqli_fetch_assoc($result)){
-          
-            if ( $password==$row["password"]) return true;
-            
-        }
-        
-        
-    }
+    $sql = mysqli_prepare($conn,"SELECT password FROM user where username = ?");
+    mysqli_stmt_bind_param($sql, 's',$username);
+    $sql->execute();
+	$sql->bind_result($passwordBd);
+	$sql->fetch();
+	$sql->close();
+    if ( $password==$passwordBd) return true;    
     return false;
 }
 function checkUsernameAvailability($nume, $conn){
-    $sql = "SELECT * FROM user where username = '".$nume."'";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) > 0){
+    $sql = mysqli_prepare($conn,"SELECT * FROM user where username = ?");
+    mysqli_stmt_bind_param($sql, 's',$nume);
+    $sql->execute();
+    if ($sql->fetch()!=null){
+        $sql->close();
         return false;
     }
+    $sql->close();
     return true;
 }
 
 function checkEmailAvailability($mail, $conn){
-    $sql = "SELECT * FROM user where email = '".$mail."'";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0){
+    $sql = mysqli_prepare($conn,"SELECT * FROM user where email = ?");
+    mysqli_stmt_bind_param($sql, 's',$mail);
+    $sql->execute();
+    if ($sql->fetch()!=null){
+        $sql->close();
         return false;
     }
+    $sql->close();
     return true;
 }
 
 function addNewUser($nume, $parola, $mail, $conn){
     
-    $sql = "Insert into user values('".$nume."','".$parola."','".$mail."',0,0,0,0)";
-    mysqli_query($conn, $sql);
-    echo $sql;
-
+    $sql =mysqli_prepare($conn,"insert into user values( ?,?,?,0,0,0,0)");
+    mysqli_stmt_bind_param($sql, 'sss',$nume,$parola,$mail);
+    if ($sql->execute()==false) die("Error creating account");
+    $sql->close();
     for($i = 1; $i <= 6; $i++){
-        $sqlUserchr = "Insert into userchr values('".$nume."',".$i.",0,0,0,0)";
-        mysqli_query($conn, $sqlUserchr);
-        
-        $sqlAsocchars = "INSERT INTO `asocchars`(`charId`, `username`) values(".$i.",'".$nume."')";
-        mysqli_query($conn, $sqlAsocchars);
+        $sql = mysqli_prepare($conn,"insert into `userchr` values(?,?,0,0,0,0)");
+        mysqli_stmt_bind_param($sql, 'si',$nume,$i);
+        $sql->execute();
+        $sql->close();
     }
+    
 }
     function createAccount($username,$password,$comfirmPassword,$mail){
         $conn = mysqli_connect("localhost", "root", "", "sundaybrawl");

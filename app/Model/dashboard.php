@@ -12,11 +12,15 @@ class dashboard{
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    mysqli_query($conn,"DELETE FROM asocchars WHERE username = '".$userName."'");
-    mysqli_query($conn,"DELETE FROM asocitems WHERE username = '".$userName."'");
-    mysqli_query($conn,"DELETE FROM userchr WHERE username = '".$userName."'");
-    mysqli_query($conn,"DELETE FROM user WHERE username ='".$userName."'");
-
+    $sql=mysqli_prepare($conn,"DELETE FROM asocitems WHERE username = ?");
+    mysqli_stmt_bind_param($sql, 's',$userName);
+    $sql->execute();
+    $sql=mysqli_prepare($conn,"DELETE FROM userchr WHERE username = ?");
+    mysqli_stmt_bind_param($sql, 's',$userName);
+    $sql->execute();
+    $sql=mysqli_prepare($conn,"DELETE FROM user WHERE username = ?");
+    mysqli_stmt_bind_param($sql, 's',$userName);
+    $sql->execute();
     return true;
     $conn->close();
 }
@@ -35,21 +39,26 @@ function updateData($pass, $mail, $conn){
 }
 
 function checkUsernameAvailability($nume, $conn){
-    $sql = "SELECT * FROM user where username = '".$nume."'";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) > 0){
+    $sql = mysqli_prepare($conn,"SELECT * FROM user where username = ?");
+    mysqli_stmt_bind_param($sql, 's',$nume);
+    $sql->execute();
+    if ($sql->fetch()!=null){
+        $sql->close();
         return false;
     }
+    $sql->close();
     return true;
 }
 
 function checkEmailAvailability($mail, $conn){
-    $sql = "SELECT * FROM user where email = '".$mail."'";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0){
+   $sql = mysqli_prepare($conn,"SELECT * FROM user where email = ?");
+    mysqli_stmt_bind_param($sql, 's',$mail);
+    $sql->execute();
+    if ($sql->fetch()!=null){
+        $sql->close();
         return false;
     }
+    $sql->close();
     return true;
 }
 function updateAccount($user,$pass,$comfirmPass,$mail){
@@ -121,25 +130,35 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
         if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
         }
-        $sql = "SELECT * FROM `items` where id = '".$itemId."'";
-        $sql2 = "SELECT * FROM `user` where username= '".$_SESSION["username"]."'";
         
-        $result = mysqli_query($conn, $sql);
-        $result2 = mysqli_query($conn, $sql2);  
-        $row = mysqli_fetch_assoc($result);
-        $row2 = mysqli_fetch_assoc($result2);
-        if ($row["price"]<=$row2["money"]){
+        $sql = mysqli_prepare($conn,"SELECT price FROM `items` where id = ?");
+        $sql2 =  mysqli_prepare($conn,"SELECT money FROM `user` where username= ?");
+        mysqli_stmt_bind_param($sql,'i',$itemId);
+        mysqli_stmt_bind_param($sql2,'s',$_SESSION["username"]);
+        $sql->execute();
+        $sql->bind_result($price);
+        $sql->fetch();
+        $sql->close();
+        $sql2->execute();
+        $sql2->bind_result($money);
+        $sql2->fetch();
+        $sql2->close();
+
+        if ($price<=$money){
             
-            $rest=$row2["money"]-$row["price"];
+            $rest=$money-$price;
            
-            $sql2 = "UPDATE `user` SET money=".$rest." where username='".$_SESSION["username"]."'";
-           
-            mysqli_query($conn, $sql2);
-            $sql2 =  "Insert into `asocitems` (`username`, `itemId`) values('".$_SESSION["username"]."','".$itemId."')";
-          
-            mysqli_query($conn, $sql2);
+            $sql2 = mysqli_prepare($conn,"UPDATE `user` SET money=? where username=?");
+            mysqli_stmt_bind_param($sql2, 'is',$rest,$_SESSION["username"]);
+            $sql2->execute();
+            $sql2 =  mysqli_prepare($conn,"Insert into `asocitems` (`username`, `itemId`) values(?,?)");
+            mysqli_stmt_bind_param($sql2, 'si',$_SESSION["username"],$itemId);
+            $sql2->execute();
+         
            
         }
+        $sql2->close();
+        $conn->close();
         $con = mysqli_connect('localhost','root','','sundaybrawl');
         if (!$con) {
                      die('Could not connect: ' . mysqli_error($con));
@@ -148,12 +167,12 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
         $sql="SELECT * FROM `items` ";
         $result = mysqli_query($con,$sql);
         while($row = mysqli_fetch_array($result)) {
-      
-          $sqlUser="SELECT * FROM asocitems where username='".$_SESSION["username"]."' and itemId=".$row["id"];
-          
-          $resultUser = mysqli_query($con,$sqlUser);
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+          $sqlUser=mysqli_prepare($conn,"SELECT * FROM asocitems where username=? and itemId=?");
+          mysqli_stmt_bind_param($sqlUser, 'si',$_SESSION["username"],$row["id"]);
+          $sqlUser->execute();
           $nr=1;
-         if ($resultUser->num_rows==0) {
+         if ($sqlUser->fetch()==null) {
 
           echo"
               <div class=\"items__item__container\">
@@ -195,74 +214,117 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    $sql = "SELECT * FROM `asocitems` INNER JOIN `items` on `items`.id=`asocitems`.itemId  where username = '".$_SESSION["username"]."' and type=1";
-    
-    $result = mysqli_query($conn, $sql);
+    $sql = mysqli_prepare($conn, "SELECT itemId FROM `asocitems` INNER JOIN `items` on `items`.id=`asocitems`.itemId  where username = ? and type=1");
+    mysqli_stmt_bind_param($sql, 's',$_SESSION["username"]);
+    $sql->execute();
+    $sql->bind_result($itemId);
 
-    if (mysqli_num_rows($result) == 0 ){
+    if ($sql->fetch() == null ){
         echo " <div class=\"weapon__container\" id=\"weapon__container\">  <div class=\"char-details__items__item\" > <img src=\"../../webroot/img/weapon0.png\" alt=\"ability 1\"> </div> </div>";
      }
     else {
-    
-    
-     if ( $_SESSION["weapon"]==0) { $row = mysqli_fetch_assoc($result);$sql2 = "SELECT * fROM  `items` where id=".$row["itemId"]." and type=1" ;$_SESSION["weapon"]=$row["itemId"];}
-     else $sql2 = "SELECT * fROM  `items` where id=".$_SESSION["weapon"];
-     $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
+     $conn2 = mysqli_connect($servername, $username, $password, $dbname);
+     if ( $_SESSION["weapon"]==0) 
+     {
+        $sql2 = mysqli_prepare($conn2,"SELECT id,imgUrl,name fROM  `items` where id=? and type=1") ;
+        mysqli_stmt_bind_param($sql2, 'i',$itemId);
+        $_SESSION["weapon"]=$itemId;
+    }
+     else 
+     {
+        $sql2 = mysqli_prepare($conn2,"SELECT id,imgUrl,name fROM  `items` where id=? and type=1") ;
+        mysqli_stmt_bind_param($sql2, 'i',$_SESSION["weapon"]);
+     }
+     $sql2->execute();
+     $sql2->bind_result($id,$imgUrl,$name);
+     $sql2->fetch();
+
       echo "<div class=\"weapon__container\" id=\"weapon__container\">
-     <div class=\"char-details__items__item\" onmouseover=\"showDescription('desc".$row2["id"]."')\" onmouseout=\"hideDescription('desc".$row2["id"]."')\"
+     <div class=\"char-details__items__item\" onmouseover=\"showDescription('desc".$id."')\" onmouseout=\"hideDescription('desc".$id."')\"
           onclick=\"showWeapon()\">
-         <img src=\"".$row2["imgUrl"]."\" >
-         <p id=\"desc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
+         <img src=\"".$imgUrl."\" >
+         <p id=\"desc".$id."\" class=\"char-details__item_description\">".$name."</p>
      </div>";
-     
-     while($row = mysqli_fetch_assoc($result)) {
-     
-     $sql2 = "SELECT * fROM  `items` where id=".$row["itemId"];
-     
-     $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
-     if ($row2["type"]==1 && $row["itemId"]!=$_SESSION["weapon"]){
+     do {
+        $sql2->close();
+        $conn2->close();   
+        $conn2 = mysqli_connect($servername, $username, $password, $dbname);
+      $sql2 = mysqli_prepare($conn2,"SELECT id,imgUrl,type,name fROM  `items` where id=? and type=1") ;
+      mysqli_stmt_bind_param($sql2, 'i',$itemId);
+      $sql2->bind_result($id,$imgUrl,$type,$name);
+      $sql2->execute();
+      $sql2->fetch();
+      if ($type==1 && $id!=$_SESSION["weapon"]){
          
-         echo "<div class=\"char-details__items_item_dropDown\" onmouseover=\"showDescription('desc".$row["itemId"]."')\" onmouseout=\"hideDescription('desc".$row["itemId"]."')\"
-         id=firstWeapon onclick=\"changeWeapon(".$row2["id"].",1)\">
-         <img src=\"".$row2["imgUrl"]."\">
-         <p id=\"desc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
+         echo "<div class=\"char-details__items_item_dropDown\" onmouseover=\"showDescription('desc".$itemId."')\" onmouseout=\"hideDescription('desc".$itemId."')\"
+         id=firstWeapon onclick=\"changeWeapon(".$id.",1)\">
+         <img src=\"".$imgUrl."\">
+         <p id=\"desc".$id."\" class=\"char-details__item_description\">".$name."</p>
      </div>";
-     }
-     }
+     } 
+     }while($sql->fetch()==true);
      echo "</div>";
     }
     echo  "<div class=\"armor__container\" id=\"armor__container\">";
+    $conn->close();
+    $conn2->close();
     $conn = mysqli_connect($servername, $username, $password, $dbname);
-    $sql = "SELECT * FROM `asocitems` INNER JOIN `items` on `items`.id=`asocitems`.itemId  where username = '".$_SESSION["username"]."' and type=0";
-    $result = mysqli_query($conn, $sql);
+    $sql = mysqli_prepare($conn, "SELECT itemId FROM `asocitems` INNER JOIN `items` on `items`.id=`asocitems`.itemId  where username = ? and type=0");
+    mysqli_stmt_bind_param($sql, 's',$_SESSION["username"]);
+    $sql->execute();
+    $sql->bind_result($itemId);
 
-    if (mysqli_num_rows($result) == 0 ){  echo "<div class=\"char-details__items__item\" ><img src=\"../../webroot/img/weapon0.png\" ></div>";}
-     else {
-         if ( $_SESSION["armor"]==0) { $row = mysqli_fetch_assoc($result);$sql2 = "SELECT * fROM  `items` where id=".$row["itemId"]." and type=0";$_SESSION["armor"]=$row["itemId"];}
-         else $sql2 = "SELECT * fROM  `items` where id=".$_SESSION["armor"];
-         $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
-         echo "<div class=\"char-details__items__item\"  onmouseover=\"showDescription('armorDesc".$row2["id"]."')\" onmouseout=\"showDescription('armorDesc".$row2["id"]."')\"
-         onclick=\"showArmor('')\">
-         <img src=\"".$row2["imgUrl"]."\" alt=\"ability 2\">
-         <p id=\"armorDesc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
-         </div>";
-         while($row = mysqli_fetch_assoc($result)) {
+    if ($sql->fetch() == null )
+    {  
+        echo "<div class=\"char-details__items__item\" ><img src=\"../../webroot/img/weapon0.png\" ></div>";
+    }
+    else {
+    $conn2 = mysqli_connect($servername, $username, $password, $dbname);    
+    if ( $_SESSION["armor"]==0) 
+    { 
+        $sql2 = mysqli_prepare($conn2,"SELECT id,imgUrl,name fROM  `items` where id=? and type=0") ;
+        mysqli_stmt_bind_param($sql2, 'i',$itemId);
+        $_SESSION["armor"]=$itemId;
+    }
+    else 
+    {
+        $sql2 = mysqli_prepare($conn2,"SELECT id,imgUrl,name fROM  `items` where id=? and type=0") ;
+        mysqli_stmt_bind_param($sql2, 'i',$_SESSION["armor"]);
      
-             $sql2 = "SELECT * fROM  `items` where id=".$row["itemId"];
-             $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
-             if ($row2["type"]==0 && $row["itemId"]!=$_SESSION["armor"]){
-                 echo  "<div class=\"char-details__items_item_dropDownArmor\" onmouseover=\"showDescription('desc".$row["itemId"]."')\" onmouseout=\"hideDescription('desc".$row["itemId"]."')\"
-                      onclick=\"changeWeapon(".$row2["id"].",0)\">
-                     <img src=\"".$row2["imgUrl"]."\">
-                     <p id=\"desc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
-                     </div>";
- 
+    } 
+    $sql2->execute();
+     $sql2->bind_result($id,$imgUrl,$name);
+     $sql2->fetch();
+
+    echo "<div class=\"char-details__items__item\"  onmouseover=\"showDescription('armorDesc".$id."')\" onmouseout=\"showDescription('armorDesc".$id."')\"
+    onclick=\"showArmor('')\">
+    <img src=\"".$imgUrl."\" alt=\"ability 2\">
+    <p id=\"armorDesc".$id."\" class=\"char-details__item_description\">".$name."</p>
+    </div>";
+    do {
+        $sql2->close();
+        $conn2->close();   
+        $conn2 = mysqli_connect($servername, $username, $password, $dbname);
+    $sql2 = mysqli_prepare($conn2,"SELECT id,imgUrl,type,name fROM  `items` where id=? and type=0") ;
+    mysqli_stmt_bind_param($sql2, 'i',$itemId);
+     $sql2->bind_result($id,$imgUrl,$type,$name);
+     $sql2->execute();
+     $sql2->fetch();
+     if ($type==0 && $id!=$_SESSION["armor"]){
+      echo  "<div class=\"char-details__items_item_dropDownArmor\" onmouseover=\"showDescription('desc".$itemId."')\" onmouseout=\"hideDescription('desc".$itemId."')\"
+      onclick=\"changeWeapon(".$id.",0)\">
+      <img src=\"".$imgUrl."\">
+      <p id=\"desc".$id."\" class=\"char-details__item_description\">".$name."</p>
+      </div>";
+      
              }
-         } 
+         }while($sql->fetch());
+        
      }
      echo "</div>";
      echo  "</div>";
-
+     $conn->close();
+     
     }
     function changeChar ($id){
                         echo "<div class=\"char-details__bio__header\" id=\"char-details__bio__header\">";
@@ -272,61 +334,72 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
                                      die('Could not connect: ' . mysqli_error($con));
                                     }
                        
-                        $sql="SELECT name,imgUrl,bio FROM `char` WHERE charId = '".$q."'";
-                        $result = mysqli_query($con,$sql);
-                        while($row = mysqli_fetch_array($result)) {
-                            echo "<img src=\"".$row['imgUrl']." \" alt=\"character portrait\" class=\"char-details__bio__portrait\">";
-                            echo "<h2>".$row['name']."</h2>";
-                            echo " <p class=\"char-details__bio__description\">".$row['bio']."</p>"; 
+                        $sql = mysqli_prepare($con,"SELECT name,imgUrl,bio FROM `char` WHERE charId = ?");
+                        mysqli_stmt_bind_param($sql, 'i',$q);
+                        $sql->execute();
+                        $sql->bind_result($name,$imgUrl,$bio);
+                                    echo $imgUrl;
+                        while($sql->fetch() != null) {
+                            echo "<img src=\"".$imgUrl."\" alt=\"character portrait\" class=\"char-details__bio__portrait\">";
+                            echo "<h2>".$name."</h2>";
+                            echo " <p class=\"char-details__bio__description\">".$bio."</p>"; 
                         }
+                        $sql->close();
                         mysqli_close($con);
                         echo  "</div>";
     }
     function updateCharStats(){
-        $con = mysqli_connect('localhost','root','','sundaybrawl');
-        if (!$con) {
+        $conn = mysqli_connect('localhost','root','','sundaybrawl');
+        if (!$conn) {
                      die('Could not connect: ' . mysqli_error($con));
                     }
        
-        $sql="SELECT lvl FROM `userchr` WHERE charId = '".$_SESSION["character"]."' and username='".$_SESSION["username"]."'";
+        $sql=mysqli_prepare($conn,"SELECT lvl FROM `userchr` WHERE charId = ? and username=?");
+        mysqli_stmt_bind_param($sql, 'ss',$_SESSION["character"],$_SESSION["username"]);
+        $sql->execute();
+        $sql->bind_result($lvl);
+        $sql->fetch();
+        echo"<li>Level:
+        <span>" .$lvl. "</span> </li>";
+        $conn->close();
+        $sql->close(); 
+        $conn = mysqli_connect('localhost','root','','sundaybrawl');
+        $sql=mysqli_prepare($conn,"SELECT att,def FROM `char` WHERE charId = ?")  ;
+        mysqli_stmt_bind_param($sql, 'i',$_SESSION["character"]);
+        $sql->execute();
+        $sql->bind_result($att,$def);
         
-        $result = mysqli_query($con,$sql);
-        while($row = mysqli_fetch_array($result)) {
-            echo"<li>Level:
-            <span>" .$row['lvl']. "</span> </li>";
-        }
-          
-        $sql="SELECT att,def FROM `char` WHERE charId = '".$_SESSION["character"]."'"  ;
-        $result = mysqli_query($con,$sql);
-        while($row = mysqli_fetch_array($result)) {
-
-            $att=$row["att"];
-            $def=$row["def"];
-           
-            $sql = "SELECT * FROM `items`   where id = ".$_SESSION["weapon"];
-            $result = mysqli_query($con, $sql);
-            if (mysqli_num_rows($result) != 0 ) 
-            {
-                $row = mysqli_fetch_array($result);
-                $att=$att+$row["att"];
-                $def=$def+$row["def"];
-            }
-            $sql = "SELECT * FROM `items`   where id = ".$_SESSION["armor"];
-            $result = mysqli_query($con, $sql);
-            if (mysqli_num_rows($result) != 0 ) 
-            {
-                $row = mysqli_fetch_array($result);
-                $att=$att+$row["att"];
-                $def=$def+$row["def"];
-            }
+        $conn->close();
+        $sql->close(); 
+        $conn = mysqli_connect('localhost','root','','sundaybrawl');
+        $sql=mysqli_prepare($conn,"SELECT att,def FROM `items`   where id = ?");
+        mysqli_stmt_bind_param($sql, 'i',$_SESSION["weapon"]);
+        $sql->execute();
+        $sql->bind_result($attWeapon,$defWeapon);
+        $sql->fetch();
+        $att=$att+$attWeapon;
+        $def=$def+$defWeapon;
+        $conn->close();
+        $sql->close(); 
+        $conn = mysqli_connect('localhost','root','','sundaybrawl');
+        $sql=mysqli_prepare($conn,"SELECT att,def FROM `items`   where id = ?");
+        mysqli_stmt_bind_param($sql, 'i',$_SESSION["armor"]);
+        $sql->execute();
+        $sql->bind_result($attWeapon,$defWeapon);
+        $sql->fetch();
+        $conn->close();
+        $sql->close(); 
+        $conn = mysqli_connect('localhost','root','','sundaybrawl');
+        $att=$att+$attWeapon;
+        $def=$def+$defWeapon;
         echo "<li>Attack:
         <span>".$att."</span>
         </li>";
          echo"<li>Defense:
         <span>".$def."</span>
          </li>";
-        }
-        mysqli_close($con);
+        
+        mysqli_close($conn);
 
     }
     function changeSkill()
