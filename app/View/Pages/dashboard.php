@@ -435,7 +435,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                                         if ( $_SESSION["armor"]==0) { $row = mysqli_fetch_assoc($result);$sql2 = "SELECT * fROM  `items` where id=".$row["itemId"]." and type=0";$_SESSION["armor"]=$row["itemId"];}
                                         else $sql2 = "SELECT * fROM  `items` where id=".$_SESSION["armor"];
                                         $row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
-                                        echo "<div class=\"char-details__items__item\"  onmouseover=\"showDescription('armorDesc".$row2["id"]."')\" onmouseout=\"showDescription('armorDesc".$row2["id"]."')\" onclick=\"showArmor('')\">
+                                        echo "<div class=\"char-details__items__item\"  onmouseover=\"showDescription('armorDesc".$row2["id"]."')\" onmouseout=\"hideDescription('armorDesc".$row2["id"]."')\" onclick=\"showArmor('')\">
                                         <img src=\"".$row2["imgUrl"]."\" alt=\"ability 2\">
                                         <p id=\"armorDesc".$row2["id"]."\" class=\"char-details__item_description\">".$row2["name"]."</p>
                                         </div>";

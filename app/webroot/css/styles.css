@@ -513,7 +513,8 @@ h3{
 }
 
 .char-details__skill_description {
-    display: none;
+    
+    opacity: 0;
     position: absolute;
     top: -70%;
     border-radius: 15px;
@@ -576,12 +577,12 @@ h3{
 }
 
 .char-details__item_description {
-    display: none;
+    opacity: 0;
     position: absolute;
     text-align: justify;
     padding: 20px;
     bottom: 40%;
-    
+    opacity: 0;
     text-align:center;
     border-radius: 15px;
     background-color: white;

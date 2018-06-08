@@ -123,11 +123,13 @@ function changeWeapon(nr,type) {
 }
 
 function showDescription(divId) {
-	document.getElementById(divId).style.display = "block";
+	document.getElementById(divId).style.opacity="1";
+
 }
 
 function hideDescription(divId) {
-	document.getElementById(divId).style.display = "none";
+	document.getElementById(divId).style.opacity="0";
+
 
 }
 function bringImg(pos){
@@ -249,7 +251,9 @@ function play (){
 	xmlhttp.open("GET","play.php?q="+1,true);
 	xmlhttp.send();
 	var websocket = new WebSocket("ws://127.0.0.1:1234/app/Socket/socket.php"); 
-
+		websocket.onerror=function(event){
+			document.location.href = "../../Controller/dashboard.php";
+		}
 		websocket.onmessage = function(event) {
 			
 			var Data = JSON.parse(event.data);
@@ -295,8 +299,10 @@ function play (){
 			event.preventDefault();
 			$('#chat-user').attr("type","hidden");		
 			var messageJSON = {
-				chat_user: $('#chat-user').val(),
-				chat_message: $('#chat-message').val()
+				skill1: $('#chat-user').val(),
+				skill2: $('#chat-message').val()
+				skill3: $('#chat-user').val(),
+				skill4: $('#chat-message').val()
 			};
 			websocket.send(JSON.stringify(messageJSON));
 		});*/
