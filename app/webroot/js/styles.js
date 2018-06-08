@@ -96,30 +96,31 @@ function updateSkill (){
         xmlhttp.send();
 	
 }
-
-function changeWeapon(nr,type) {
-	if (nr == "") {
-        document.getElementById("char-details__abilities__container").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
+function showWeapons(){
+	if (window.XMLHttpRequest) {
       
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            
-            xmlhttp = new ActiveXObject("char-details__abilities__container");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("char-details__abilities__container").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","../../Controller/dashboard.php?id="+nr+"&t="+type+"&q=3",true);
-        xmlhttp.send();
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		
+		xmlhttp = new ActiveXObject("char-details__abilities__container");
 	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("char-details__abilities__container").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET","../../Controller/dashboard.php?q=9",true);
+	xmlhttp.send();
+}
+function changeWeapon(nr,type) {
+	var hr = new XMLHttpRequest();
+	var url = "../../Controller/dashboard.php";
+	var vars = "id="+nr+"&t="+type+"&type=3";
+	hr.open("POST", url, true);
+	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	hr.send(vars);
 	CharStats();
-	
-	
+	showWeapons();
 }
 
 function showDescription(divId) {
@@ -164,20 +165,8 @@ function CharStats(){
 	xmlhttp.send();
 
 }
-function HighlightChar(nr){
-	var items = document.getElementsByClassName('characters__item');
+function  characterBio(){
 	
-	for(i=0; i<items.length; i++) {
-		items[i].style.backgroundColor = 'white';
-		items[i].style.fontWeight = 'normal';
-	  }
-	  items[nr-1].style.backgroundColor = 'gold';
-	  items[nr-1].style.fontWeight = 'bold';
-	
-	  if (nr == "") {
-        document.getElementById("char-details__bio__header").innerHTML = "";
-        return;
-    } else { 
         if (window.XMLHttpRequest) {
       
             xmlhttp = new XMLHttpRequest();
@@ -190,15 +179,31 @@ function HighlightChar(nr){
                 document.getElementById("char-details__bio__header").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","../../Controller/dashboard.php?id="+nr+"&q=4",true);
+        xmlhttp.open("GET","../../Controller/dashboard.php?q=8",true);
         xmlhttp.send();
-	}
-
+	
+}
+function HighlightChar(nr){
+	var items = document.getElementsByClassName('characters__item');
+	
+	for(i=0; i<items.length; i++) {
+		items[i].style.backgroundColor = 'white';
+		items[i].style.fontWeight = 'normal';
+	  }
+	  items[nr-1].style.backgroundColor = 'gold';
+	  items[nr-1].style.fontWeight = 'bold';
+	  var hr = new XMLHttpRequest();
+	  var url = "../../Controller/dashboard.php";
+	  var vars = "type=4 & id="+nr;
+	  hr.open("POST", url, true);
+	  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  hr.send(vars);
+	characterBio();
 	CharStats();
 	updateSkill();	
 }
 function userStats(){
-	document.getElementById("items").innerHTML = "processing...";
+	
 	if (window.XMLHttpRequest) {
       
 		xmlhttp = new XMLHttpRequest();
@@ -219,7 +224,6 @@ function buyItems (nr,type){
 	 var hr = new XMLHttpRequest();
 	var url = "../../Controller/dashboard.php";
 	var fn = document.getElementById("buyItem"+nr).value;
-	
 	var vars = "itemId="+fn+"&type=2";
 	hr.open("POST", url, true);
 	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -233,6 +237,22 @@ function buyItems (nr,type){
 	userStats();
 	changeWeapon(nr,type);
 	
+}
+function showWeaponsToBuy (){
+	if (window.XMLHttpRequest) {
+      
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		
+		xmlhttp = new ActiveXObject("items");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("items").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET","../../Controller/dashboard.php?q=10",true);
+	xmlhttp.send();
 }
 function play (){
 	
@@ -315,4 +335,19 @@ function sendToUser(response )
 	//websocket.send(JSON.stringify(response) );
 
 }
-
+function charDetails(index){
+	if (window.XMLHttpRequest) {
+      
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		
+		xmlhttp = new ActiveXObject("characters__item__details__description"+index);
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("characters__item__details__description"+index).innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET","../../Controller/dashboard.php ?q="+"11"+"&index="+index,true);
+	xmlhttp.send();
+}

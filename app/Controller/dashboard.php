@@ -4,8 +4,7 @@ require_once("../Model/dashboard.php");
 $dashboard=new dashboard();
 
 if (count($_GET)>0) $check=intval($_GET['q']);
-else if ($_POST['type']==2) $check=$_POST['type']; 
-
+else  $check=$_POST['type']; 
 
 switch ($check) {
     case 0:
@@ -24,19 +23,21 @@ switch ($check) {
         
         break;
     case 3:
-        
-        if (intval($_GET['t'])==1) $_SESSION["weapon"] = intval($_GET['id']);
-        if (intval($_GET['t'])==0) $_SESSION["armor"] =  intval($_GET['id']);
-        
-        $dashboard-> changeWeapon($_GET['id'],$_GET['t']);
+        if ($_POST['t']==1) $_SESSION["weapon"] = $_POST['id'];
+        if ($_POST['t']==0) $_SESSION["armor"] =  $_POST['id'];
+        break;
+    case 9:   
+        $dashboard-> changeWeapon();
         break;
      case 4:
-        $_SESSION["character"]=$_GET['id'];
+        $_SESSION["character"]=$_POST['id'];
         $_SESSION["skill1"] =0; 
         $_SESSION["skill2"] =0;
         $_SESSION["skill3"] =0;
-        $_SESSION["skill4"]  =0;
-        $dashboard-> changeChar($_GET['id']);
+        $_SESSION["skill4"] =0;
+        break;
+     case 8 :   
+        $dashboard-> changeChar();
         break;
     case 5:
         $dashboard->updateCharStats();
@@ -58,7 +59,12 @@ switch ($check) {
     case 7: 
         $dashboard->userStats();
         break;
-    default:
-        echo "Your favorite color is neither red, blue, nor green!";
+    case 10:
+        $dashboard->updateItemsToBuy();
+        break;
+    case 11:
+        $dashboard->charDetailsAttDeff($_GET['index']);
+        break;    
+   
 }
 ?>
