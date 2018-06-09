@@ -10,9 +10,11 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
 
     <head>
         <title>Sunday Brawl</title>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <link rel="stylesheet" href="../../webroot/css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
         <script src="../../webroot/js/styles.js"></script>
+        
   </head>
 
   

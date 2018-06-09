@@ -15,7 +15,7 @@ echo "waiting for connections\n";
 socket_listen($socketResource);
 
 $clientSocketArray = array($socketResource);
-
+$matches= 0;
 $playersOnline=0;
 $lastConnection=0;
 $connectionBeforeThat=0;
@@ -38,6 +38,14 @@ while (true) {
 		unset($newSocketArray[$newSocketIndex]);
 		
 		if ($playersOnline%2==0 ){
+		
+			$matches=$matches+1;
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =mysqli_prepare($conn,"insert into gamesinprogress values( ?,'0','0')");
+			mysqli_stmt_bind_param($sql, 'i',$matches);
+			if ($sql->execute()==false) die("Error creating account");
+			$sql->close();  
+			$conn->Close();
 			foreach($clientSocketArray as $newSocketArrayResource){
 			echo $newSocketArrayResource."\n";
 			echo "time for matchup \n";
@@ -45,7 +53,7 @@ while (true) {
 			$sendSocket=$newSocketArrayResource;
 			$newSocketIndex = array_search( $newSocketArrayResource, $clientSocketArray);
 			 echo $newSocketIndex."<br>\n"; 
-			  echo $connectionBeforeThat." ".$lastConnection."\n"; 
+			 echo $connectionBeforeThat." ".$lastConnection."\n"; 
 			 if ($newSocketIndex == $connectionBeforeThat)
 			 { 
 				 $sendData=array('index'=>$lastConnection,'status'=>'newConnection');
@@ -54,7 +62,9 @@ while (true) {
 				if (socket_write($sendSocket, $sendData,$messageLength)==false)
 						echo "error<br>\n";
 				else echo "am reusit la userul".$sendSocket."\n";
-			 }
+				sleep(2);	
+			}
+			 
 			 if ($newSocketIndex == $lastConnection)
 			 {   
 				$sendData=array('index'=>$connectionBeforeThat,'status'=>'newConnection');
@@ -65,7 +75,8 @@ while (true) {
 			if (socket_write($sendSocket, $sendData,$messageLength)==false)
 						echo "error<br>";
 			else echo "am reusit la userul".$sendSocket."\n";
-			 }
+			sleep(2);
+			}
 			}
 	
 	}
@@ -75,11 +86,7 @@ while (true) {
 		while(socket_recv($newSocketArrayResource, $socketData, 1024, 0) >= 1){
 			
 			$socketMessage = $playHandler->unseal($socketData);
-			
-			
 			$messageObj = json_decode($socketMessage);
-			echo $messageObj->index."\n";
-				
 			if ($messageObj== NULL) break;
 			if ($messageObj->status=="newMatch" || $messageObj->status="newTurn" ) {
 					$sendData=$playHandler->seal( json_encode($messageObj));
@@ -87,7 +94,8 @@ while (true) {
 					if (socket_write($clientSocketArray[$messageObj->index], $sendData,$messageLength)==false)
 						echo "error<br>\n";
 					else echo "am reusit la userul ".$clientSocketArray[$messageObj->index]."\n";
-			 }
+			
+			}
 			break 2;
 		}
 		

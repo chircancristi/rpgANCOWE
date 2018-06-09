@@ -2,8 +2,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="../../webroot/css/styles.css">
+        <script src="../../webroot/js/styles.js"></script>
     </head>
-    <body>
+    <body onload="createSocket()">
         <div class="play-container">
             <div class="timer">
                 <div class="meter">
@@ -12,7 +13,7 @@
             </div>
 
             <div class="game-container">
-                <div class="player-container">
+                <div class="player-container" id="player1">
                     <div class="player-card">
                         <p id="u-name" class="username">PlaceholderUserName</p>
                         <p id="u-level" class="level">Level 30</p>
@@ -35,7 +36,7 @@
                     <button class="btn btn--end-turn">END TURN</button>
                 </div>
     
-                <div class="player-container right">
+                <div class="player-container right" id="player2">
                     <div class="player-card">
                         <p id="u-name" class="username">PlaceholderUserName</p>
                         <p id="u-level" class="level">Level 30</p>

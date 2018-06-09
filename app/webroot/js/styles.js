@@ -256,29 +256,43 @@ function showWeaponsToBuy (){
 }
 function play (){
 	
+	document.location.href= "play.html";
+	
+
+}
+function sendToUser(response )
+{
+//	document.location.href = "play.html?data="+response;
+
+	//websocket.send(JSON.stringify(response) );
+
+}
+function charDetails(index){
 	if (window.XMLHttpRequest) {
       
 		xmlhttp = new XMLHttpRequest();
 	} else {
 		
-		xmlhttp = new ActiveXObject("play");
+		xmlhttp = new ActiveXObject("characters__item__details__description"+index);
 	}
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("play").innerHTML = this.responseText;
+			document.getElementById("characters__item__details__description"+index).innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("GET","play.php?q="+1,true);
+	xmlhttp.open("GET","../../Controller/dashboard.php ?q="+"11"+"&index="+index,true);
 	xmlhttp.send();
+}
+function createSocket(){
+		
 	var websocket = new WebSocket("ws://127.0.0.1:1234/app/Socket/socket.php"); 
 		websocket.onerror=function(event){
-			document.location.href = "../../Controller/dashboard.php";
+			document.location.href = "dashboard.php";
 		}
 		websocket.onmessage = function(event) {
 			
 			var Data = JSON.parse(event.data);
-			console.log("Am primit mesaj");
-			console.log(Data);
+			
 			if (Data.status=='newConnection')
 			{
 			
@@ -302,7 +316,9 @@ function play (){
 			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		
 			 if (Data.status=='newMatch') 
 			 {
-			  document.location.href = "play.php?data="+JSON.stringify(Data);
+				 console.log( Data);
+				updateUsersCar();
+				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4);
 			 
 			}
 			  // primeste pachetul json cu  de forma: 
@@ -311,6 +327,7 @@ function play (){
 			 if (Data.status=='yourTurn') ;
 			 // primeste pachetul json cu  de forma: 
 			  // mai vedem 
+		
 			 
  		}	
 		
@@ -326,28 +343,37 @@ function play (){
 			};
 			websocket.send(JSON.stringify(messageJSON));
 		});*/
-	;
-}
-function sendToUser(response )
-{
-	document.location.href = "play.php?data="+response;
-
-	//websocket.send(JSON.stringify(response) );
-
-}
-function charDetails(index){
-	if (window.XMLHttpRequest) {
+	;}
+	function updateUsersCar(){
+		if (window.XMLHttpRequest) {
       
-		xmlhttp = new XMLHttpRequest();
-	} else {
-		
-		xmlhttp = new ActiveXObject("characters__item__details__description"+index);
-	}
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("characters__item__details__description"+index).innerHTML = this.responseText;
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			
+			xmlhttp = new ActiveXObject("player1");
 		}
-	};
-	xmlhttp.open("GET","../../Controller/dashboard.php ?q="+"11"+"&index="+index,true);
-	xmlhttp.send();
-}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("player1").innerHTML = this.responseText;
+			}
+		};
+		xmlhttp.open("GET","../../Controller/play.php?status=2",true);
+		xmlhttp.send();
+	}
+	function updateOpponentsCar(caracter,username,skill1,skill2,skill3,skill4){
+		if (window.XMLHttpRequest) {
+      
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			
+			xmlhttp = new ActiveXObject("player2");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("player2").innerHTML = this.responseText;
+			}
+		};
+		xmlhttp.open("GET","../../Controller/play.php?status=3&caracter="+caracter+"&username="+username+"&skill1="+skill1+"&skill2="+skill2+"&skill3="+skill3+"&skill4="+skill4,true);
+		xmlhttp.send();
+	}
+	
