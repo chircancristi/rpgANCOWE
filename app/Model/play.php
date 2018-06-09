@@ -66,6 +66,7 @@ class play {
 			'att' =>  $attW+$attA+$att,
 			'def' =>  $defA+$defW+$def
 		);
+		$_SESSION["index"]=$index;
 		$att= $attW+$attA+$att;
 		$def=$defA+$defW+$def;
 		$userData=json_encode($userData);
@@ -226,8 +227,54 @@ class play {
 		</ul>
 		<button class=\"btn btn--end-turn\">END TURN</button>";
 	}	
-	
+	function giveRewards($win){
+			if ($win==1){
+				$moneyUpgrade=70;
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"select lvl from `userchr` where charId=? and username=?");
+				mysqli_stmt_bind_param($sql, 'is',$_SESSION["character"],$_SESSION["username"]);
+				if ($sql->execute()==false) die("1Error creating account");
+				$sql->bind_result($lvl);
+				$sql->fetch();
+				$sql->close();
+				$conn->close();
+				$lvl=lvl+1;
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"update `userchr` set lvl=? where charId=? and username=?");
+				mysqli_stmt_bind_param($sql, 'iis',$lvl,$_SESSION["character"],$_SESSION["username"]);
+				if ($sql->execute()==false) die("1Error creating account");
+				$sql->close();
+				$conn->close();
+			}
+			else {
+				$moneyUpgrade=20;
+				}
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =  mysqli_prepare($conn,"SELECT money FROM `user` where username= ?");
+			mysqli_stmt_bind_param($sql,'s',$_SESSION["username"]);
+			$sql->execute();
+			$sql->bind_result($money);
+			$sql->fetch();
+			$sql->close();
+			$conn->close();
+			$money=$money+$moneyUpgrade;
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql1 = mysqli_prepare($conn,"UPDATE `user` SET money=? where username=?");
+            mysqli_stmt_bind_param($sql1, 'is',$money,$_SESSION["username"]);
+            $sql1->execute();
+			$sql->close();
+			$conn->close();
+	}
 
+	function deleteRow(){
+		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+		$sql =mysqli_prepare($conn,"delete from playersingame where username=?");
+		mysqli_stmt_bind_param($sql,'s',$_SESSION["username"]);
+		if ($sql->execute()==false) die("Error creating account");
+		$sql->close();  
+		$conn->Close();
+	}
 }
+
 
 ?>

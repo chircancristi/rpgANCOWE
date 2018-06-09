@@ -1,5 +1,20 @@
 <?php
 
+$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+$sql =mysqli_prepare($conn,"delete from gamesinprogress");
+if ($sql->execute()==false) die("Error creating account");
+$sql->close();  
+$conn->Close();
+
+$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+$sql =mysqli_prepare($conn,"delete from playersingame");
+if ($sql->execute()==false) die("Error creating account");
+$sql->close();  
+$conn->Close();
+
+
+
+
 define('HOST_NAME',"localhost"); 
 define('PORT',"1234");
 $null = NULL;

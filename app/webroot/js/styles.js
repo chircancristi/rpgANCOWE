@@ -311,9 +311,6 @@ function createSocket(){
 				hr.send(vars);
 				
 			}
-			 // Pachetul json arata asa 'index'=>indexul oponentului ,'status'=>'newConnection' 
-			 //trimite  un pachet json catre socket de forma 
-			 // status => newMatch 'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff  ;		
 			 if (Data.status=='newMatch') 
 			 {
 				 console.log( Data);
@@ -321,18 +318,24 @@ function createSocket(){
 				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4);
 			 
 			}
-			  // primeste pachetul json cu  de forma: 
-			 // 'status'=>newMatch  'index'=>indexul opentului, 'username'=> username-ul userului curent, 'caracterul'=>caracterul, 'skill1', 'skill2',skill3,'skill4',att,deff
-			 //populeaza pagina de play cu informatile date 
 			 if (Data.status=='yourTurn') ;
-			 // primeste pachetul json cu  de forma: 
-			  // mai vedem 
-		
+			 if (Data.status=="endGame")
+			 {
+				var hr = new XMLHttpRequest();
+				var url = "../../Controller/play.php";
+				var vars = "status=4 & win="+Data.win;
+				hr.open("POST", url, true);
+				hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				hr.send(vars);
+
+				document.location.href = "dashboard.php";
+			 }
+			
 			 
  		}	
 		
 	/*
-		$('#frmChat').on("submit",function(event){
+		$('#endTurn').on("submit",function(event){
 			event.preventDefault();
 			$('#chat-user').attr("type","hidden");		
 			var messageJSON = {

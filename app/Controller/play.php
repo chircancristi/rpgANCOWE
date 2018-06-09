@@ -16,6 +16,11 @@ switch ($check){
     case 3:
     $play->updatePlayer2($_GET["caracter"],$_GET["username"],$_GET["skill1"],$_GET["skill2"],$_GET["skill3"],$_GET["skill4"]);  
     break;
+    case 4:
+    $play->giveRewards($_POST["win"]);
+    $play->deleteRow();
+    break; 
+
    
 }
 ?>
