@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 Iun 2018 la 22:06
+-- Generation Time: 09 Iun 2018 la 13:48
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -96,10 +96,8 @@ CREATE TABLE `asocitems` (
 --
 
 INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
-('anggabard', 1, 114),
-('anggabard', 2, 115),
-('anggabard', 3, 116),
-('anggabard', 4, 117);
+('anggabard', 1, 119),
+('anggabard', 3, 120);
 
 -- --------------------------------------------------------
 
@@ -127,6 +125,18 @@ INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
 (4, 'SuperMan', 'Superman s-a născut pe planeta Krypton, din părinți pământeni, primind numele de Kal-El. Odată întors pe Terra, datorită puterilor sale extraordinare a ajuns să apere orașul Metropolis, din Statele Unite ale Americii. În timpul liber, Superman este reporter la cotidianul Daily Planet, ascuzându-și adevărata identitate sub numele de Clark Kent. Supergirl, o altă supereroină din universul DC Comics, este verișoara lui Superman.', '../../webroot/img/char_portrait_4.jpg', 80, 60),
 (5, 'Eren Jaeger', 'Eren Jeager is a member of the Survey Corps and the main protagonist of Attack on Titan. He lived in the Shiganshina District with his parents and adopted sister Mikasa Ackerman until the fall of Wall Maria. During the incident, Eren impotently witnessed his mother being eaten by a Titan.[26] This event aroused in Eren an intense hatred towards the Titans, and he swore to wipe all of them off the face of the Earth.', '../../webroot/img/char_portrait_5.jpg', 2, 5),
 (6, 'Goku', 'Son Goku, born Kakarot, is a male Saiyan and the main protagonist of the Dragon Ball meta-series created by Akira Toriyama. Cheerful, tenacious, and also a bit naïve, Goku is a Saiyan originally sent to Earth as an infant with the mission to destroy it. However, an accident alters his memory, allowing him to grow up pure-hearted and become Earth\'s greatest defender, as well as the informal leader of the Dragon Team. Throughout his life, he constantly strives and trains to be the greatest warrior possible and to fight stronger opponents, which has kept the Earth and the universe safe from destruction many times.', '../../webroot/img/char_portrait_6.jpg', 80, 50);
+
+-- --------------------------------------------------------
+
+--
+-- Structura de tabel pentru tabelul `gamesinprogress`
+--
+
+CREATE TABLE `gamesinprogress` (
+  `id` int(11) NOT NULL,
+  `usernamePlayer1` varchar(30) NOT NULL,
+  `usernamePlayer2` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -159,6 +169,23 @@ INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALU
 -- --------------------------------------------------------
 
 --
+-- Structura de tabel pentru tabelul `playersingame`
+--
+
+CREATE TABLE `playersingame` (
+  `username` varchar(30) NOT NULL,
+  `dmg` int(11) NOT NULL,
+  `att` int(11) NOT NULL,
+  `dff` int(11) NOT NULL,
+  `health` int(11) NOT NULL,
+  `weaponName` varchar(30) NOT NULL,
+  `armorName` varchar(30) NOT NULL,
+  `charName` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structura de tabel pentru tabelul `user`
 --
 
@@ -178,7 +205,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
 ('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
-('anggabard', 'ceapa123', 'dasda@gelu.com', 116123, 9999, -1, 2),
+('anggabard', 'ceapa123', 'dasda@gelu.com', 115293, 9999, -1, 2),
 ('bestiaDinMoldova', 'bunbun', 'popopica.marinaru@yahoo.com', 0, 0, 0, 0),
 ('gelu', 'dada', 'dan.chircan@gmail.com', 0, 0, 0, 0),
 ('giigiii', 'acxz', 'dorel@yahoo.com', 0, 0, 0, 0),
@@ -285,6 +312,12 @@ ALTER TABLE `char`
   ADD PRIMARY KEY (`charId`);
 
 --
+-- Indexes for table `gamesinprogress`
+--
+ALTER TABLE `gamesinprogress`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
@@ -317,7 +350,7 @@ ALTER TABLE `abilities`
 -- AUTO_INCREMENT for table `asocitems`
 --
 ALTER TABLE `asocitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- Restrictii pentru tabele sterse

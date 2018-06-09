@@ -205,7 +205,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
          }
         }
     }
-    function changeWeapon($id,$type){
+    function changeWeapon(){
     echo  "<div class=\"char-details__abilities__container\">";
     $servername = "localhost";
     $username = "root";
@@ -264,10 +264,11 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
      } 
      }while($sql->fetch()==true);
      echo "</div>";
+     $conn2->close();
     }
     echo  "<div class=\"armor__container\" id=\"armor__container\">";
     $conn->close();
-    $conn2->close();
+    
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     $sql = mysqli_prepare($conn, "SELECT itemId FROM `asocitems` INNER JOIN `items` on `items`.id=`asocitems`.itemId  where username = ? and type=0");
     mysqli_stmt_bind_param($sql, 's',$_SESSION["username"]);
@@ -326,27 +327,27 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
      $conn->close();
      
     }
-    function changeChar ($id){
-                        echo "<div class=\"char-details__bio__header\" id=\"char-details__bio__header\">";
-                        $q = $id;
-                        $con = mysqli_connect('localhost','root','','sundaybrawl');
-                        if (!$con) {
-                                     die('Could not connect: ' . mysqli_error($con));
-                                    }
-                       
-                        $sql = mysqli_prepare($con,"SELECT name,imgUrl,bio FROM `char` WHERE charId = ?");
-                        mysqli_stmt_bind_param($sql, 'i',$q);
-                        $sql->execute();
-                        $sql->bind_result($name,$imgUrl,$bio);
-                                    
-                        while($sql->fetch() != null) {
-                            echo "<img src=\"".$imgUrl."\" alt=\"character portrait\" class=\"char-details__bio__portrait\">";
-                            echo "<h2>".$name."</h2>";
-                            echo " <p class=\"char-details__bio__description\">".$bio."</p>"; 
-                        }
-                        $sql->close();
-                        mysqli_close($con);
-                        echo  "</div>";
+    function changeChar (){
+    echo "<div class=\"char-details__bio__header\" id=\"char-details__bio__header\">";
+    $q = $_SESSION["character"];
+    $con = mysqli_connect('localhost','root','','sundaybrawl');
+    if (!$con) {
+                    die('Could not connect: ' . mysqli_error($con));
+                }
+    
+    $sql = mysqli_prepare($con,"SELECT name,imgUrl,bio FROM `char` WHERE charId = ?");
+    mysqli_stmt_bind_param($sql, 'i',$q);
+    $sql->execute();
+    $sql->bind_result($name,$imgUrl,$bio);
+                
+    while($sql->fetch() != null) {
+        echo "<img src=\"".$imgUrl."\" alt=\"character portrait\" class=\"char-details__bio__portrait\">";
+        echo "<h2>".$name."</h2>";
+        echo " <p class=\"char-details__bio__description\">".$bio."</p>"; 
+    }
+    $sql->close();
+    mysqli_close($con);
+    echo  "</div>";
     }
     function updateCharStats(){
         $conn = mysqli_connect('localhost','root','','sundaybrawl');
@@ -590,5 +591,67 @@ echo "</div>";
         $sql->close();
         echo "</div>";
     }
+    function updateItemsToBuy(){
+       
+        $con = mysqli_connect('localhost','root','','sundaybrawl');
+        if (!$con) {
+                     die('Could not connect: ' . mysqli_error($con));
+                    }
+       
+        $sql="SELECT * FROM `items` ";
+        $result = mysqli_query($con,$sql);
+        while($row = mysqli_fetch_array($result)) {
+            $conn = mysqli_connect('localhost','root','','sundaybrawl');
+          $sqlUser=mysqli_prepare($conn,"SELECT * FROM asocitems where username=? and itemId=?");
+          mysqli_stmt_bind_param($sqlUser, 'si',$_SESSION["username"],$row["id"]);
+          $sqlUser->execute();
+          $nr=1;
+         if ($sqlUser->fetch()==null) {
+
+          echo"
+              <div class=\"items__item__container\">
+              <div class=\"items__item\">
+                  <div class=\"items__item__icon\">
+                      <img src=\"".$row["imgUrl"]."\">
+                  </div>
+                  <div class=\"items__item__details\">
+                      <div class=\"items__item__details__name\">
+                          <h4>".$row["name"]."</h4>
+                      </div>
+                      <div class=\"items__item__details__description\">
+                          <p>AT:".$row["att"]."</p>
+                          <p>DEF:".$row["def"]."</p>
+                      </div>
+                  </div>
+              </div>
+              <div class=\"items__item__buy\">
+                  <p class=\"items__item__buy__cost\">
+                      ".$row["price"]."
+                      <span>
+                          <img src=\"../../webroot/img\money-bag.png\">
+                      </span>
+                  </p>
+                  <button id=buyItem".$row["id"]." value=".$row["id"]." type=\"button\" onclick=\"buyItems(".$row["id"].",".$row["type"].")\" class=\"btn btn--buy\">BUY</button>
+              </div>
+              </div>
+        ";
+        $nr=$nr+1;
+    }
+}}
+function charDetailsAttDeff($index){
+    $con = mysqli_connect('localhost','root','','sundaybrawl');
+    if (!$con) {
+        die('Could not connect: ' . mysqli_error($con));
+    }
+    $sql="SELECT att,def FROM `char` WHERE charId =".$index;
+    $result = mysqli_query($con,$sql);
+    while($row = mysqli_fetch_array($result)) {
+    echo " <p>AT:".$row['att']." </p>";
+    echo "<p>DEF:".$row['def']."</p>";
+    
+    }
+   mysqli_close($con); 
+
+}
 }
 ?>

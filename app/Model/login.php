@@ -18,7 +18,7 @@ class login{
 	$sql->bind_result($passwordBd);
 	$sql->fetch();
 	$sql->close();
-    if ( $password==$passwordBd) return true;    
+    if ( $password==$passwordBd && $password!="") return true;    
     return false;
 }
 function checkUsernameAvailability($nume, $conn){
