@@ -2,13 +2,17 @@
 <html>
     <head>
         <link rel="stylesheet" href="../../webroot/css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
         <script src="../../webroot/js/styles.js"></script>
     </head>
+
     <body onload="createSocket()">
         <div class="play-container">
             <div class="timer">
                 <div class="meter">
-                    <span style="width: 60%;"><span>Timer</span></span>
+                    <span>40 secs left</span>
+                    <!-- TODO fix text and width of colored bard to fit in the container at the 100% mark -->
+                    <span class="color-bar" style="width:70%;"></span>
                 </div>
             </div>
 
@@ -16,7 +20,6 @@
                 <div class="player-container" id="player1">
                     <div class="player-card">
                         <p id="u-name" class="username">PlaceholderUserName</p>
-                        <p id="u-level" class="level">Level 30</p>
                     </div>
                     <div class="character-container">
                         <div class="character-info">
@@ -32,14 +35,11 @@
                             <li class="abilities__item"><img src="../../webroot/img/ability4--small.png" alt="ability4"></li>
                         </ul>   
                     </div>
-
-                    <button class="btn btn--end-turn" id="endTurn">END TURN</button>
                 </div>
     
                 <div class="player-container right" id="player2">
                     <div class="player-card">
                         <p id="u-name" class="username">PlaceholderUserName</p>
-                        <p id="u-level" class="level">Level 30</p>
                     </div>
                     <div class="character-container">
                         <div class="character-info">
@@ -55,11 +55,12 @@
                             <li class="abilities__item"><img src="../../webroot/img/ability4--small.png" alt="ability4"></li>
                         </ul>   
                     </div>
-                    
-                    <button class="btn btn--end-turn">END TURN</button>
                 </div>
             </div>
-            
+            <div class="log-wrapper">
+                <div class="log"></div>
+            </div>
+            <button class="btn btn--end-turn" id="endTurn">END TURN</button>
         </div>
     </body>
 </html>
