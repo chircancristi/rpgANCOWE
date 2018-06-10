@@ -315,21 +315,24 @@ function createSocket(){
 			 {
 				 console.log( Data);
 				updateUsersCar();
-				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4);
+				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4,Data.att,Data.def);
 			 
 			}
-			 if (Data.status=='yourTurn') ;
+			if (Data.status=="opponentsTurn")
+			{
+				updateHealth(Data.health);
+			}
+			 if (Data.status=='yourTurn') 
+			 {
+				 updateHealth(Data.health);
+				 updateAttDef(Data.att,Data.def);
+				 doDmg();
+			}
 			 if (Data.status=="endGame")
 			 {
-				var hr = new XMLHttpRequest();
-				var url = "../../Controller/play.php";
-				var vars = "status=4 & win="+Data.win;
-				hr.open("POST", url, true);
-				hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				hr.send(vars);
-
-				document.location.href = "dashboard.php";
-			 }
+				 endGame(0);
+				 document.location.href = "dashboard.php";
+			}
 			
 			 
  		}	
@@ -344,7 +347,19 @@ function createSocket(){
 				skill3: $('#chat-user').val(),
 				skill4: $('#chat-message').val()
 			};
-			websocket.send(JSON.stringify(messageJSON));
+			var hr = new XMLHttpRequest();
+			var url = "../../Controller/play.php";
+			var vars = "status=8";
+			hr.open("POST", url, true);
+			hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			hr.onreadystatechange = function() {
+				if(hr.readyState == 4 && hr.status == 200) {
+					var return_data = hr.responseText;			
+				    websocket.send(return_data);
+				}
+			}
+			hr.send(vars);
+		
 		});*/
 	;}
 	function updateUsersCar(){
@@ -363,7 +378,7 @@ function createSocket(){
 		xmlhttp.open("GET","../../Controller/play.php?status=2",true);
 		xmlhttp.send();
 	}
-	function updateOpponentsCar(caracter,username,skill1,skill2,skill3,skill4){
+	function updateOpponentsCar(caracter,username,skill1,skill2,skill3,skill4,att,def){
 		if (window.XMLHttpRequest) {
       
 			xmlhttp = new XMLHttpRequest();
@@ -376,7 +391,49 @@ function createSocket(){
 				document.getElementById("player2").innerHTML = this.responseText;
 			}
 		};
-		xmlhttp.open("GET","../../Controller/play.php?status=3&caracter="+caracter+"&username="+username+"&skill1="+skill1+"&skill2="+skill2+"&skill3="+skill3+"&skill4="+skill4,true);
+		xmlhttp.open("GET","../../Controller/play.php?status=3&caracter="+caracter+
+		"&username="+username+"&skill1="+skill1+"&skill2="+skill2+"&skill3="+skill3+"&skill4="+skill4
+		+"&att="+att+"&def="+def,true);
 		xmlhttp.send();
 	}
+	function endGame(win){
+		var hr = new XMLHttpRequest();
+		var url = "../../Controller/play.php";
+		var vars = "status=4 & win="+win;
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.send(vars);
 	
+
+	}
+	function updateHealth(health){
+		var hr = new XMLHttpRequest();
+		var url = "../../Controller/play.php";
+		var vars = "status=5 & health="+health;
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.send(vars);
+	}
+	function updateAttDef(att,def){
+		var hr = new XMLHttpRequest();
+		var url = "../../Controller/play.php";
+		var vars = "status=6 & att="+att+"&def="+def;
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.send(vars);
+	}
+	function doDmg(){
+		var hr = new XMLHttpRequest();
+		var url = "../../Controller/play.php";
+		var vars = "status=7";
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.onreadystatechange = function() {
+			if(hr.readyState == 4 && hr.status == 200) {
+				var return_data = hr.responseText;			
+				if (return_data!="noDmg")
+						websocket.send(return_data);
+			}
+		}
+		hr.send(vars);
+	}

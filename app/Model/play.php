@@ -4,7 +4,7 @@ class play {
     function sentUserData ($index)
 	{
 		
-		
+		$_SESSION["health"]=100;
 		$_SESSION["opponentsHealth"]=100;
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 		$sql =mysqli_prepare($conn,"select id,usernamePlayer1,usernamePlayer2 from gamesinprogress");
@@ -70,7 +70,8 @@ class play {
 		$att= $attW+$attA+$att;
 		$def=$defA+$defW+$def;
 		$userData=json_encode($userData);
-	
+		$_SESSION["att"]=$att;
+		$_SESSION["def"]=$def;
 		$conn->Close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 		$sql =mysqli_prepare($conn,"select name from `char` where charId=?");
@@ -273,6 +274,83 @@ class play {
 		if ($sql->execute()==false) die("Error creating account");
 		$sql->close();  
 		$conn->Close();
+	}
+	//Updateaza viata pe pagina de play a unui jucator 0-curent 1-opponent
+	function updateHealth($health,$type){
+		;
+	}
+	function skill($skill1,$skill2,$skill3,$skill4){
+		if ($skill1>0){
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =mysqli_prepare($conn,"select heal,dmg,def,att from `abilities` where abilityId=?");
+			mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill1"]);
+			if ($sql->execute()==false) die("1Error creating account");
+			$sql->bind_result($heal,$dmg,$def,$att);
+			$sql->fetch();
+			$sql->close();
+			$conn->close();
+			$_SESSION["health"]=$_SESSION["health"]+$skill1*$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill1*$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$skill1*$att;
+			$_SESSION["def"]=$_SESSION["def"]+$skill1*$def;
+		}
+		if ($skill2>0){
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =mysqli_prepare($conn,"select heal,dmg,def,att from `abilities` where abilityId=?");
+			mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill2"]);
+			if ($sql->execute()==false) die("1Error creating account");
+			$sql->bind_result($heal,$dmg,$def,$att);
+			$sql->fetch();
+			$sql->close();
+			$conn->close();
+			$_SESSION["health"]=$_SESSION["health"]+$skill2*$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill2*$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$skill2*$att;
+			$_SESSION["def"]=$_SESSION["def"]+$skill2*$def;
+		}
+		if ($skill3>0){
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =mysqli_prepare($conn,"select heal,dmg,def,att from `abilities` where abilityId=?");
+			mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill3"]);
+			if ($sql->execute()==false) die("1Error creating account");
+			$sql->bind_result($heal,$dmg,$def,$att);
+			$sql->fetch();
+			$sql->close();
+			$conn->close();
+			$_SESSION["health"]=$_SESSION["health"]+$skill3*$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill3*$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$skill3*$att;
+			$_SESSION["def"]=$_SESSION["def"]+$skill3*$def;
+		}
+		if ($skill4>0){
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =mysqli_prepare($conn,"select heal,dmg,def,att from `abilities` where abilityId=?");
+			mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill4"]);
+			if ($sql->execute()==false) die("1Error creating account");
+			$sql->bind_result($heal,$dmg,$def,$att);
+			$sql->fetch();
+			$sql->close();
+			$conn->close();
+			$_SESSION["health"]=$_SESSION["health"]+$skill4*$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill4*$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$skill4*$att;
+			$_SESSION["def"]=$_SESSION["def"]+$skill4*$def;
+		}
+		if ($_SESSION["opponentsHealth"]<0)
+		$userData=array(
+            'status'=> 'endGame',
+            'index'=>$_SESSION["index"]
+		); 
+		else $userData=array(
+            'status'=> 'yourTurn',
+			'health'=> $_SESSION["opponentsHealth"],
+			'opponentsHealth' => $$_SESSION["health"], 
+			'att' => $_SESSION["att"],
+			'def' => $_SESSION["def"],
+            'index'=>$_SESSION["index"]
+        );
+        $userData=json_encode($userData);
+        return $userData;
 	}
 }
 

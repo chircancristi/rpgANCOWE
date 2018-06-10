@@ -103,14 +103,13 @@ while (true) {
 			$socketMessage = $playHandler->unseal($socketData);
 			$messageObj = json_decode($socketMessage);
 			if ($messageObj== NULL) break;
-			if ($messageObj->status=="newMatch" || $messageObj->status="newTurn" ) {
-					$sendData=$playHandler->seal( json_encode($messageObj));
-					$messageLength = strlen( $sendData);
-					if (socket_write($clientSocketArray[$messageObj->index], $sendData,$messageLength)==false)
-						echo "error<br>\n";
-					else echo "am reusit la userul ".$clientSocketArray[$messageObj->index]."\n";
+			$sendData=$playHandler->seal( json_encode($messageObj));
+			$messageLength = strlen( $sendData);
+			if (socket_write($clientSocketArray[$messageObj->index], $sendData,$messageLength)==false)
+				echo "error<br>\n";
+			else echo "am reusit la userul ".$clientSocketArray[$messageObj->index]."\n";
+	
 			
-			}
 			break 2;
 		}
 		
