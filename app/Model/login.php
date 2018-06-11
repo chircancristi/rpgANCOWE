@@ -48,6 +48,7 @@ function checkEmailAvailability($mail, $conn){
 function addNewUser($nume, $parola, $mail, $conn){
     
     $sql =mysqli_prepare($conn,"insert into user values( ?,?,?,0,0,0,0)");
+    $parola=hash('sha256', $parola);
     mysqli_stmt_bind_param($sql, 'sss',$nume,$parola,$mail);
     if ($sql->execute()==false) die("Error creating account");
     $sql->close();

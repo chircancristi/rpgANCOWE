@@ -69,7 +69,7 @@ while (true) {
 			 echo $connectionBeforeThat." ".$lastConnection."\n"; 
 			 if ($newSocketIndex == $connectionBeforeThat)
 			 { 
-				 $sendData=array('index'=>$lastConnection,'status'=>'newConnection');
+				 $sendData=array('index'=>$lastConnection,'status'=>'newConnection', 'turn'=>'1');
 				 $sendData=$playHandler->seal(json_encode( $sendData));
 				$messageLength = strlen( $sendData);
 				if (socket_write($sendSocket, $sendData,$messageLength)==false)
@@ -80,16 +80,14 @@ while (true) {
 			 
 			 if ($newSocketIndex == $lastConnection)
 			 {   
-				$sendData=array('index'=>$connectionBeforeThat,'status'=>'newConnection');
-				
+				$sendData=array('index'=>$connectionBeforeThat,'status'=>'newConnection','turn'=>'0');
 				$sendData=$playHandler->seal(json_encode( $sendData));
-			$messageLength = strlen( $sendData);
-
-			if (socket_write($sendSocket, $sendData,$messageLength)==false)
-						echo "error<br>";
-			else echo "am reusit la userul".$sendSocket."\n";
-			sleep(2);
-			}
+				$messageLength = strlen( $sendData);
+				if (socket_write($sendSocket, $sendData,$messageLength)==false)
+							echo "error<br>";
+				else echo "am reusit la userul".$sendSocket."\n";
+				sleep(2);
+				}
 			}
 	
 	}

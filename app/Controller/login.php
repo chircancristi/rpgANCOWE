@@ -10,7 +10,7 @@ if (count($_POST)==0) $nr=2;
 switch ($nr) {
     case 0:
     $login=new login();
-    if ($login-> checkCredentials($_POST["username"],$_POST["password"])==true)
+    if ($login-> checkCredentials($_POST["username"],hash('sha256',$_POST["password"]))==true)
      {
                 $_SESSION["username"] = $_POST["username"];
                 $_SESSION["password"] = $_POST["password"];

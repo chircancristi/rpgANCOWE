@@ -158,7 +158,8 @@ class play {
 			'skill4' => $skill4url,
 			'att' => $_SESSION["att"],
 			'def' => $_SESSION["def"],
-			'lvl' => $lvl
+			'lvl' => $lvl,
+			"turn" => $_SESSION["turn"]
 		);
 		$userData=json_encode($userData);
 		return $userData;
@@ -228,6 +229,15 @@ class play {
 		return $userData;
 	}	
 	function giveRewards($win){
+			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+			$sql =mysqli_prepare($conn,"select wins,losses,gamesPlayed from `user` where  username=?");
+			mysqli_stmt_bind_param($sql, 's', $_SESSION["username"]);
+			if ($sql->execute()==false) die("1Error creating account");
+			$sql->bind_result($wins,$losses,$gamesPlayed);
+			$sql->fetch();
+			$sql->close();
+			$conn->close();
+			$gamesPlayed=$gamesPlayed+1;
 			if ($win==1){
 				$moneyUpgrade=70;
 				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -238,16 +248,30 @@ class play {
 				$sql->fetch();
 				$sql->close();
 				$conn->close();
-				$lvl=lvl+1;
+				$lvl=$lvl+1;
 				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 				$sql =mysqli_prepare($conn,"update `userchr` set lvl=? where charId=? and username=?");
 				mysqli_stmt_bind_param($sql, 'iis',$lvl,$_SESSION["character"],$_SESSION["username"]);
 				if ($sql->execute()==false) die("1Error creating account");
 				$sql->close();
 				$conn->close();
+				$wins=$wins+1;
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"update `user` set wins=?,gamesPlayed=? where  username=?");
+				mysqli_stmt_bind_param($sql, 'iis',$wins,$gamesPlayed,$_SESSION["username"]);
+				if ($sql->execute()==false) die("1Error creating account");
+				$sql->close();
+				$conn->close();
 			}
 			else {
 				$moneyUpgrade=20;
+				$losses=$losses+1;
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"update `user` set losses=?,gamesPlayed=? where  username=?");
+				mysqli_stmt_bind_param($sql, 'iis',$losses,$gamesPlayed,$_SESSION["username"]);
+				if ($sql->execute()==false) die("1Error creating account");
+				$sql->close();
+				$conn->close();
 				}
 			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 			$sql =  mysqli_prepare($conn,"SELECT money FROM `user` where username= ?");
@@ -274,25 +298,18 @@ class play {
 		$sql->close();  
 		$conn->Close();
 	}
-	function healthBd($health){
+	function updateHealth($health){
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"Update  playersInGame set health=? where username=?");
+		$sql =mysqli_prepare($conn,"Update  playersInGame set health=?  where username=?");
 		mysqli_stmt_bind_param($sql, 'is',$health,$_SESSION["username"]);
 		if ($sql->execute()==false) die("Error creating account");
 		$conn->close();
-		$sql->close();
-
+		$sql->close(); 
 	}
-	//Updateaza viata pe pagina de play a unui jucator 0-curent 1-opponent
-	function updateHealth($health,$type){
-		if ($type=0){
-			this.healthBd($health);
-		}
-	}
-	function updateAttDff(){
+	function updateAttDff($att,$def){
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"Update  playersInGame set att=? and dff=? where username=?");
-		mysqli_stmt_bind_param($sql, 'iis',$_SESSION["att"],$_SESSION["dff"],$_SESSION["username"]);
+		$sql =mysqli_prepare($conn,"Update  playersingame set att=?,dff=? where username=?");
+		mysqli_stmt_bind_param($sql, 'iis',$att,$def,$_SESSION["username"]);
 		if ($sql->execute()==false) die("Error creating account");
 		$conn->close();
 		$sql->close();
@@ -308,10 +325,10 @@ class play {
 			$sql->fetch();
 			$sql->close();
 			$conn->close();
-			$_SESSION["health"]=$_SESSION["health"]+$skill1*$heal;
-			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill1*$dmg;
-			$_SESSION["att"]=$_SESSION["att"]+$skill1*$att;
-			$_SESSION["def"]=$_SESSION["def"]+$skill1*$def;
+			$_SESSION["health"]=$_SESSION["health"]+$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$att;
+			$_SESSION["def"]=$_SESSION["def"]+$def;
 		}
 		if ($skill2>0){
 			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -322,10 +339,10 @@ class play {
 			$sql->fetch();
 			$sql->close();
 			$conn->close();
-			$_SESSION["health"]=$_SESSION["health"]+$skill2*$heal;
-			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill2*$dmg;
-			$_SESSION["att"]=$_SESSION["att"]+$skill2*$att;
-			$_SESSION["def"]=$_SESSION["def"]+$skill2*$def;
+			$_SESSION["health"]=$_SESSION["health"]+$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$att;
+			$_SESSION["def"]=$_SESSION["def"]+$def;
 		}
 		if ($skill3>0){
 			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -336,10 +353,10 @@ class play {
 			$sql->fetch();
 			$sql->close();
 			$conn->close();
-			$_SESSION["health"]=$_SESSION["health"]+$skill3*$heal;
-			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill3*$dmg;
-			$_SESSION["att"]=$_SESSION["att"]+$skill3*$att;
-			$_SESSION["def"]=$_SESSION["def"]+$skill3*$def;
+			$_SESSION["health"]=$_SESSION["health"]+$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$att;
+			$_SESSION["def"]=$_SESSION["def"]+$def;
 		}
 		if ($skill4>0){
 			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -350,12 +367,12 @@ class play {
 			$sql->fetch();
 			$sql->close();
 			$conn->close();
-			$_SESSION["health"]=$_SESSION["health"]+$skill4*$heal;
-			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]+$skill4*$dmg;
-			$_SESSION["att"]=$_SESSION["att"]+$skill4*$att;
-			$_SESSION["def"]=$_SESSION["def"]+$skill4*$def;
+			$_SESSION["health"]=$_SESSION["health"]+$heal;
+			$_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-$dmg;
+			$_SESSION["att"]=$_SESSION["att"]+$att;
+			$_SESSION["def"]=$_SESSION["def"]+$def;
 		}
-		if ($_SESSION["opponentsHealth"]<0)
+		if ($_SESSION["opponentsHealth"]<=0)
 		$userData=array(
             'status'=> 'endGame',
             'index'=>$_SESSION["index"]
@@ -364,13 +381,13 @@ class play {
 		else $userData=array(
             'status'=> 'yourTurn',
 			'health'=> $_SESSION["opponentsHealth"],
-			'opponentsHealth' => $$_SESSION["health"], 
+			'opponentsHealth' => $_SESSION["health"], 
 			'att' => $_SESSION["att"],
 			'def' => $_SESSION["def"],
             'index'=>$_SESSION["index"]
         );
         $userData=json_encode($userData);
-		this.updateAttDff();
+		$this->updateAttDff($_SESSION["att"],$_SESSION["def"]);
 		return $userData;
 	}
 }

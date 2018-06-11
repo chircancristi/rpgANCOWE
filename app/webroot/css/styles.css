@@ -1025,10 +1025,11 @@ h2 {
 .health .r-color-bar {
     width: 100px;
     background-color: #78e08f;
+    transition: all 0.3s ease;
 }
 
 .energy .r-color-bar {
-    width: 100px;
+    width: 10px;
     background-color: #f6b93b;
     transition: all 0.3s ease;
 }
@@ -1094,7 +1095,7 @@ h2 {
 .btn--end-turn {
     display: inline-block;
     text-decoration: none;
-
+    opacity:1;
     position: absolute;
     bottom: -20px;
     left: 50%;
