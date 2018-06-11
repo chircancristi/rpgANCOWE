@@ -157,7 +157,7 @@ class play {
 			<li class=\"abilities__item\"><img src=\"".$skill3url."\" alt=\"ability3\"></li>
 			<li class=\"abilities__item\"><img src=\"".$skill4url."\" alt=\"ability4\"></li>
 		</ul>
-		<button class=\"btn btn--end-turn\">END TURN</button>";
+		";
 	}
 	function updatePlayer2($caracter,$username,$skill1,$skill2,$skill3,$skill4){
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -226,7 +226,7 @@ class play {
 			<li class=\"abilities__item\"><img src=\"".$skill3url."\" alt=\"ability3\"></li>
 			<li class=\"abilities__item\"><img src=\"".$skill4url."\" alt=\"ability4\"></li>
 		</ul>
-		<button class=\"btn btn--end-turn\">END TURN</button>";
+		";
 	}	
 	function giveRewards($win){
 			if ($win==1){
@@ -275,9 +275,29 @@ class play {
 		$sql->close();  
 		$conn->Close();
 	}
+	function healthBd($health){
+		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+		$sql =mysqli_prepare($conn,"Update  playersInGame set health=? where username=?");
+		mysqli_stmt_bind_param($sql, 'is',$health,$_SESSION["username"]);
+		if ($sql->execute()==false) die("Error creating account");
+		$conn->close();
+		$sql->close();
+
+	}
 	//Updateaza viata pe pagina de play a unui jucator 0-curent 1-opponent
 	function updateHealth($health,$type){
-		;
+		if ($type=0){
+			this.healthBd($health);
+		}
+	}
+	function updateAttDff(){
+		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+		$sql =mysqli_prepare($conn,"Update  playersInGame set att=? and dff=? where username=?");
+		mysqli_stmt_bind_param($sql, 'iis',$_SESSION["att"],$_SESSION["dff"],$_SESSION["username"]);
+		if ($sql->execute()==false) die("Error creating account");
+		$conn->close();
+		$sql->close();
+
 	}
 	function skill($skill1,$skill2,$skill3,$skill4){
 		if ($skill1>0){
@@ -341,6 +361,7 @@ class play {
             'status'=> 'endGame',
             'index'=>$_SESSION["index"]
 		); 
+		
 		else $userData=array(
             'status'=> 'yourTurn',
 			'health'=> $_SESSION["opponentsHealth"],
@@ -350,7 +371,8 @@ class play {
             'index'=>$_SESSION["index"]
         );
         $userData=json_encode($userData);
-        return $userData;
+		this.updateAttDff();
+		return $userData;
 	}
 }
 

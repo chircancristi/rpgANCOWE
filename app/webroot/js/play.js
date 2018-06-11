@@ -6,22 +6,7 @@ function sendToUser(response )
 	//websocket.send(JSON.stringify(response) );
 
 }
-function charDetails(index){
-	if (window.XMLHttpRequest) {
-      
-		xmlhttp = new XMLHttpRequest();
-	} else {
-		
-		xmlhttp = new ActiveXObject("characters__item__details__description"+index);
-	}
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("characters__item__details__description"+index).innerHTML = this.responseText;
-		}
-	};
-	xmlhttp.open("GET","../../Controller/dashboard.php ?q="+"11"+"&index="+index,true);
-	xmlhttp.send();
-}
+
 function createSocket(){
 		
 	var websocket = new WebSocket("ws://127.0.0.1:1234/app/Socket/socket.php"); 
@@ -74,7 +59,11 @@ function createSocket(){
 			}
 			
 			 
- 		}	
+         }
+         websocket.onClose=function (event)
+         {
+            document.location.href = "dashboard.php";
+         }	
 		
 	/*
 		$('#endTurn').on("submit",function(event){

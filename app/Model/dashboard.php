@@ -297,7 +297,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
      $sql2->bind_result($id,$imgUrl,$name);
      $sql2->fetch();
 
-    echo "<div class=\"char-details__items__item\"  onmouseover=\"showDescription('armorDesc".$id."')\" onmouseout=\"showDescription('armorDesc".$id."')\"
+    echo "<div class=\"char-details__items__item\"  onmouseover=\"showDescription('armorDesc".$id."')\" onmouseout=\"hideDescription('armorDesc".$id."')\"
     onclick=\"showArmor('')\">
     <img src=\"".$imgUrl."\" alt=\"ability 2\">
     <p id=\"armorDesc".$id."\" class=\"char-details__item_description\">".$name."</p>
