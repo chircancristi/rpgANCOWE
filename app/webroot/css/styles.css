@@ -834,11 +834,14 @@ h2 {
 /* START Play */
 
 .play-container{
+    position: relative;
     max-width: 90%;
     margin: auto;
     margin-top: 15px;
     height: 95vh;
+
     border: 2px solid black;
+    box-shadow: 8px 8px 5px darkgrey;
 }
 
 .timer {
@@ -861,8 +864,8 @@ h2 {
     box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
 
-.meter > span {
-    display: block;
+.meter .color-bar {
+    display: inline-block;
     height: 100%;
     background-color: lightseagreen;
 
@@ -870,9 +873,20 @@ h2 {
                 inset 0 -2px 6px rgba(0, 0, 0, 0.4);
 }
 
+.meter span:first-of-type {
+    margin-right: 5px;
+
+    display: inline-block;
+    opacity: .7;
+
+    transform: translateY(-20%);
+}
+
 .game-container {
     display: flex;
     justify-content: space-around;
+
+    font-family: 'Itim', cursive;
 
     width: 95%;
     margin: auto;
@@ -894,14 +908,15 @@ h2 {
 .player-card {
     display: flex;
     justify-content: space-around;
-    padding: 10px;
-    border: 1px solid lightskyblue;
+
+    font-size: 25px;
+    font-weight: 500;
 }
 
 .character-container {
-    margin-top: 10px;
     padding: 10px;
-    border: 1px solid lightcoral;
+
+    font-size: 18px;
 }
 
 .character-info {
@@ -925,8 +940,11 @@ h2 {
 .character__abilities {
     display: flex;
     justify-content: center;
+    
     margin: 0;
+    margin-bottom: 15px;
     padding: 0;    
+    
     list-style: none;
 }
 
@@ -949,7 +967,8 @@ h2 {
     display: inline-block;
     text-decoration: none;
 
-    position: relative;
+    position: absolute;
+    bottom: -20px;
     left: 50%;
     
     padding: 15px;
@@ -965,6 +984,16 @@ h2 {
     background-color: white;
     color: #e55039;
     border: 1px solid #e55039;
+}
+
+.log-wrapper {
+    /* margin-top: 10px; */
+
+    width: 100%;
+    min-height: 20%;
+
+    border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
 }
 
 /* END Play */
