@@ -2,17 +2,15 @@
 
 $conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 $sql =mysqli_prepare($conn,"delete from gamesinprogress");
-if ($sql->execute()==false) die("Error creating account");
+$sql->execute();
 $sql->close();  
 $conn->Close();
 
 $conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 $sql =mysqli_prepare($conn,"delete from playersingame");
-if ($sql->execute()==false) die("Error creating account");
+$sql->execute();
 $sql->close();  
 $conn->Close();
-
-
 
 
 define('HOST_NAME',"localhost"); 
@@ -56,7 +54,7 @@ while (true) {
 		
 			$matches=$matches+1;
 			$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-			$sql =mysqli_prepare($conn,"insert into gamesinprogress values( ?,'0','0')");
+			$sql =mysqli_prepare($conn,"insert into `gamesinprogress` values( ?,'0','0')");
 			mysqli_stmt_bind_param($sql, 'i',$matches);
 			if ($sql->execute()==false) die("Error creating account");
 			$sql->close();  

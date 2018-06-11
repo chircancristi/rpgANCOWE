@@ -81,13 +81,22 @@ class play {
 		$sql->fetch();
 		$sql->close();  
 		$conn->Close();
+		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+		$sql =mysqli_prepare($conn,"select id from `gamesinprogress` where usernamePlayer1=? or usernamePlayer2=?");
+		mysqli_stmt_bind_param($sql, 'ss',$_SESSION["username"],$_SESSION["username"]);
+		if ($sql->execute()==false) die("1Error creating account");
+		$sql->bind_result($id);
+		$sql->fetch();
+		$sql->close();  
+		$conn->Close();
 		
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"insert into playersingame values( ?,?,?,?,?)");
-		mysqli_stmt_bind_param($sql, 'siiis',$_SESSION["username"],$att,$def,$_SESSION["opponentsHealth"],$characterName);
+		$sql =mysqli_prepare($conn,"insert into playersingame values(?,?,?,?,?,?)");
+		mysqli_stmt_bind_param($sql, 'isiiis',$id,$_SESSION["username"],$att,$def,$_SESSION["opponentsHealth"],$characterName);
 		if ($sql->execute()==false) die("2Error creating account");
 		$sql->close();  
 		$conn->Close();
+		json_encode($userData);
 		return $userData;
 	}
 	function updatePlayer1(){
@@ -139,25 +148,20 @@ class play {
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
-	echo
-		"<div class=\"player-card\">
-		<p id=\"u-name\" class=\"username\">".$_SESSION["username"]."</p>
-		<p id=\"u-level\" class=\"level\">Level 30</p>
-		</div>
-		<div class=\"character-container\">
-		<div class=\"character-info\">
-			<img src=\"".$imgUrl."\" alt=\"character-pic\" />
-			<p id=\"c-name\"class=\"name\">".$characterName."</p>
-			<p id=\"c-level\"class=\"level\">LEVEL".$lvl."</p>
-		</div>
-
-		<ul class=\"character__abilities\">
-			<li class=\"abilities__item\"><img src=\"".$skill1url."\" alt=\"ability1\"></li>
-			<li class=\"abilities__item\"><img src=\"".$skill2url."\" alt=\"ability2\"></li>
-			<li class=\"abilities__item\"><img src=\"".$skill3url."\" alt=\"ability3\"></li>
-			<li class=\"abilities__item\"><img src=\"".$skill4url."\" alt=\"ability4\"></li>
-		</ul>
-		";
+		$userData=array(
+			'username' => $_SESSION["username"],
+			'imgUrl'=> $imgUrl,
+			'caracter' => $characterName,
+			'skill1'=>$skill1url,
+			'skill2' => $skill2url,
+			'skill3' => $skill3url,
+			'skill4' => $skill4url,
+			'att' => $_SESSION["att"],
+			'def' => $_SESSION["def"],
+			'lvl' => $lvl
+		);
+		$userData=json_encode($userData);
+		return $userData;
 	}
 	function updatePlayer2($caracter,$username,$skill1,$skill2,$skill3,$skill4){
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -208,25 +212,20 @@ class play {
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
-	echo
-		"<div class=\"player-card\">
-		<p id=\"u-name\" class=\"username\">".$username."</p>
-		<p id=\"u-level\" class=\"level\">Level 30</p>
-		</div>
-		<div class=\"character-container\">
-		<div class=\"character-info\">
-			<img src=\"".$imgUrl."\" alt=\"character-pic\" />
-			<p id=\"c-name\"class=\"name\">".$characterName."</p>
-			<p id=\"c-level\"class=\"level\">LEVEL".$lvl."</p>
-		</div>
-
-		<ul class=\"character__abilities\">
-			<li class=\"abilities__item\"><img src=\"".$skill1url."\" alt=\"ability1\"></li>
-			<li class=\"abilities__item\"><img src=\"".$skill2url."\" alt=\"ability2\"></li>
-			<li class=\"abilities__item\"><img src=\"".$skill3url."\" alt=\"ability3\"></li>
-			<li class=\"abilities__item\"><img src=\"".$skill4url."\" alt=\"ability4\"></li>
-		</ul>
-		";
+		$userData=array(
+			'username' => $username,
+			'imgUrl'=> $imgUrl,
+			'caracter' => $characterName,
+			'skill1'=>$skill1url,
+			'skill2' => $skill2url,
+			'skill3' => $skill3url,
+			'skill4' => $skill4url,
+			'att' => $_SESSION["oppAtt"],
+			'def' => $_SESSION["oppDef"],
+			'lvl' => $lvl
+		);
+		$userData=json_encode($userData);
+		return $userData;
 	}	
 	function giveRewards($win){
 			if ($win==1){

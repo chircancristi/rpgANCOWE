@@ -1,4 +1,5 @@
 var abilitiesP1 = document.getElementById('abilities--p1');
+var abilitiesP2 = document.getElementById('abilities--p2');
 var energyBar = document.getElementById('energy-bar');
 var energyValue = energyBar.offsetWidth;
 var energyTextValue = document.getElementById('u-energy');
@@ -186,38 +187,68 @@ function createSocket(){
 		});*/
 	;}
 	function updateUsersCar(){
-		if (window.XMLHttpRequest) {
-      
-			xmlhttp = new XMLHttpRequest();
-		} else {
-			
-			xmlhttp = new ActiveXObject("player1");
-		}
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("player1").innerHTML = this.responseText;
+		var hr = new XMLHttpRequest();
+		var url = "../../Controller/play.php";
+		var vars = "status=2";
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.onreadystatechange = function() {
+			if(hr.readyState == 4 && hr.status == 200) {
+				var return_data = hr.responseText;
+				var data= JSON.parse(return_data);
+				var skills=[data.skill1,data.skill2,data.skill3,data.skill4];	
+				//username		
+				document.getElementById("u-name").innerHTML=data.username;
+				//url
+				document.getElementById("u-c-img").setAttribute("src",data.imgUrl);
+				//caracter name
+				document.getElementById("u-c-name").innerHTML=data.caracter;
+				//lvl
+				document.getElementById("u-c-level").innerHTML=data.lvl;
+				//def
+				document.getElementById("u-def-value").innerHTML=data.def;
+				//att
+				document.getElementById("u-att-value").innerHTML=data.att;
+				for (let index = 0; index < abilitiesP1.children.length; index++) {
+					const ability = abilitiesP1.children[index];
+					ability.children[0].setAttribute("src",skills[index]);
+				}
 			}
-		};
-		xmlhttp.open("GET","../../Controller/play.php?status=2",true);
-		xmlhttp.send();
+		}
+		hr.send(vars);
 	}
 	function updateOpponentsCar(caracter,username,skill1,skill2,skill3,skill4,att,def){
-		if (window.XMLHttpRequest) {
-      
-			xmlhttp = new XMLHttpRequest();
-		} else {
-			
-			xmlhttp = new ActiveXObject("player2");
-		}
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("player2").innerHTML = this.responseText;
+		var hr = new XMLHttpRequest();
+		var url = "../../Controller/play.php";
+		var vars = "status=3&caracter="+caracter+"&username="+username+"&skill1="+skill1+"&skill2="+skill2+"&skill3="+skill3+"&skill4="+skill4
+		+"&att="+att+"&def="+def;
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.onreadystatechange = function() {
+			if(hr.readyState == 4 && hr.status == 200) {
+				var return_data = hr.responseText;
+				console.log(return_data);			
+				var data= JSON.parse(return_data);
+				var skills=[data.skill1,data.skill2,data.skill3,data.skill4];	
+				//username		
+				document.getElementById("o-name").innerHTML=data.username;
+				//url
+				document.getElementById("o-c-img").setAttribute("src",data.imgUrl);
+				//caracter name
+				document.getElementById("o-c-name").innerHTML=data.caracter;
+				//lvl
+				document.getElementById("o-c-level").innerHTML=data.lvl;
+				//def
+				document.getElementById("o-def-value").innerHTML=data.def;
+				//att
+				document.getElementById("o-att-value").innerHTML=data.att;
+				for (let index = 0; index < abilitiesP2.children.length; index++) {
+					const ability = abilitiesP2.children[index];
+					ability.children[0].setAttribute("src",skills[index]);
+				}
 			}
-		};
-		xmlhttp.open("GET","../../Controller/play.php?status=3&caracter="+caracter+
-		"&username="+username+"&skill1="+skill1+"&skill2="+skill2+"&skill3="+skill3+"&skill4="+skill4
-		+"&att="+att+"&def="+def,true);
-		xmlhttp.send();
+		}
+		hr.send(vars);
 	}
 	function endGame(win){
 		var hr = new XMLHttpRequest();

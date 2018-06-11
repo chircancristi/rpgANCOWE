@@ -11,12 +11,12 @@ switch ($check){
     echo $response;
     break;
     case 2:
-    $play->updatePlayer1();
+    echo  $play->updatePlayer1();
     break;
     case 3:
-    $_SESSION["oppAtt"]=$_GET["att"];
-    $_SESSION["oppDef"]=$_GET["def"];
-    $play->updatePlayer2($_GET["caracter"],$_GET["username"],$_GET["skill1"],$_GET["skill2"],$_GET["skill3"],$_GET["skill4"]);  
+    $_SESSION["oppAtt"]=$_POST["att"];
+    $_SESSION["oppDef"]=$_POST["def"];
+    echo $play->updatePlayer2($_POST["caracter"],$_POST["username"],$_POST["skill1"],$_POST["skill2"],$_POST["skill3"],$_POST["skill4"]);  
     break;
     case 4:
     $play->giveRewards($_POST["win"]);

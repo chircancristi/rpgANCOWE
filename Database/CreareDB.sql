@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 Iun 2018 la 17:50
--- Versiune server: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Jun 11, 2018 at 09:09 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `abilities`
+-- Table structure for table `abilities`
 --
 
 CREATE TABLE `abilities` (
@@ -42,7 +42,7 @@ CREATE TABLE `abilities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `abilities`
+-- Dumping data for table `abilities`
 --
 
 INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `ImgUrl`, `heal`, `dmg`, `att`, `def`) VALUES
@@ -82,7 +82,7 @@ INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `asocitems`
+-- Table structure for table `asocitems`
 --
 
 CREATE TABLE `asocitems` (
@@ -92,7 +92,7 @@ CREATE TABLE `asocitems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `asocitems`
+-- Dumping data for table `asocitems`
 --
 
 INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
@@ -102,7 +102,7 @@ INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `char`
+-- Table structure for table `char`
 --
 
 CREATE TABLE `char` (
@@ -115,7 +115,7 @@ CREATE TABLE `char` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `char`
+-- Dumping data for table `char`
 --
 
 INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
@@ -129,7 +129,7 @@ INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `gamesinprogress`
+-- Table structure for table `gamesinprogress`
 --
 
 CREATE TABLE `gamesinprogress` (
@@ -139,17 +139,16 @@ CREATE TABLE `gamesinprogress` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `gamesinprogress`
+-- Dumping data for table `gamesinprogress`
 --
 
 INSERT INTO `gamesinprogress` (`id`, `usernamePlayer1`, `usernamePlayer2`) VALUES
-(1, 'anggabard', 'urcanCurcan'),
-(12, 'gelu', 'ioio');
+(1, 'iusti', 'anggabard');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `items`
+-- Table structure for table `items`
 --
 
 CREATE TABLE `items` (
@@ -163,7 +162,7 @@ CREATE TABLE `items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `items`
+-- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALUES
@@ -177,7 +176,7 @@ INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALU
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `playersingame`
+-- Table structure for table `playersingame`
 --
 
 CREATE TABLE `playersingame` (
@@ -190,17 +189,17 @@ CREATE TABLE `playersingame` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `playersingame`
+-- Dumping data for table `playersingame`
 --
 
 INSERT INTO `playersingame` (`gameId`, `username`, `att`, `dff`, `health`, `charId`) VALUES
-(1, 'anggabard', 15, 0, 90, 6),
-(1, 'urcanCurcan', 2, 10, 4, 3);
+(1, 'anggabard', 100, 115, 100, 0),
+(1, 'iusti', 50, 30, 100, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -214,7 +213,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
@@ -234,7 +233,7 @@ INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `userchr`
+-- Table structure for table `userchr`
 --
 
 CREATE TABLE `userchr` (
@@ -247,7 +246,7 @@ CREATE TABLE `userchr` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Salvarea datelor din tabel `userchr`
+-- Dumping data for table `userchr`
 --
 
 INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `gamesLost`) VALUES
@@ -377,39 +376,30 @@ ALTER TABLE `asocitems`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
--- Restrictii pentru tabele sterse
+-- Constraints for dumped tables
 --
 
 --
--- Restrictii pentru tabele `abilities`
+-- Constraints for table `abilities`
 --
 ALTER TABLE `abilities`
   ADD CONSTRAINT `abilities_ibfk_1` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`);
 
 --
--- Restrictii pentru tabele `asocitems`
+-- Constraints for table `asocitems`
 --
 ALTER TABLE `asocitems`
   ADD CONSTRAINT `asocitems_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `asocitems_ibfk_2` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
 
 --
--- Restrictii pentru tabele `gamesinprogress`
---
-ALTER TABLE `gamesinprogress`
-  ADD CONSTRAINT `gamesinprogress_ibfk_1` FOREIGN KEY (`usernamePlayer1`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `gamesinprogress_ibfk_2` FOREIGN KEY (`usernamePlayer2`) REFERENCES `user` (`username`);
-
---
--- Restrictii pentru tabele `playersingame`
+-- Constraints for table `playersingame`
 --
 ALTER TABLE `playersingame`
-  ADD CONSTRAINT `playersingame_ibfk_3` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`),
-  ADD CONSTRAINT `playersingame_ibfk_4` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `playersingame_ibfk_5` FOREIGN KEY (`gameId`) REFERENCES `gamesinprogress` (`id`);
+  ADD CONSTRAINT `playersingame_ibfk_5` FOREIGN KEY (`gameId`) REFERENCES `gamesinprogress` (`id`) ON UPDATE NO ACTION;
 
 --
--- Restrictii pentru tabele `userchr`
+-- Constraints for table `userchr`
 --
 ALTER TABLE `userchr`
   ADD CONSTRAINT `userchr_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
