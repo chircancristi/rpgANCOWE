@@ -12,7 +12,7 @@ switch ($nr) {
     $login=new login();
     if ($login-> checkCredentials($_POST["username"],$_POST["password"])==true)
      {
-                 $_SESSION["username"] = $_POST["username"];
+                $_SESSION["username"] = $_POST["username"];
                 $_SESSION["password"] = $_POST["password"];
                 $_SESSION["character"] = 1; 
                 $_SESSION["weapon"] = 0; 
@@ -31,7 +31,7 @@ switch ($nr) {
               
         }
         else {
-                    echo "Razvan avem nevoie de login fail trg ";
+                header("Location: ../View/Pages/login-fail.html");
                 }    
             
         break;

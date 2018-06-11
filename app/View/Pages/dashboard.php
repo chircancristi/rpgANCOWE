@@ -10,7 +10,6 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
 
     <head>
         <title>Sunday Brawl</title>
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <link rel="stylesheet" href="../../webroot/css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
         <script src="../../webroot/js/styles.js"></script>
@@ -100,7 +99,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                     </div>
                     <div class="characters__item" onclick="HighlightChar(6)" style="cursor: pointer;">
                         <div class="characters__item__portrait">
-                            <img src="../../webroot/img\char_portrait_6.jpg">
+                            <img src="../../webroot/img/char_portrait_6.jpg">
                         </div>
                         <div class="characters__item__details">
                             <div class="characters__item__details__name">
@@ -170,6 +169,7 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                                 <button type="submit" class="btn"> Submit Changes </button>
 
                                 <button type="button" class="btn btn--danger" onclick="eraseAcc(<?php echo "'".$_SESSION['username']."'";?>)"> Erase Account </button>
+                            </span>
                         </form>
 
                         <form action="../../Controller/dashboard.php ?q=1" method="post" class="acc-actions__info--mobile">

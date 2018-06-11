@@ -405,7 +405,6 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
     }
     function changeSkill()
     {
-        echo " <div class=\"char-details__abilitie__skills__container\" id=\"char-details__abilities__skills__container\">";
 
         $con = mysqli_connect('localhost','root','','sundaybrawl');
         if (!$con) {
