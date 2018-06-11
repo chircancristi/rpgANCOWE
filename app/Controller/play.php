@@ -7,6 +7,7 @@ else  $check=$_POST['status'];
 switch ($check){
     case 1:
     $index=intval($_POST['index']);
+    $_SESSION["turn"]=intval($_POST['turn']);
     $response=$play->sentUserData($index);
     echo $response;
     break;
@@ -23,16 +24,16 @@ switch ($check){
     $play->deleteRow();
     break; 
     case 5:
-    $play->updateHealth($_Post["health"],0);
+    $play->updateHealth($_POST["health"]);
     break;
     case 6:
     $_SESSION["oppAtt"]=$_GET["att"];
     $_SESSION["oppDef"]=$_GET["def"];
     break;
     case 7: 
-    $dmg=$_SESSION["att"]-$_SESSION["oppDef"];
+    $dmg=$_SESSION["att"]-0.35*$_SESSION["oppDef"];
     if ($dmg>0){
-        $_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-$dmg;
+        $_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-(5+$dmg*0.35);
         if ($_SESSION["opponentsHealth"]<=0)
         $userData=array(
             'status'=> 'endGame',
@@ -44,13 +45,13 @@ switch ($check){
             'index'=>$_SESSION["index"]
         );
         $userData=json_encode($userData);
-        return $userData;
+        echo $userData;
     }
     else return "noDmg";
     break;
     case 8:
     $response=$play->skill($_POST["skill1"],$_POST["skill2"],$_POST["skill3"],$_POST["skill4"]);
-    return $response;
+    echo $response;
     break;
 
    

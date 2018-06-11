@@ -1,12 +1,14 @@
 var abilitiesP1 = document.getElementById('abilities--p1');
 var abilitiesP2 = document.getElementById('abilities--p2');
-var energyBar = document.getElementById('energy-bar');
+var energyBar = document.getElementById('u-energy-bar');
+var healthBar = document.getElementById('u-health-bar');
+var opponentHealthBar= document.getElementById('o-health-bar');
 var energyValue = energyBar.offsetWidth;
 var energyTextValue = document.getElementById('u-energy');
 var healthTextValue = document.getElementById('u-health');
 var opponentHealthTextValue = document.getElementById('o-health');
 var endTurnSkills = [0, 0, 0, 0];
-
+var socket;
 healthTextValue.innerHTML = "100";
 opponentHealthTextValue.innerHTML = "100";
 energyTextValue.innerHTML = "100";
@@ -93,19 +95,40 @@ function buildEndOfTurnSkillsArray () {
 			endTurnSkills[index] = 1;
 		}
 	}
+	var hr = new XMLHttpRequest();
+	var url = "../../Controller/play.php";
+	var vars = "status=8"+"&skill1="+endTurnSkills[0]+"&skill2="+endTurnSkills[1]+"&skill3="+endTurnSkills[2]+"&skill4="+endTurnSkills[3];
+	hr.open("POST", url, true);
+	console.log(vars);
+	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	hr.onreadystatechange = function() {
+		if(hr.readyState == 4 && hr.status == 200) {
+			var return_data = hr.responseText;
+			console.log(return_data);
+			var data= JSON.parse(return_data); 			
+			socket.send(return_data);
+			if (data.status=="endGme") 
+					endGame(1);
+			else{
+				//def
+				document.getElementById("u-def-value").innerHTML=data.def;
+				//att
+				document.getElementById("u-att-value").innerHTML=data.att;
+				updateHealth(data.health,1);
+				updateHealth(data.oppponentsHealth,0);
+				endTurnButton();
+			}
+		}
+	}
+	hr.send(vars);
+	endTurnSkills=[0,0,0,0];
 }
 
-function sendToUser(response )
-{
-//	document.location.href = "play.html?data="+response;
-
-	//websocket.send(JSON.stringify(response) );
-
-}
 
 function createSocket(){
 		
 	var websocket = new WebSocket("ws://127.0.0.1:1234/app/Socket/socket.php"); 
+	socket=websocket;
 		websocket.onerror=function(event){
 			document.location.href = "dashboard.php";
 		}
@@ -118,13 +141,13 @@ function createSocket(){
 			
 				var hr = new XMLHttpRequest();
 				var url = "../../Controller/play.php";
-				var vars = "status=1 & index="+Data.index;
+				var vars = "status=1 & index="+Data.index+"&turn="+Data.turn;
 				hr.open("POST", url, true);
 				hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				hr.onreadystatechange = function() {
 					if(hr.readyState == 4 && hr.status == 200) {
-						var return_data = hr.responseText;			
-						console.log(return_data);
+						var return_data = hr.responseText;
+						
 						websocket.send(return_data);
 					}
 				}
@@ -133,25 +156,30 @@ function createSocket(){
 			}
 			 if (Data.status=='newMatch') 
 			 {
-				 console.log( Data);
+				
 				updateUsersCar();
 				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4,Data.att,Data.def);
 			 
 			}
 			if (Data.status=="opponentsTurn")
 			{
-				updateHealth(Data.health);
+				updateHealth(Data.health,0);
+				
 			}
 			 if (Data.status=='yourTurn') 
 			 {
-				 updateHealth(Data.health);
+				 updateHealth(Data.health,0);
+				 updateHealth(Data.oppponentsHealth,1);
 				 updateAttDef(Data.att,Data.def);
-				 doDmg();
+				 setTimeout( () => {
+					doDmg();
+				}, 1500);
+				endTurnButton();
 			}
 			 if (Data.status=="endGame")
 			 {
 				 endGame(0);
-				 document.location.href = "dashboard.php";
+				 
 			}
 			
 			 
@@ -159,7 +187,9 @@ function createSocket(){
          websocket.onClose=function (event)
          {
             document.location.href = "dashboard.php";
-         }	
+		 }	
+
+
 		
 	/*
 		$('#endTurn').on("submit",function(event){
@@ -213,6 +243,11 @@ function createSocket(){
 					const ability = abilitiesP1.children[index];
 					ability.children[0].setAttribute("src",skills[index]);
 				}
+	
+				if (data.turn==0) endTurnButton();
+				else  setTimeout( () => {
+					doDmg();
+				}, 1500);
 			}
 		}
 		hr.send(vars);
@@ -246,6 +281,7 @@ function createSocket(){
 					const ability = abilitiesP2.children[index];
 					ability.children[0].setAttribute("src",skills[index]);
 				}
+				
 			}
 		}
 		hr.send(vars);
@@ -257,16 +293,25 @@ function createSocket(){
 		hr.open("POST", url, true);
 		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		hr.send(vars);
-	
+		document.location.href = "dashboard.php";
 
 	}
-	function updateHealth(health){
-		var hr = new XMLHttpRequest();
-		var url = "../../Controller/play.php";
-		var vars = "status=5 & health="+health;
-		hr.open("POST", url, true);
-		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		hr.send(vars);
+	function updateHealth(health,type){
+		if(type==1){
+			opponentHealthTextValue.innerHTML=health;
+			opponentHealthBar.style="width: " + health+ "px;"; 
+		
+		}
+		else {
+			healthTextValue.innerHTML=health;
+			healthBar.style="width: " + health+ "px;"; 
+			var hr = new XMLHttpRequest();
+			var url = "../../Controller/play.php";
+			var vars = "status=5 & health="+health;
+			hr.open("POST", url, true);
+			hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			hr.send(vars);
+		}
 	}
 	function updateAttDef(att,def){
 		var hr = new XMLHttpRequest();
@@ -285,9 +330,20 @@ function createSocket(){
 		hr.onreadystatechange = function() {
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;			
-				if (return_data!="noDmg")
-						websocket.send(return_data);
+				if (return_data!="noDmg") {
+						socket.send(return_data);
+						console.log(return_data);
+						var data= JSON.parse(return_data);
+						updateHealth(data.health,1);
+				}
 			}
 		}
 		hr.send(vars);
+	}
+	function endTurnButton(){
+	 if (document.getElementById("endTurn").style=="opacity: 1;" || document.getElementById("endTurn").style.opacity==1){	
+		 document.getElementById("endTurn").style="opacity: 0; pointer-events: none;";
+	 }
+	 else  document.getElementById("endTurn").style="opacity: 1;";
+
 	}

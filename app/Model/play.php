@@ -158,7 +158,8 @@ class play {
 			'skill4' => $skill4url,
 			'att' => $_SESSION["att"],
 			'def' => $_SESSION["def"],
-			'lvl' => $lvl
+			'lvl' => $lvl,
+			"turn" => $_SESSION["turn"]
 		);
 		$userData=json_encode($userData);
 		return $userData;
@@ -274,20 +275,13 @@ class play {
 		$sql->close();  
 		$conn->Close();
 	}
-	function healthBd($health){
+	function updateHealth($health){
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"Update  playersInGame set health=? where username=?");
+		$sql =mysqli_prepare($conn,"Update  playersInGame set health=?  where username=?");
 		mysqli_stmt_bind_param($sql, 'is',$health,$_SESSION["username"]);
 		if ($sql->execute()==false) die("Error creating account");
 		$conn->close();
-		$sql->close();
-
-	}
-	//Updateaza viata pe pagina de play a unui jucator 0-curent 1-opponent
-	function updateHealth($health,$type){
-		if ($type=0){
-			this.healthBd($health);
-		}
+		$sql->close(); 
 	}
 	function updateAttDff(){
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
@@ -355,7 +349,7 @@ class play {
 			$_SESSION["att"]=$_SESSION["att"]+$skill4*$att;
 			$_SESSION["def"]=$_SESSION["def"]+$skill4*$def;
 		}
-		if ($_SESSION["opponentsHealth"]<0)
+		if ($_SESSION["opponentsHealth"]<=0)
 		$userData=array(
             'status'=> 'endGame',
             'index'=>$_SESSION["index"]
@@ -364,13 +358,13 @@ class play {
 		else $userData=array(
             'status'=> 'yourTurn',
 			'health'=> $_SESSION["opponentsHealth"],
-			'opponentsHealth' => $$_SESSION["health"], 
+			'opponentsHealth' => $_SESSION["health"], 
 			'att' => $_SESSION["att"],
 			'def' => $_SESSION["def"],
             'index'=>$_SESSION["index"]
         );
         $userData=json_encode($userData);
-		this.updateAttDff();
+		$this->updateAttDff();
 		return $userData;
 	}
 }
