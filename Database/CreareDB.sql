@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2018 at 09:09 PM
+-- Generation Time: Jun 12, 2018 at 12:29 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -91,14 +91,6 @@ CREATE TABLE `asocitems` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `asocitems`
---
-
-INSERT INTO `asocitems` (`username`, `itemId`, `id`) VALUES
-('anggabard', 1, 119),
-('anggabard', 3, 120);
-
 -- --------------------------------------------------------
 
 --
@@ -143,7 +135,7 @@ CREATE TABLE `gamesinprogress` (
 --
 
 INSERT INTO `gamesinprogress` (`id`, `usernamePlayer1`, `usernamePlayer2`) VALUES
-(1, 'iusti', 'anggabard');
+(1, 'anggabard', 'cdc4ever');
 
 -- --------------------------------------------------------
 
@@ -193,8 +185,8 @@ CREATE TABLE `playersingame` (
 --
 
 INSERT INTO `playersingame` (`gameId`, `username`, `att`, `dff`, `health`, `charId`) VALUES
-(1, 'anggabard', 100, 115, 100, 0),
-(1, 'iusti', 50, 30, 100, 0);
+(1, 'anggabard', 0, 30, 67, 0),
+(1, 'cdc4ever', 0, 80, 56, 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +196,7 @@ INSERT INTO `playersingame` (`gameId`, `username`, `att`, `dff`, `health`, `char
 
 CREATE TABLE `user` (
   `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
-  `password` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `password` varchar(150) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
   `email` varchar(50) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
   `money` int(11) NOT NULL,
   `wins` int(11) NOT NULL DEFAULT '0',
@@ -217,18 +209,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `email`, `money`, `wins`, `losses`, `gamesPlayed`) VALUES
-('Adam', 'sexyEva', 'primul_nostru.user@hotmail.com', 0, 0, 0, 0),
-('anggabard', 'ceapa123', 'dasda@gelu.com', 115293, 9999, -1, 2),
-('bestiaDinMoldova', 'bunbun', 'popopica.marinaru@yahoo.com', 0, 0, 0, 0),
-('gelu', 'dada', 'dan.chircan@gmail.com', 0, 0, 0, 0),
-('giigiii', 'acxz', 'dorel@yahoo.com', 0, 0, 0, 0),
-('ioio', 'yoyo', '123', 123, 321, 2, 4),
-('iusti', 'muzica', 'iustinaiosub@yahoo.com', 0, 0, 0, 0),
-('kamikaze', 'lala', 'sandu@love.com', 0, 0, 0, 0),
-('Lemnesh2', 'CEAMAIJMK', 'ploaetdr@yahoo.com', 119, 0, 0, 0),
-('rzv420zbegu', 'nam', 'IamZbegu@html.css', 0, 123, 321, 2),
-('TO', 'ilLas', 'teo_jmen@bo.ss', 0, 69, 96, 3),
-('urcanCurcan', 'suntparola', 'cristy_raw@yahoo.sc', 0, -1, 100, 20);
+('anggabard', '516543b4103cee5f417ef40984d3774ead1507d1c5248a2efe4c8a476dc2a5f0', 'gelo@yahoo.com', 0, 0, 0, 0),
+('cdc4ever', '4d0282941aaf2d694ddaa24fca75e503c73ab16fff3884cac12f39f882bc60cb', 'cristianchircan1@gmail.com', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -253,51 +235,15 @@ INSERT INTO `userchr` (`username`, `charId`, `lvl`, `gamesPlayed`, `gamesWon`, `
 ('anggabard', 1, 0, 0, 0, 0),
 ('anggabard', 2, 0, 0, 0, 0),
 ('anggabard', 3, 0, 0, 0, 0),
-('anggabard', 4, 1, 0, 0, 0),
-('anggabard', 5, 4, 0, 0, 0),
-('anggabard', 6, 6, 0, 0, 0),
-('bestiaDinMoldova', 1, 0, 0, 0, 0),
-('bestiaDinMoldova', 2, 0, 0, 0, 0),
-('bestiaDinMoldova', 3, 0, 0, 0, 0),
-('bestiaDinMoldova', 4, 0, 0, 0, 0),
-('bestiaDinMoldova', 5, 0, 0, 0, 0),
-('bestiaDinMoldova', 6, 0, 0, 0, 0),
-('gelu', 1, 0, 0, 0, 0),
-('gelu', 2, 0, 0, 0, 0),
-('gelu', 3, 0, 0, 0, 0),
-('gelu', 4, 0, 0, 0, 0),
-('gelu', 5, 0, 0, 0, 0),
-('gelu', 6, 0, 0, 0, 0),
-('giigiii', 1, 0, 0, 0, 0),
-('giigiii', 2, 0, 0, 0, 0),
-('giigiii', 3, 0, 0, 0, 0),
-('giigiii', 4, 0, 0, 0, 0),
-('giigiii', 5, 0, 0, 0, 0),
-('giigiii', 6, 0, 0, 0, 0),
-('ioio', 1, 0, 0, 0, 0),
-('ioio', 2, 0, 0, 0, 0),
-('ioio', 3, 0, 0, 0, 0),
-('ioio', 4, 0, 0, 0, 0),
-('ioio', 5, 0, 0, 0, 0),
-('ioio', 6, 0, 0, 0, 0),
-('iusti', 1, 0, 0, 0, 0),
-('iusti', 2, 0, 0, 0, 0),
-('iusti', 3, 0, 0, 0, 0),
-('iusti', 4, 0, 0, 0, 0),
-('iusti', 5, 0, 0, 0, 0),
-('iusti', 6, 0, 0, 0, 0),
-('kamikaze', 1, 0, 0, 0, 0),
-('kamikaze', 2, 0, 0, 0, 0),
-('kamikaze', 3, 0, 0, 0, 0),
-('kamikaze', 4, 0, 0, 0, 0),
-('kamikaze', 5, 0, 0, 0, 0),
-('kamikaze', 6, 0, 0, 0, 0),
-('Lemnesh2', 1, 0, 0, 0, 0),
-('Lemnesh2', 2, 0, 0, 0, 0),
-('Lemnesh2', 3, 0, 0, 0, 0),
-('Lemnesh2', 4, 0, 0, 0, 0),
-('Lemnesh2', 5, 0, 0, 0, 0),
-('Lemnesh2', 6, 0, 0, 0, 0);
+('anggabard', 4, 0, 0, 0, 0),
+('anggabard', 5, 0, 0, 0, 0),
+('anggabard', 6, 0, 0, 0, 0),
+('cdc4ever', 1, 0, 0, 0, 0),
+('cdc4ever', 2, 0, 0, 0, 0),
+('cdc4ever', 3, 0, 0, 0, 0),
+('cdc4ever', 4, 0, 0, 0, 0),
+('cdc4ever', 5, 0, 0, 0, 0),
+('cdc4ever', 6, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
