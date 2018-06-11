@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10 Iun 2018 la 12:14
+-- Generation Time: 11 Iun 2018 la 17:50
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -46,38 +46,38 @@ CREATE TABLE `abilities` (
 --
 
 INSERT INTO `abilities` (`abilityId`, `charId`, `description`, `name`, `type`, `ImgUrl`, `heal`, `dmg`, `att`, `def`) VALUES
-(1, 1, '', 'Punch', 1, '../../webroot/img/ability1.png', 0, 0, 0, 0),
-(2, 1, '', 'Rage', 2, '../../webroot/img/ability2.jpg', 0, 0, 0, 0),
-(3, 1, '', 'Iron Skin', 3, '../../webroot/img/ability3.jpg', 0, 0, 0, 0),
-(4, 1, '', 'HULK SMASH!', 4, '../../webroot/img/ability4.png', 0, 0, 0, 0),
-(5, 2, '', 'Sexy justsu', 1, '../../webroot/img/ability5.png', 0, 0, 0, 0),
-(6, 2, '', 'Shadow Clone', 2, '../../webroot/img/ability6.jpg', 0, 0, 0, 0),
-(7, 2, '', 'Rasengan', 3, '../../webroot/img/ability7.jpg', 0, 0, 0, 0),
-(8, 2, '', 'Rasen Shuriken', 4, '../../webroot/img/ability8.jpg', 0, 0, 0, 0),
-(9, 3, '', 'Low Kick', 1, '../../webroot/img/ability9.png', 0, 0, 0, 0),
-(10, 3, '', 'Web Shot', 2, '../../webroot/img/ability10.jpg', 0, 0, 0, 0),
-(11, 3, '', 'Spider Sense', 3, '../../webroot/img/ability11.jpg', 0, 0, 0, 0),
-(12, 3, '', 'Impress MJ', 4, '../../webroot/img/ability12.png', 0, 0, 0, 0),
-(13, 4, '', 'Super Punch', 1, '../../webroot/img/ability13.png', 0, 0, 0, 0),
-(14, 4, '', 'Laser Vision', 2, '../../webroot/img/ability14.jpg', 0, 0, 0, 0),
-(15, 4, '', 'Tornado', 3, '../../webroot/img/ability15.jpg', 0, 0, 0, 0),
-(16, 4, '', 'Solar Power', 4, '../../webroot/img/ability16.jpg', 0, 0, 0, 0),
-(17, 5, '', 'Sword Attack', 1, '../../webroot/img/ability17.jpg', 0, 0, 0, 0),
-(18, 5, '', 'Grappling Hook', 2, '../../webroot/img/ability18.jpg', 0, 0, 0, 0),
-(19, 5, '', 'First Aid', 3, '../../webroot/img/ability19.png', 0, 0, 0, 0),
-(20, 5, '', 'Titan Transform', 4, '../../webroot/img/ability20.jpg', 0, 0, 0, 0),
-(21, 6, '', 'Ki Blast', 1, '../../webroot/img/ability21.jpg', 0, 0, 0, 0),
-(22, 6, '', 'Twin Dragon Shot', 2, '../../webroot/img/ability22.jpg', 0, 0, 0, 0),
-(23, 6, '', 'Finger Beam', 3, '../../webroot/img/ability23.png', 0, 0, 0, 0),
-(24, 6, '', '10x God Kamehameha', 4, '../../webroot/img/ability24.png', 0, 0, 0, 0),
-(25, 1, '', 'Charge', 1, '../../webroot/img/ability25.png', 0, 0, 0, 0),
-(26, 1, '', 'Drop Kick', 2, '../../webroot/img/ability26.jpg', 0, 0, 0, 0),
-(27, 1, '', 'Flex Muscles', 3, '../../webroot/img/ability27.jpg', 0, 0, 0, 0),
-(28, 1, '', 'Gamma Quake', 4, '../../webroot/img/ability28.jpg', 0, 0, 0, 0),
-(29, 2, '', 'Summoning Technique ', 1, '../../webroot/img/ability29.jpg', 0, 0, 0, 0),
-(30, 2, '', 'Sage Mode', 2, '../../webroot/img/ability30.jpg', 0, 0, 0, 0),
-(31, 2, '', ' Six Paths Mode', 3, '../../webroot/img/ability31.jpg', 0, 0, 0, 0),
-(32, 2, '', 'Tailed Beast Bomb', 4, '../../webroot/img/ability32.jpg', 0, 0, 0, 0);
+(1, 1, '', 'Punch', 1, '../../webroot/img/ability1.png', 0, 50, 20, 0),
+(2, 1, '', 'Rage', 2, '../../webroot/img/ability2.jpg', 0, 10, 30, 30),
+(3, 1, '', 'Iron Skin', 3, '../../webroot/img/ability3.jpg', 0, 0, 40, 40),
+(4, 1, '', 'HULK SMASH!', 4, '../../webroot/img/ability4.png', 0, 70, 10, 0),
+(5, 2, '', 'Sexy justsu', 1, '../../webroot/img/ability5.png', 30, 0, 10, 10),
+(6, 2, '', 'Shadow Clone', 2, '../../webroot/img/ability6.jpg', 0, 30, 10, 10),
+(7, 2, '', 'Rasengan', 3, '../../webroot/img/ability7.jpg', 0, 50, 0, 0),
+(8, 2, '', 'Rasen Shuriken', 4, '../../webroot/img/ability8.jpg', 0, 80, 15, 0),
+(9, 3, '', 'Low Kick', 1, '../../webroot/img/ability9.png', 0, 20, 0, 0),
+(10, 3, '', 'Web Shot', 2, '../../webroot/img/ability10.jpg', 0, 0, 10, 10),
+(11, 3, '', 'Spider Sense', 3, '../../webroot/img/ability11.jpg', 0, 0, 25, 40),
+(12, 3, '', 'Impress MJ', 4, '../../webroot/img/ability12.png', 30, 50, 15, 15),
+(13, 4, '', 'Super Punch', 1, '../../webroot/img/ability13.png', 0, 40, 0, 10),
+(14, 4, '', 'Laser Vision', 2, '../../webroot/img/ability14.jpg', 10, 30, 0, 0),
+(15, 4, '', 'Tornado', 3, '../../webroot/img/ability15.jpg', 0, 30, 0, 30),
+(16, 4, '', 'Solar Power', 4, '../../webroot/img/ability16.jpg', 50, 0, 20, 50),
+(17, 5, '', 'Sword Attack', 1, '../../webroot/img/ability17.jpg', 0, 20, 15, 0),
+(18, 5, '', 'Grappling Hook', 2, '../../webroot/img/ability18.jpg', 20, 0, 10, 0),
+(19, 5, '', 'First Aid', 3, '../../webroot/img/ability19.png', 40, 0, 10, 20),
+(20, 5, '', 'Titan Transform', 4, '../../webroot/img/ability20.jpg', 30, 15, 30, 30),
+(21, 6, '', 'Ki Blast', 1, '../../webroot/img/ability21.jpg', 0, 20, 5, 5),
+(22, 6, '', 'Twin Dragon Shot', 2, '../../webroot/img/ability22.jpg', 0, 25, 10, 10),
+(23, 6, '', 'Finger Beam', 3, '../../webroot/img/ability23.png', 0, 30, 10, 10),
+(24, 6, '', '10x God Kamehameha', 4, '../../webroot/img/ability24.png', 20, 50, 15, 15),
+(25, 1, '', 'Charge', 1, '../../webroot/img/ability25.png', 0, 35, 0, 15),
+(26, 1, '', 'Drop Kick', 2, '../../webroot/img/ability26.jpg', 0, 40, 10, 10),
+(27, 1, '', 'Flex Muscles', 3, '../../webroot/img/ability27.jpg', 20, 0, 20, 20),
+(28, 1, '', 'Gamma Quake', 4, '../../webroot/img/ability28.jpg', 15, 30, 20, 20),
+(29, 2, '', 'Summoning Technique ', 1, '../../webroot/img/ability29.jpg', 0, 0, 25, 25),
+(30, 2, '', 'Sage Mode', 2, '../../webroot/img/ability30.jpg', 15, 30, 20, 20),
+(31, 2, '', ' Six Paths Mode', 3, '../../webroot/img/ability31.jpg', 15, 0, 50, 0),
+(32, 2, '', 'Tailed Beast Bomb', 4, '../../webroot/img/ability32.jpg', 0, 70, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -119,12 +119,12 @@ CREATE TABLE `char` (
 --
 
 INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
-(1, 'Hulk', 'Hulk este un personaj ficțional, un supererou, care apare în cărțile de benzi desenate publicate de Marvel Comics. Creat de Stan Lee și Jack Kirby, personajul a apărut prima oară în The Incredible Hulk #1 (mai 1962). Hulk este un monstru umanoid mutant, gigantic, verde, iradiat, cu o forță incredibilă și care nu își poate controla furia.', '../../webroot/img/char_portrait_1.jpg', 80, 80),
-(2, 'Naruto', 'Naruto este o serie manga japoneză scrisă și ilustrată de Masashi Kishimoto, având și o adaptare anime. Personajul principal, Naruto Uzumaki, este un ninja adolescent, imprevizibil și hiperactiv, care este într-o constantă căutare de cunoaștere, visând să devină Hokage, un ninja recunoscut ca cel mai puternic dintre toți și liderul satului.', '../../webroot/img/char_portrait_2.jpg', 50, 30),
-(3, 'SpiderMan', 'Omul Păianjen este de fapt un tânăr student orfan de ambii părinți pe nume Peter Benjamin Parker, care locuia împreună cu unchiul Ben și mătușa May.in New York', '../../webroot/img/char_portrait_3.jpg', 15, 10),
-(4, 'SuperMan', 'Superman s-a născut pe planeta Krypton, din părinți pământeni, primind numele de Kal-El. Odată întors pe Terra, datorită puterilor sale extraordinare a ajuns să apere orașul Metropolis, din Statele Unite ale Americii. În timpul liber, Superman este reporter la cotidianul Daily Planet, ascuzându-și adevărata identitate sub numele de Clark Kent. Supergirl, o altă supereroină din universul DC Comics, este verișoara lui Superman.', '../../webroot/img/char_portrait_4.jpg', 80, 60),
-(5, 'Eren Jaeger', 'Eren Jeager is a member of the Survey Corps and the main protagonist of Attack on Titan. He lived in the Shiganshina District with his parents and adopted sister Mikasa Ackerman until the fall of Wall Maria. During the incident, Eren impotently witnessed his mother being eaten by a Titan.[26] This event aroused in Eren an intense hatred towards the Titans, and he swore to wipe all of them off the face of the Earth.', '../../webroot/img/char_portrait_5.jpg', 2, 5),
-(6, 'Goku', 'Son Goku, born Kakarot, is a male Saiyan and the main protagonist of the Dragon Ball meta-series created by Akira Toriyama. Cheerful, tenacious, and also a bit naïve, Goku is a Saiyan originally sent to Earth as an infant with the mission to destroy it. However, an accident alters his memory, allowing him to grow up pure-hearted and become Earth\'s greatest defender, as well as the informal leader of the Dragon Team. Throughout his life, he constantly strives and trains to be the greatest warrior possible and to fight stronger opponents, which has kept the Earth and the universe safe from destruction many times.', '../../webroot/img/char_portrait_6.jpg', 80, 50);
+(1, 'Hulk', 'Caught in a gamma bomb explosion while trying to save the life of a teenager, Dr. Bruce Banner was transformed into the incredibly powerful creature called the Hulk. An all too often misunderstood hero, the angrier the Hulk gets, the stronger the Hulk gets.', '../../webroot/img/char_portrait_1.jpg', 80, 80),
+(2, 'Naruto', 'Naruto Uzumaki is a shinobi of Konohagakure and a descendant of the Uzumaki clan. He became the jinchuriki of the Nine-Tails on the day of his birth - a fate that caused him to be shunned by most of Konoha throughout his childhood. After joining Team Kakashi, Naruto worked hard to gain the village\'s acknowledgement all the while chasing his dream to become Hokage.', '../../webroot/img/char_portrait_2.jpg', 50, 30),
+(3, 'SpiderMan', 'Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.', '../../webroot/img/char_portrait_3.jpg', 15, 10),
+(4, 'SuperMan', 'Superman is born on an alien world to a technologically advanced species that resembles humans. When his world is on the verge of destruction, his father, a scientist, places his infant son alone in a spaceship that takes him to Earth.', '../../webroot/img/char_portrait_4.jpg', 80, 60),
+(5, 'Eren Jaeger', 'Eren Jeager is a member of the Survey Corps. He lived in the Shiganshina District with his parents and adopted sister Mikasa Ackerman until the fall of Wall Maria. During the incident, Eren impotently witnessed his mother being eaten by a Titan. This event aroused in Eren an intense hatred towards the Titans, and he swore to wipe all of them off the face of the Earth.', '../../webroot/img/char_portrait_5.jpg', 2, 5),
+(6, 'Goku', 'Son Goku, born Kakarot, is a male Saiyan. Cheerful, tenacious, and also a bit naive, Goku is a Saiyan originally sent to Earth as an infant with the mission to destroy it. However, an accident alters his memory, allowing him to grow up pure-hearted and become Earth\'s greatest defender, as well as the informal leader of the Dragon Team. Throughout his life, he constantly strives and trains to be the greatest warrior possible and to fight stronger opponents, which has kept the Earth and the universe safe from destruction many times.', '../../webroot/img/char_portrait_6.jpg', 80, 50);
 
 -- --------------------------------------------------------
 
@@ -134,9 +134,17 @@ INSERT INTO `char` (`charId`, `name`, `bio`, `imgUrl`, `att`, `def`) VALUES
 
 CREATE TABLE `gamesinprogress` (
   `id` int(11) NOT NULL,
-  `usernamePlayer1` varchar(30) NOT NULL,
-  `usernamePlayer2` varchar(30) NOT NULL
+  `usernamePlayer1` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
+  `usernamePlayer2` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `gamesinprogress`
+--
+
+INSERT INTO `gamesinprogress` (`id`, `usernamePlayer1`, `usernamePlayer2`) VALUES
+(1, 'anggabard', 'urcanCurcan'),
+(12, 'gelu', 'ioio');
 
 -- --------------------------------------------------------
 
@@ -173,12 +181,21 @@ INSERT INTO `items` (`id`, `name`, `type`, `imgUrl`, `price`, `att`, `def`) VALU
 --
 
 CREATE TABLE `playersingame` (
-  `username` varchar(30) NOT NULL,
+  `gameId` int(11) NOT NULL,
+  `username` varchar(20) CHARACTER SET utf32 COLLATE utf32_romanian_ci NOT NULL,
   `att` int(11) NOT NULL,
   `dff` int(11) NOT NULL,
   `health` int(11) NOT NULL,
-  `charName` varchar(30) NOT NULL
+  `charId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `playersingame`
+--
+
+INSERT INTO `playersingame` (`gameId`, `username`, `att`, `dff`, `health`, `charId`) VALUES
+(1, 'anggabard', 15, 0, 90, 6),
+(1, 'urcanCurcan', 2, 10, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -312,7 +329,9 @@ ALTER TABLE `char`
 -- Indexes for table `gamesinprogress`
 --
 ALTER TABLE `gamesinprogress`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usernamePlayer1` (`usernamePlayer1`),
+  ADD KEY `usernamePlayer2` (`usernamePlayer2`);
 
 --
 -- Indexes for table `items`
@@ -324,7 +343,9 @@ ALTER TABLE `items`
 -- Indexes for table `playersingame`
 --
 ALTER TABLE `playersingame`
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `charId` (`charId`),
+  ADD KEY `gameId` (`gameId`);
 
 --
 -- Indexes for table `user`
@@ -371,6 +392,21 @@ ALTER TABLE `abilities`
 ALTER TABLE `asocitems`
   ADD CONSTRAINT `asocitems_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `asocitems_ibfk_2` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
+
+--
+-- Restrictii pentru tabele `gamesinprogress`
+--
+ALTER TABLE `gamesinprogress`
+  ADD CONSTRAINT `gamesinprogress_ibfk_1` FOREIGN KEY (`usernamePlayer1`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `gamesinprogress_ibfk_2` FOREIGN KEY (`usernamePlayer2`) REFERENCES `user` (`username`);
+
+--
+-- Restrictii pentru tabele `playersingame`
+--
+ALTER TABLE `playersingame`
+  ADD CONSTRAINT `playersingame_ibfk_3` FOREIGN KEY (`charId`) REFERENCES `char` (`charId`),
+  ADD CONSTRAINT `playersingame_ibfk_4` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `playersingame_ibfk_5` FOREIGN KEY (`gameId`) REFERENCES `gamesinprogress` (`id`);
 
 --
 -- Restrictii pentru tabele `userchr`

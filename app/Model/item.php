@@ -15,10 +15,8 @@ class item{
         $this->conn = $db;
     }
 
-// read products
 function read(){
  
-    // select all query
     $query = "SELECT
                 id, name, type, imgUrl, price, att, def
             FROM
@@ -26,17 +24,17 @@ function read(){
             ORDER BY
                 id ASC";
  
-    // prepare query statement
+
     $stmt = $this->conn->prepare($query);
  
-    // execute query
+
     $stmt->execute();
  
     return $stmt;
 }
 function search($where){
  
-    // select all query
+
     $query = "SELECT
                 id, name, type, imgUrl, price, att, def
             FROM
@@ -46,12 +44,10 @@ function search($where){
             ORDER BY
                 id asc";
 
-    //echo $query;
-    // prepare query statement
     $stmt = $this->conn->prepare($query);
  
 
-    // execute query
+
     $stmt->execute();
  
     return $stmt;

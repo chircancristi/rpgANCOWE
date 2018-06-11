@@ -154,7 +154,11 @@ function createSocket(){
 			}
 			
 			 
- 		}	
+         }
+         websocket.onClose=function (event)
+         {
+            document.location.href = "dashboard.php";
+         }	
 		
 	/*
 		$('#endTurn').on("submit",function(event){

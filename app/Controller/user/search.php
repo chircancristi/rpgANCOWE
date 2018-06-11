@@ -16,45 +16,51 @@ $user = new user($db);
  
 // get keywords
 
-$where = "1=1";
+$where = "";
+
 
 if(isset($_GET["username"])){
-    $where.= " and username like '%".$_GET["username"]."%'";
+    $where.= " username like '%".$_GET["username"]."%'";
 }
 
-if(isset($_GET["password"])){
-     $where.= " and password like '%".$_GET["password"]."%'";
-}
- 
-if(isset($_GET["email"])){
-    $where.= " and email like '%".$_GET["email"]."%'";
-}
 
 if(isset($_GET["moneyBoundUpp"]) || isset($_GET["moneyBoundLow"])){
+    if(strcmp($where,"") != 0){
+        $where .= " and";
+    }
     if(isset($_GET["moneyBoundUpp"]) && isset($_GET["moneyBoundLow"])){
-        $where .= " and money between " . $_GET["moneyBoundLow"] . " and " . $_GET["moneyBoundUpp"];
+        $where .= " money between " . $_GET["moneyBoundLow"] . " and " . $_GET["moneyBoundUpp"];
     } else if (isset($_GET["moneyBoundUpp"])){
-        $where .= " and money <= ". $_GET["moneyBoundUpp"];
+        $where .= " money <= ". $_GET["moneyBoundUpp"];
     } else {
-        $where .= " and money >= ". $_GET["moneyBoundLow"];
+        $where .= " money >= ". $_GET["moneyBoundLow"];
     }
 } else {
     if(isset($_GET["money"])){
-        $where.= " and money = " . $_GET["money"];
+        if(strcmp($where,"") != 0){
+            $where .= " and";
+        }
+        $where.= " money = " . $_GET["money"];
     }
 }
 
 if(isset($_GET["winsBoundUpp"]) || isset($_GET["winsBoundLow"])){
+    if(strcmp($where,"") != 0){
+        $where .= " and";
+    }
     if(isset($_GET["winsBoundUpp"]) && isset($_GET["winsBoundLow"])){
-        $where .= " and wins between " . $_GET["winsBoundLow"] . " and " . $_GET["winsBoundUpp"];
+        $where .= " wins between " . $_GET["winsBoundLow"] . " and " . $_GET["winsBoundUpp"];
     } else if (isset($_GET["winsBoundUpp"])){
-        $where .= " and wins <= ". $_GET["winsBoundUpp"];
+        $where .= " wins <= ". $_GET["winsBoundUpp"];
     } else {
-        $where .= " and wins >= ". $_GET["winsBoundLow"];
+        $where .= " wins >= ". $_GET["winsBoundLow"];
     }
 } else {
     if(isset($_GET["wins"])){
-        $where.= " and wins = " . $_GET["wins"];
+        if(strcmp($where,"") != 0){
+            $where .= " and";
+        }
+        $where.= " wins = " . $_GET["wins"];
     }
 }
 
@@ -107,8 +113,6 @@ if($num>0){
  
         $single_user=array(
             "username" => $username,
-            "password" => $password,
-            "email" => $email,
             "money" => $money,
             "wins" => $wins,
             "losses" => $losses,
