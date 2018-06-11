@@ -1002,7 +1002,7 @@ h2 {
 }
 
 .energy .r-color-bar {
-    width: 100px;
+    width: 10px;
     background-color: #f6b93b;
     transition: all 0.3s ease;
 }

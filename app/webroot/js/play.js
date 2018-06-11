@@ -11,7 +11,7 @@ var endTurnSkills = [0, 0, 0, 0];
 var socket;
 healthTextValue.innerHTML = "100";
 opponentHealthTextValue.innerHTML = "100";
-energyTextValue.innerHTML = "100";
+energyTextValue.innerHTML = "10";
 
 for (let index = 0; index < abilitiesP1.children.length; index++) {
 	const ability = abilitiesP1.children[index];
@@ -114,13 +114,26 @@ function buildEndOfTurnSkillsArray () {
 				document.getElementById("u-def-value").innerHTML=data.def;
 				//att
 				document.getElementById("u-att-value").innerHTML=data.att;
-				updateHealth(data.health,1);
-				updateHealth(data.oppponentsHealth,0);
+				health=data.oppponentsHealth;
+				oppponentsHealth=data.health;
+				updateHealth(health,0);
+				updateHealth(oppponentsHealth,1);
 				endTurnButton();
 			}
 		}
 	}
 	hr.send(vars);
+	energyValue=energyValue+10;
+	if (energyValue<100){
+		energyBar.style = "width: " + energyValue + "px";
+		energyTextValue.innerHTML = `${energyValue}`
+	};
+	for (let index = 0; index < abilitiesP1.children.length; index++) {
+		const ability = abilitiesP1.children[index];
+		ability.setAttribute("data-selected", "unselected");
+		ability.style = "";
+		
+	}
 	endTurnSkills=[0,0,0,0];
 }
 
@@ -168,8 +181,10 @@ function createSocket(){
 			}
 			 if (Data.status=='yourTurn') 
 			 {
-				 updateHealth(Data.health,0);
-				 updateHealth(Data.oppponentsHealth,1);
+				 health=Data.health;
+			     oppponentsHealth=Data.oppponentsHealth;
+				 updateHealth(health,0);
+				 updateHealth(oppponentsHealth,1);
 				 updateAttDef(Data.att,Data.def);
 				 setTimeout( () => {
 					doDmg();
@@ -329,13 +344,13 @@ function createSocket(){
 		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		hr.onreadystatechange = function() {
 			if(hr.readyState == 4 && hr.status == 200) {
-				var return_data = hr.responseText;			
-				if (return_data!="noDmg") {
-						socket.send(return_data);
-						console.log(return_data);
-						var data= JSON.parse(return_data);
-						updateHealth(data.health,1);
-				}
+				var return_data = hr.responseText;
+				socket.send(return_data);
+				console.log(return_data);
+				var data= JSON.parse(return_data);
+				updateHealth(data.health,1);
+				var data= JSON.parse(return_data);
+				if (data.status=="endGame")	endGame(1);	
 			}
 		}
 		hr.send(vars);
