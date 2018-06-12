@@ -142,6 +142,9 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                   
                 </div>
                 <div class="acc__stats">
+                    <a href="..\pages\about.html">
+                        <img src="../../webroot/img\logo.png" class="dashbord__header-logo">
+                    </a>
                     <div class="start__row">
                         <a onclick="play()" id="play" class="btn btn--play">PLAY</a>
                     </div>
@@ -159,11 +162,11 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                                 <input pattern="[A-Za-z0-9]+" placeholder="Add new username " type="text" name="newUsername">
                             </p>
                             <p> Change email:
-                                <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new mail " type="text" name="newMail"> </p>
+                                <input pattern="[A-Za-z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+" placeholder="Add new email " type="text" name="newMail"> </p>
                             <p> Change password:
                                 <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPassword"> </p>
-                            <p> Comfirm password:
-                                <input pattern="[A-Za-z0-9]+" placeholder="Add new password " type="password" name="newPasswordComfirm"> </p>
+                            <p> Confirm password:
+                                <input pattern="[A-Za-z0-9]+" placeholder="Confirm password " type="password" name="newPasswordComfirm"> </p>
 
                             <span class="acc-actions">
                                 <button type="submit" class="btn"> Submit Changes </button>
@@ -187,13 +190,10 @@ if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
                     </div>
                     <div class="account__utility__row">
                         <form action="../../Controller/login.php" class="account__utility__logOut">
-                            <button type="submit" class="account__utility__logOutbutton"> Log out </button>
+                            <button type="submit" class="btn btn--danger account__utility__logOutbutton"> Log out </button>
                         </form>
                     </div>
-                    <a href="..\pages\about.html">
-                        <img src="../../webroot/img\logo.png" class="dashbord__header-logo">
-                    </a>
-
+                    
                 </div>
             </div>
         </div>

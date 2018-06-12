@@ -34,6 +34,7 @@ switch ($check){
     $dmg=$_SESSION["att"]-0.35*$_SESSION["oppDef"];
     if ($dmg>0){
         $_SESSION["opponentsHealth"]=$_SESSION["opponentsHealth"]-(5+$dmg*0.35);
+        $_SESSION["opponentsHealth"]=round($_SESSION["opponentsHealth"]);
         if ($_SESSION["opponentsHealth"]<=0)
         $userData=array(
             'status'=> 'endGame',
