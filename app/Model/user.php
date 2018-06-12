@@ -22,8 +22,6 @@ function search($where){
     $query = "SELECT username, money, wins, losses, gamesPlayed FROM `user` WHERE" . $where . " ORDER BY username asc";
     
     $stmt = $this->conn->prepare($query);
- 
-
 
     $stmt->execute();
  

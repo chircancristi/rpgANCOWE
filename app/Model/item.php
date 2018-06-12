@@ -24,7 +24,7 @@ function read(){
             ORDER BY
                 id ASC";
  
-
+    
     $stmt = $this->conn->prepare($query);
  
 
@@ -45,8 +45,6 @@ function search($where){
                 id asc";
 
     $stmt = $this->conn->prepare($query);
- 
-
 
     $stmt->execute();
  
