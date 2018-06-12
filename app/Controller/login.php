@@ -38,16 +38,13 @@ switch ($nr) {
     
     case 1:
     $login=new login();
-    $login-> createAccount($_POST["username"],$_POST["password"],$_POST["confirmPassword"],$_POST["mail"]);
-    header("Location: ../View/Pages/index.html");
+    $check=$login-> createAccount($_POST["username"],$_POST["password"],$_POST["confirmPassword"],$_POST["mail"]);
+    if ($check==true)header("Location: ../View/Pages/index.html");
     
     break; 
     case 2:
-    // Unset all of the session variables.
+   
     $_SESSION = array();
-
-// If it's desired to kill the session, also delete the session cookie.
-// Note: This will destroy the session, and not just the session data!
     if (isset($_COOKIE[session_name()])) {
     setcookie(session_name(), '', time()-42000, '/');
     }

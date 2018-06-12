@@ -434,7 +434,7 @@ h3{
 
 .char-details__bio__description {
     text-align: justify;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
     margin-bottom: 5px;
 }
@@ -654,7 +654,7 @@ h3{
 
 .characters__item__details__name h4,
 .characters__item__details__faction h4 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     margin: 0;
 }
@@ -769,7 +769,7 @@ h3{
 .items__item__details__name h4{
     margin: 0;
 
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -822,7 +822,7 @@ h3{
     margin: auto;
     padding: 5px;
 
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .acc__stats__settings input {
@@ -869,7 +869,7 @@ h2 {
     width: 90%;
     margin:auto;
 
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /*END STATS*/

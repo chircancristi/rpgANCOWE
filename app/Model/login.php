@@ -34,6 +34,7 @@ function checkUsernameAvailability($nume, $conn){
 }
 
 function checkEmailAvailability($mail, $conn){
+    
     $sql = mysqli_prepare($conn,"SELECT * FROM user where email = ?");
     mysqli_stmt_bind_param($sql, 's',$mail);
     $sql->execute();
@@ -70,21 +71,28 @@ function addNewUser($nume, $parola, $mail, $conn){
         if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
         }
-    
         
+        if (strlen($password) <8){
+            header("Location: ../View/Pages/login-fail.html");
+            return false;
+        }    
         if($password != $comfirmPassword){
-            die("Parolele nu se potrivesc!");
+            header("Location: ../View/Pages/login-fail.html");
+            return false;
         }
     
         if(!$this->checkUsernameAvailability($username, $conn)){
-            die("Numele de utilizator nu este disponibil!");
+            header("Location: ../View/Pages/login-fail.html");
+            return false ;
         }
     
         if(!$this->checkEmailAvailability($mail, $conn)){
-            die("Email-ul nu este disponibil");
+            header("Location: ../View/Pages/login-fail.html");
+            return false ;
         }
     
         $this->addNewUser($username,$password,$mail, $conn);
+        return true;
     }
 
 }
