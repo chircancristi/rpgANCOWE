@@ -4,6 +4,16 @@ session_start();
 if(!isset($_SESSION['username']) && empty($_SESSION['username'])) {
     header("Location: ../Pages/index.html");
  }
+
+
+$now = time();
+if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
+
+    session_unset();
+    session_destroy();
+    session_start();
+}
+$_SESSION['discard_after'] = $now + 3600;
 ?>
     <!DOCTYPE html>
     <html>
