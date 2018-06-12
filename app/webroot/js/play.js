@@ -123,11 +123,11 @@ function buildEndOfTurnSkillsArray () {
 		}
 	}
 	hr.send(vars);
-	energyValue=energyValue+10;
 	if (energyValue<100){
+		energyValue=energyValue+10;
 		energyBar.style = "width: " + energyValue + "px";
-		energyTextValue.innerHTML = `${energyValue}`
-	};
+		energyTextValue.innerHTML = `${energyValue}`;
+	}
 	for (let index = 0; index < abilitiesP1.children.length; index++) {
 		const ability = abilitiesP1.children[index];
 		ability.setAttribute("data-selected", "unselected");
@@ -172,7 +172,8 @@ function createSocket(){
 				
 				updateUsersCar();
 				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4,Data.att,Data.def);
-			 
+				var body = document.getElementsByTagName('body');
+				body[0].classList.add('loaded');
 			}
 			if (Data.status=="opponentsTurn")
 			{
@@ -355,10 +356,14 @@ function createSocket(){
 		}
 		hr.send(vars);
 	}
-	function endTurnButton(){
+	function endTurnButton () {
 	 if (document.getElementById("endTurn").style=="opacity: 1;" || document.getElementById("endTurn").style.opacity==1){	
 		 document.getElementById("endTurn").style="opacity: 0; pointer-events: none;";
+		 document.getElementById("player1").children[0].style = "";
+		 document.getElementById("player2").children[0].style = "background-color: #F79F1F; color: white;";
+	 } else {
+		 document.getElementById("endTurn").style="opacity: 1;";
+		 document.getElementById("player1").children[0].style = "background-color: #F79F1F; color: white;";
+		 document.getElementById("player2").children[0].style = "";
 	 }
-	 else  document.getElementById("endTurn").style="opacity: 1;";
-
 	}
