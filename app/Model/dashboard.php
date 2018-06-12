@@ -328,7 +328,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
      
     }
     function changeChar (){
-    echo "<div class=\"char-details__bio__header\" id=\"char-details__bio__header\">";
+    // echo "<div class=\"char-details__bio__header\" id=\"char-details__bio__header\">";
     $q = $_SESSION["character"];
     $con = mysqli_connect('localhost','root','','sundaybrawl');
     if (!$con) {
@@ -347,7 +347,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
     }
     $sql->close();
     mysqli_close($con);
-    echo  "</div>";
+    // echo  "</div>";
     }
     function updateCharStats(){
         $conn = mysqli_connect('localhost','root','','sundaybrawl');
@@ -542,7 +542,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
         $sql->execute();
         $sql->bind_result($imgUrl,$abilityId,$name,$description);
         $sql->fetch() ;
-        echo  "<div class=\"thirdSkill__container\">
+        echo  "<div class=\"fourthSkill__container\">
                 <div class=\"char-details__abilities__item\" onmouseover=\"showDescription('skillDesc".$abilityId."')\" onmouseout=\"hideDescription('skillDesc".$abilityId."')\"
                 id=\"fourthSkillSelected\" onclick=\"showSkill('fourthSkill')\">
                 <img src=\"".$imgUrl."\" alt=\"ability 4\">
@@ -570,7 +570,6 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
 echo "</div>";
     }
     function userStats(){
-       echo "<div class=\"acc-stats__info\" id=\"acc-stats__info\">";
         $con = mysqli_connect('localhost','root','','sundaybrawl');
         if (!$con) {
                      die('Could not connect: ' . mysqli_error($con));

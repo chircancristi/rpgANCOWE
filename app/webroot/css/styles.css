@@ -28,6 +28,9 @@ h3{
     border: 1px solid transparent;
     border-radius: 5px;
     margin: 15px 0 15px 15px;
+
+    font-size: 16px;
+
     transition: all 0.15s linear;
 }
 
@@ -431,7 +434,7 @@ h3{
 
 .char-details__bio__description {
     text-align: justify;
-    font-size: 15px;
+    font-size: 18px;
     margin: 0;
     margin-bottom: 5px;
 }
@@ -475,6 +478,8 @@ h3{
 .char-details__abilitie__skills__container {
     display: flex;
     justify-content: space-evenly;
+
+    margin-bottom: 20px;
 }
 
 
@@ -639,24 +644,35 @@ h3{
 
 .characters__item__details {
     grid-column: 2 / 3;
+
+    position: relative;
 }
 
 .characters__item__details__name {
     text-align: center;
-    border-bottom: 2px solid black;
 }
 
 .characters__item__details__name h4,
 .characters__item__details__faction h4 {
+    font-size: 18px;
+    font-weight: 500;
     margin: 0;
 }
 
 .characters__item__details__faction {
-    text-align: center;
-    border-top: 2px solid black;
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+
+    transform: translateX(50%);
 }
 
 .characters__item__details__description {
+    display: flex;
+    justify-content: space-evenly;
+
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
     padding: 5px;
 }
 
@@ -747,15 +763,21 @@ h3{
 
 .items__item__details__name{
     text-align: center;
-    border-bottom: 2px solid black ;
+    border-bottom: 2px solid black;
 }
 
 .items__item__details__name h4{
     margin: 0;
+
+    font-size: 19px;
+    font-weight: 500;
 }
 
 .items__item__details__description{
-    padding: 0px;
+    display: flex;
+    justify-content: space-evenly;
+
+    padding: 20px 0 0 0;
 }
 
 .items__item__details__description p{
@@ -770,18 +792,22 @@ h3{
     position: relative;
   
     padding: 20px;
-    width: auto;
-    height: 80%;
     max-width: 200px;
     max-height: 200px;
-    left:32%;
-    top:50%
+    left:50%;
+
+    transform: translateX(-50%);
 }
+
 .start__row {
     position: relative;
     font-weight: 50%;
     text-align: center;
     margin-bottom: 15px;
+}
+
+.start__row a {
+    cursor: pointer;
 }
 
 .account__stats__row {
@@ -795,6 +821,8 @@ h3{
     width: 95%;
     margin: auto;
     padding: 5px;
+
+    font-size: 18px;
 }
 
 .acc__stats__settings input {
@@ -819,14 +847,13 @@ h2 {
 }
 
 .account__utility__logOut {
-    width: 50%;
-    height: 40%;
-    margin-left: 30%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .account__utility__logOutbutton {
-    width: 100%;
-    font-size: 140%;
+    width: 50%;
+    font-size: 20px;
 }
 
 .acc__stats__settings {
@@ -834,7 +861,7 @@ h2 {
     background-color: white;
     border: 2px solid black;
     border-radius: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 
 .acc-actions__info{
@@ -842,6 +869,7 @@ h2 {
     width: 90%;
     margin:auto;
 
+    font-size: 18px;
 }
 
 /*END STATS*/
@@ -919,6 +947,7 @@ h2 {
 .player-container {
     display: inline-block;
     width: 40%;
+    /* min-height: 675px; */
 
     position: relative;
 
@@ -1096,6 +1125,143 @@ h2 {
 
     border-top: 1px solid darkgrey;
     border-bottom: 1px solid darkgrey;
+}
+
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #12CBC4;
+
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+
+    z-index: 1001;
+}
+
+.loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #ED4C67;
+
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+
+.loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #FFC312;
+
+    -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.loader-wrapper .loader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    background: #222222;
+    z-index: 1000;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.loader-wrapper .loader-section.section-left {
+    left: 0;
+}
+
+.loader-wrapper .loader-section.section-right {
+    right: 0;
+}
+
+/* Loaded */
+.loaded .loader-wrapper .loader-section.section-left {
+    -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.loaded .loader-wrapper .loader-section.section-right {
+    -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+            transform: translateX(100%);
+
+-webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
+        transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    }
+    
+.loaded .loader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;  
+            transition: all 0.3s ease-out;
+}
+.loaded .loader-wrapper {
+    visibility: hidden;
+
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%);
+
+    -webkit-transition: all 0.3s 1s ease-out;  
+            transition: all 0.3s 1s ease-out;
 }
 
 /* END Play */
