@@ -1,4 +1,9 @@
 <?php
+$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+$sql =mysqli_prepare($conn,"delete from playersingame");
+$sql->execute();
+$sql->close();  
+$conn->Close();
 
 $conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
 $sql =mysqli_prepare($conn,"delete from gamesinprogress");
@@ -6,11 +11,7 @@ $sql->execute();
 $sql->close();  
 $conn->Close();
 
-$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-$sql =mysqli_prepare($conn,"delete from playersingame");
-$sql->execute();
-$sql->close();  
-$conn->Close();
+
 
 
 define('HOST_NAME',"localhost"); 
@@ -99,12 +100,38 @@ while (true) {
 			$socketMessage = $playHandler->unseal($socketData);
 			$messageObj = json_decode($socketMessage);
 			if ($messageObj== NULL) break;
+			if($messageObj->status =="endGame")
+			{
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"delete from playersingame where username=?");
+				mysqli_stmt_bind_param($sql, 's',$messageObj->username);  
+				$sql->execute();
+				$sql->close();  
+				$conn->Close();
+				
+			}
+			if ($messageObj->status =="terminate") {
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"delete from playersingame where username=?");
+				mysqli_stmt_bind_param($sql, 's',$messageObj->username);  
+				$sql->execute();
+				$sql->close();  
+				$conn->Close();
+				$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
+				$sql =mysqli_prepare($conn,"delete from gamesinprogress where usernamePlayer1=? or usernamePlayer2=?");
+				mysqli_stmt_bind_param($sql, 'ss',$messageObj->username,$messageObj->username);  
+				$sql->execute();
+				$sql->close();  
+				$conn->Close();
+
+			}
+			else {
 			$sendData=$playHandler->seal( json_encode($messageObj));
 			$messageLength = strlen( $sendData);
 			if (socket_write($clientSocketArray[$messageObj->index], $sendData,$messageLength)==false)
 				echo "error<br>\n";
 			else echo "am reusit la userul ".$clientSocketArray[$messageObj->index]."\n";
-	
+			}
 			
 			break 2;
 		}

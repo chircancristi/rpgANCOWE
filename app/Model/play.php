@@ -262,6 +262,7 @@ class play {
 				if ($sql->execute()==false) die("1Error creating account");
 				$sql->close();
 				$conn->close();
+				
 			}
 			else {
 				$moneyUpgrade=20;
@@ -286,7 +287,7 @@ class play {
 			$sql1 = mysqli_prepare($conn,"UPDATE `user` SET money=? where username=?");
             mysqli_stmt_bind_param($sql1, 'is',$money,$_SESSION["username"]);
             $sql1->execute();
-			$sql->close();
+			$sql1->close();
 			$conn->close();
 	}
 
@@ -374,7 +375,8 @@ class play {
 		}
 		if ($_SESSION["opponentsHealth"]<=0)
 		$userData=array(
-            'status'=> 'endGame',
+			'status'=> 'endGame',
+			'username' => $_SESSION["username"],
             'index'=>$_SESSION["index"]
 		); 
 		

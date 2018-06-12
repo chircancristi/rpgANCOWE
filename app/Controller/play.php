@@ -21,7 +21,6 @@ switch ($check){
     break;
     case 4:
     $play->giveRewards($_POST["win"]);
-    $play->deleteRow();
     break; 
     case 5:
     $play->updateHealth($_POST["health"]);
@@ -38,6 +37,7 @@ switch ($check){
         if ($_SESSION["opponentsHealth"]<=0)
         $userData=array(
             'status'=> 'endGame',
+            'username' => $_SESSION["username"],
             'index'=>$_SESSION["index"]
         ); 
          else $userData=array(
@@ -53,6 +53,15 @@ switch ($check){
     case 8:
     $response=$play->skill($_POST["skill1"],$_POST["skill2"],$_POST["skill3"],$_POST["skill4"]);
     echo $response;
+    break;
+    case 9:
+    $userData=array(
+        'status'=> 'terminate',
+        'username' => $_SESSION["username"],
+        
+    ); 
+    $userData=json_encode($userData);
+    echo $userData;
     break;
 
    

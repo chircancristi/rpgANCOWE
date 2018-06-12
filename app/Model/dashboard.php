@@ -369,7 +369,7 @@ function updateAccount($user,$pass,$comfirmPass,$mail){
         mysqli_stmt_bind_param($sql, 'i',$_SESSION["character"]);
         $sql->execute();
         $sql->bind_result($att,$def);
-        
+        $sql->fetch();
         $conn->close();
         $sql->close(); 
         $conn = mysqli_connect('localhost','root','','sundaybrawl');

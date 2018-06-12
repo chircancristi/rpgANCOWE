@@ -93,6 +93,9 @@ function buildEndOfTurnSkillsArray () {
 		
 		if( ability.getAttribute( 'data-selected' ) === "selected" ) {
 			endTurnSkills[index] = 1;
+			energyValue+=10*(index+1);
+			energyBar.style = "width: " + energyValue + "px";
+			energyTextValue.innerHTML = `${energyValue}`
 		}
 	}
 	var hr = new XMLHttpRequest();
@@ -107,7 +110,7 @@ function buildEndOfTurnSkillsArray () {
 			console.log(return_data);
 			var data= JSON.parse(return_data); 			
 			socket.send(return_data);
-			if (data.status=="endGme") 
+			if (data.status=="endGame") 
 					endGame(1);
 			else{
 				//def
@@ -119,15 +122,20 @@ function buildEndOfTurnSkillsArray () {
 				updateHealth(health,0);
 				updateHealth(oppponentsHealth,1);
 				endTurnButton();
+				if(energyValue<100){
+				energyValue += 10;
+				energyBar.style = "width: " + energyValue + "px";
+				energyTextValue.innerHTML = `${energyValue}`
+				highlightAbility(ability);
+				}
 			}
 		}
 	}
 	hr.send(vars);
-	energyValue=energyValue+10;
-	if (energyValue<100){
-		energyBar.style = "width: " + energyValue + "px";
-		energyTextValue.innerHTML = `${energyValue}`
-	};
+	
+
+
+	
 	for (let index = 0; index < abilitiesP1.children.length; index++) {
 		const ability = abilitiesP1.children[index];
 		ability.setAttribute("data-selected", "unselected");
@@ -194,42 +202,30 @@ function createSocket(){
 			 if (Data.status=="endGame")
 			 {
 				 endGame(0);
+				 var hr = new XMLHttpRequest();
+				var url = "../../Controller/play.php";
+				var vars = "status=9";
+				hr.open("POST", url, true);
+				hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				hr.onreadystatechange = function() {
+					if(hr.readyState == 4 && hr.status == 200) {
+						var return_data = hr.responseText;
+						socket.send(return_data);
+						}
+					}
+				hr.send(vars);
 				 
 			}
+		}
 			
 			 
-         }
+         
          websocket.onClose=function (event)
          {
             document.location.href = "dashboard.php";
 		 }	
 
 
-		
-	/*
-		$('#endTurn').on("submit",function(event){
-			event.preventDefault();
-			$('#chat-user').attr("type","hidden");		
-			var messageJSON = {
-				skill1: $('#chat-user').val(),
-				skill2: $('#chat-message').val()
-				skill3: $('#chat-user').val(),
-				skill4: $('#chat-message').val()
-			};
-			var hr = new XMLHttpRequest();
-			var url = "../../Controller/play.php";
-			var vars = "status=8";
-			hr.open("POST", url, true);
-			hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			hr.onreadystatechange = function() {
-				if(hr.readyState == 4 && hr.status == 200) {
-					var return_data = hr.responseText;			
-				    websocket.send(return_data);
-				}
-			}
-			hr.send(vars);
-		
-		});*/
 	;}
 	function updateUsersCar(){
 		var hr = new XMLHttpRequest();
@@ -308,7 +304,10 @@ function createSocket(){
 		hr.open("POST", url, true);
 		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		hr.send(vars);
-		document.location.href = "dashboard.php";
+		setTimeout( () => {
+			document.location.href = "dashboard.php";
+		}, 1500);
+	
 
 	}
 	function updateHealth(health,type){
