@@ -125,7 +125,6 @@ function changeWeapon(nr,type) {
 
 function showDescription(divId) {
 	document.getElementById(divId).style.opacity="1";
-
 }
 
 function hideDescription(divId) {

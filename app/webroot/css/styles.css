@@ -1048,6 +1048,7 @@ h2 {
 
 .abilities__item {
     display: inline-block;
+    position: relative;
 
     padding: 5px;
     margin-right: 5px;
@@ -1064,6 +1065,23 @@ h2 {
 .abilities__item img {
     max-width: 100%;
     height: auto;
+}
+
+.ability-description {
+    position: absolute;
+
+    bottom: -40px;
+    left: 50%;
+
+    opacity: 0;
+
+    padding: 10px;
+
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 7px;
+
+    transform: translateX(-50%);
 }
 
 .player-container.right .character__abilities li {
@@ -1099,7 +1117,7 @@ h2 {
     text-decoration: none;
     opacity:1;
     position: absolute;
-    bottom: -20px;
+    bottom: 70px;
     left: 50%;
     
     padding: 15px;

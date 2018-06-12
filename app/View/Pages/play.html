@@ -17,7 +17,7 @@
 
             <div class="game-container">
                 <div class="player-container" id="player1">
-                    <div class="player-card">
+                    <div class="player-card" style="background-color: #F79F1F; color: white;">
                         <p id="u-name" class="username"></p>
                     </div>
                     <hr>
@@ -49,11 +49,23 @@
                         </div>
                         <hr>
                         <ul id="abilities--p1" class="character__abilities">
-                            <li class="abilities__item" onclick="selectAbility(this)" data-order="first"><img class ="u-img" src="" alt="ability1"></li>
-                            <li class="abilities__item" onclick="selectAbility(this)" data-order="second"><img class ="u-img" src="" alt="ability2"></li>
-                            <li class="abilities__item" onclick="selectAbility(this)" data-order="third"><img class ="u-img" src="" alt="ability3"></li>
-                            <li class="abilities__item" onclick="selectAbility(this)" data-order="fourth"><img class ="u-img" src="" alt="ability4"></li>
-                        </ul>   
+                            <li class="abilities__item" onclick="selectAbility(this)" data-order="first" onmouseover="showAbilityDesc('u-ab-desc-1')" onmouseout="hideAbilityDesc('u-ab-desc-1')">
+                                <img class ="u-img" src="" alt="ability1">
+                                <div class="ability-description" id="u-ab-desc-1"><span></span></div>
+                            </li>
+                            <li class="abilities__item" onclick="selectAbility(this)" data-order="second" onmouseover="showAbilityDesc('u-ab-desc-2')" onmouseout="hideAbilityDesc('u-ab-desc-2')">
+                                <img class ="u-img" src="" alt="ability2">
+                                <div class="ability-description" id="u-ab-desc-2"><span></span></div>
+                            </li>
+                            <li class="abilities__item" onclick="selectAbility(this)" data-order="third" onmouseover="showAbilityDesc('u-ab-desc-3')" onmouseout="hideAbilityDesc('u-ab-desc-3')">
+                                <img class ="u-img" src="" alt="ability3">
+                                <div class="ability-description" id="u-ab-desc-3"><span></span></div>
+                            </li>
+                            <li class="abilities__item" onclick="selectAbility(this)" data-order="fourth" onmouseover="showAbilityDesc('u-ab-desc-4')" onmouseout="hideAbilityDesc('u-ab-desc-4')">
+                                <img class ="u-img" src="" alt="ability4">
+                                <div class="ability-description" id="u-ab-desc-4"><span></span></div>
+                            </li>
+                        </ul>
                     </div>
 
                     <div id="ability-error" class="resource-error">
@@ -89,10 +101,22 @@
                             </div>
                         <hr>
                         <ul id="abilities--p2" class="character__abilities">
-                            <li class="abilities__item"><img class="o-img" src="" alt="ability1"></li>
-                            <li class="abilities__item"><img class="o-img" src="" alt="ability2"></li>
-                            <li class="abilities__item"><img class="o-img" src="" alt="ability3"></li>
-                            <li class="abilities__item"><img class="o-img" src="" alt="ability4"></li>
+                            <li class="abilities__item" onmouseover="showAbilityDesc('o-ab-desc-1')" onmouseout="hideAbilityDesc('o-ab-desc-1')">
+                                <img class="o-img" src="" alt="ability1">
+                                <div class="ability-description" id="o-ab-desc-1"><span></span></div>
+                            </li>
+                            <li class="abilities__item" onmouseover="showAbilityDesc('o-ab-desc-2')" onmouseout="hideAbilityDesc('o-ab-desc-2')">
+                                <img class="o-img" src="" alt="ability2">
+                                <div class="ability-description" id="o-ab-desc-2"><span></span></div>
+                            </li>
+                            <li class="abilities__item" onmouseover="showAbilityDesc('o-ab-desc-3')" onmouseout="hideAbilityDesc('o-ab-desc-3')">
+                                <img class="o-img" src="" alt="ability3">
+                                <div class="ability-description" id="o-ab-desc-3"><span></span></div>
+                            </li>
+                            <li class="abilities__item" onmouseover="showAbilityDesc('o-ab-desc-4')" onmouseout="hideAbilityDesc('o-ab-desc-4')">
+                                <img class="o-img" src="" alt="ability4">
+                                <div class="ability-description" id="o-ab-desc-4"><span></span></div>
+                            </li>
                         </ul>   
                     </div>
                 </div>

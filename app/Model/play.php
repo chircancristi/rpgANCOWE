@@ -117,34 +117,34 @@ class play {
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill1"]);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill1url);
+		$sql->bind_result($skill1url, $desc_1);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill2"]);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill2url);
+		$sql->bind_result($skill2url, $desc_2);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill3"]);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill3url);
+		$sql->bind_result($skill3url, $desc_3);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$_SESSION["skill4"]);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill4url);
+		$sql->bind_result($skill4url, $desc_4);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
@@ -159,7 +159,11 @@ class play {
 			'att' => $_SESSION["att"],
 			'def' => $_SESSION["def"],
 			'lvl' => $lvl,
-			"turn" => $_SESSION["turn"]
+			"turn" => $_SESSION["turn"],
+			'desc1' => $desc_1,
+			'desc2' => $desc_2,
+			'desc3' => $desc_3,
+			'desc4' => $desc_4
 		);
 		$userData=json_encode($userData);
 		return $userData;
@@ -182,34 +186,34 @@ class play {
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$skill1);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill1url);
+		$sql->bind_result($skill1url, $desc_1);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$skill2);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill2url);
+		$sql->bind_result($skill2url, $desc_2);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$skill3);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill3url);
+		$sql->bind_result($skill3url, $desc_3);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
 		$conn = mysqli_connect('localhost', 'root', "", "sundaybrawl");
-		$sql =mysqli_prepare($conn,"select imgUrl from `abilities` where abilityId=? ");
+		$sql =mysqli_prepare($conn,"select imgUrl, description from `abilities` where abilityId=? ");
 		mysqli_stmt_bind_param($sql, 'i',$skill4);
 		if ($sql->execute()==false) die("1Error creating account");
-		$sql->bind_result($skill4url);
+		$sql->bind_result($skill4url, $desc_4);
 		$sql->fetch();
 		$sql->close();
 		$conn->close();
@@ -223,7 +227,11 @@ class play {
 			'skill4' => $skill4url,
 			'att' => $_SESSION["oppAtt"],
 			'def' => $_SESSION["oppDef"],
-			'lvl' => $lvl
+			'lvl' => $lvl,
+			'desc1' => $desc_1,
+			'desc2' => $desc_2,
+			'desc3' => $desc_3,
+			'desc4' => $desc_4
 		);
 		$userData=json_encode($userData);
 		return $userData;

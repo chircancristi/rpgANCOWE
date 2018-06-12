@@ -42,6 +42,14 @@ function updateEnergy ( ability, abilityCost, type ) {
 	}
 }
 
+function showAbilityDesc ( id ) {
+	document.getElementById(id).style = "opacity: 1;";
+}
+
+function hideAbilityDesc ( id ) {
+	document.getElementById(id).style = "opacity: 0;";
+}
+
 
 function highlightAbility ( ability ) {
 	if( ability.getAttribute("data-selected" ) === "selected") {
@@ -102,12 +110,12 @@ function buildEndOfTurnSkillsArray () {
 	var url = "../../Controller/play.php";
 	var vars = "status=8"+"&skill1="+endTurnSkills[0]+"&skill2="+endTurnSkills[1]+"&skill3="+endTurnSkills[2]+"&skill4="+endTurnSkills[3];
 	hr.open("POST", url, true);
-	console.log(vars);
+
 	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	hr.onreadystatechange = function() {
 		if(hr.readyState == 4 && hr.status == 200) {
 			var return_data = hr.responseText;
-			console.log(return_data);
+
 			var data= JSON.parse(return_data); 			
 			socket.send(return_data);
 			if (data.status=="endGame") 
@@ -170,6 +178,8 @@ function createSocket(){
 					if(hr.readyState == 4 && hr.status == 200) {
 						var return_data = hr.responseText;
 						
+						console.log(return_data);
+
 						websocket.send(return_data);
 					}
 				}
@@ -182,6 +192,7 @@ function createSocket(){
 				updateUsersCar();
 				updateOpponentsCar(Data.caracter,Data.username,Data.skill1,Data.skill2,Data.skill3,Data.skill4,Data.att,Data.def);
 				var body = document.getElementsByTagName('body');
+				
 				body[0].classList.add('loaded');
 			}
 			if (Data.status=="opponentsTurn")
@@ -220,13 +231,10 @@ function createSocket(){
 			}
 		}
 			
-			 
-         
          websocket.onClose=function (event)
          {
             document.location.href = "dashboard.php";
 		 }	
-
 
 	;}
 	function updateUsersCar(){
@@ -238,6 +246,9 @@ function createSocket(){
 		hr.onreadystatechange = function() {
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
+
+				console.log(return_data);
+
 				var data= JSON.parse(return_data);
 				var skills=[data.skill1,data.skill2,data.skill3,data.skill4];	
 				//username		
@@ -256,7 +267,16 @@ function createSocket(){
 					const ability = abilitiesP1.children[index];
 					ability.children[0].setAttribute("src",skills[index]);
 				}
-	
+				
+				var desc1 = document.getElementById('u-ab-desc-1');
+				desc1.children[0].innerHTML = data.desc1;
+				var desc2 = document.getElementById('u-ab-desc-2');
+				desc2.children[0].innerHTML = data.desc2; 
+				var desc3 = document.getElementById('u-ab-desc-3');
+				desc3.children[0].innerHTML = data.desc3; 
+				var desc4 = document.getElementById('u-ab-desc-4');
+				desc4.children[0].innerHTML = data.desc4; 
+
 				if (data.turn==0) endTurnButton();
 				else  setTimeout( () => {
 					doDmg();
@@ -275,7 +295,9 @@ function createSocket(){
 		hr.onreadystatechange = function() {
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
-				console.log(return_data);			
+
+				console.log(return_data);
+
 				var data= JSON.parse(return_data);
 				var skills=[data.skill1,data.skill2,data.skill3,data.skill4];	
 				//username		
@@ -294,6 +316,15 @@ function createSocket(){
 					const ability = abilitiesP2.children[index];
 					ability.children[0].setAttribute("src",skills[index]);
 				}
+
+				var desc1 = document.getElementById('o-ab-desc-1');
+				desc1.children[0].innerHTML = data.desc1;
+				var desc2 = document.getElementById('o-ab-desc-2');
+				desc2.children[0].innerHTML = data.desc2; 
+				var desc3 = document.getElementById('o-ab-desc-3');
+				desc3.children[0].innerHTML = data.desc3; 
+				var desc4 = document.getElementById('o-ab-desc-4');
+				desc4.children[0].innerHTML = data.desc4;
 				
 			}
 		}
@@ -347,7 +378,7 @@ function createSocket(){
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
 				socket.send(return_data);
-				console.log(return_data);
+
 				var data= JSON.parse(return_data);
 				updateHealth(data.health,1);
 				var data= JSON.parse(return_data);
